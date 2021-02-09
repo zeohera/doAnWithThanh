@@ -1,0 +1,92 @@
+.login_btn {
+    height: 40px;
+    width: 200px;
+    border: white 1px solid;
+    border-radius: 20px;
+    color: white;
+    background: #2868fc;
+    -webkit-box-shadow: 0px 0px 10px white;
+            box-shadow: 0px 0px 10px white;
+    -webkit-transition: background 0.2s;
+    transition: background 0.2s;
+  }
+  
+  .login_btn:focus {
+    outline: none;
+    background: #7a9ef1;
+  }
+  
+  body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100vh;
+    background: #1655ed;
+    background: linear-gradient(225deg, #1655ed 21%, #10dbfc 100%);
+  }
+  
+  body .loginform {
+    -webkit-box-shadow: 0px 0px 10px gray;
+            box-shadow: 0px 0px 10px gray;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 20px;
+    width: 500px;
+    padding-bottom: 30px;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: auto;
+  }
+  
+  body .loginform h2 {
+    -webkit-box-shadow: 0px 0px 10px gray;
+            box-shadow: 0px 0px 10px gray;
+    line-height: 50px;
+    width: 50%;
+    background-color: white;
+    margin: 0;
+    display: block;
+    text-align: center;
+    border-radius: 0 0 20px;
+  }
+  
+  body .loginform .account {
+    margin: 20px 10px;
+  }
+  
+  body .loginform .account #account {
+    border: none;
+    height: 40px;
+    -webkit-box-shadow: 0px 0px 5px lightgray;
+            box-shadow: 0px 0px 5px lightgray;
+    border-radius: 20px;
+  }
+  
+  body .loginform .account #account:focus {
+    outline: none;
+  }
+  
+  body .loginform .password {
+    margin: 20px 10px;
+  }
+  
+  body .loginform .password #password {
+    border: none;
+    height: 40px;
+    -webkit-box-shadow: 0px 0px 5px lightgray;
+            box-shadow: 0px 0px 5px lightgray;
+    border-radius: 20px;
+  }
+  
+  body .loginform .password #password:focus {
+    outline: none;
+  }
+  
+  body .loginform .btn_area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  /*# sourceMappingURL=login.css.map */

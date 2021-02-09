@@ -1,0 +1,33 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1 Admin Manager
+        a.btn.btn-primary.btn-sm(href = "createAdmin") Tạo tài khoản Admin
+        table.table
+                thead
+                    tr
+                        th(scope='col') Tên 
+                        th(scope='col') Ảnh
+                        th(scope='col') Tên tài khoản
+                        th(scope='col') Email
+                        th(scope='col') Số điện thoại
+                        th(scope='col') Action
+                tbody
+                    each user in users
+                        tr 
+                            td= user.name
+                            td
+                                img(src=user.avatar, alt="", style="max-height: 50px")
+                            td= user.account
+                            td= user.email
+                            td= user.phoneNumber
+                            td
+                                .action-container
+                                    a.btn.btn-info.btn-sm 
+                                        i.fas.fa-info-circle
+                                    form(Action = user.id + "/deleteAdmin" , method='POST')
+                                        button.btn.btn-danger.btn-sm(type='submit')
+                                            i.fas.fa-trash-alt
+                                    a.btn.btn-warning.btn-sm()
+                                        i.fas.fa-edit
