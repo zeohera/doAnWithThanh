@@ -5,6 +5,12 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 var path = require('path')
+var _ = require('lodash');
+
+function unpollute(req, res, next) {
+  req.body = _.omit(req.body, '__proto__');
+  next();
+}
 
 mongoose.connect('mongodb://localhost/instrument-dev')
 
@@ -32,6 +38,8 @@ app.set('views', './views')
 app.use(cookieParser('zxcvbnmasdflkhj'))
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(unpollute);
+
 
 app.use('/Auth',authRoute)
 app.use('/product', productRoute)

@@ -1,0 +1,37 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        if errors
+            for error in errors
+                .alert.alert-danger= error
+        .container 
+        .row.mb-2
+            .col-md-6 
+                h2 Chỉnh sửa thông tin cho tài khoản cho: 
+                    = values.account
+            .col-md-6 
+                img.rounded(src= values.avatar, alt="" style= 'max-width : 250px')
+        form(action = "/admin/postUpdateAdmin/" + values.id, method= "POST", enctype="multipart/form-data")
+            .mb-3
+                input#name.form-control(name = 'name', value= values.name)
+            //- .mb-3
+            //-     p thay avatar
+            //-     br
+            //-     label(for="avatar") avatar
+            //-     br
+            //-     input(name = "avatar", type="file" )
+            .mb-3
+                label.form-label(for='phoneNumber') Số điện thoai
+                input#phoneNumber.form-control(name = 'phoneNumber' value=  values.phoneNumber )
+            .mb-3
+                label.form-label(for='Email') Địa chỉ Email
+                input#Email.form-control(type='email', name= 'email' value=  values.email )
+            .mb-3
+                label.form-label(for='exampleInputPassword1') Nhập mật khẩu cũ 
+                input#exampleInputPassword1.form-control(type='password', name = 'passwordOld')
+                sub.text-danger nhập đúng mật khẩu cũ mới có thể đổi
+            .mb-3
+                label.form-label(for='exampleInputPassword1') Nhập mật khẩu mới
+                input#exampleInputPassword1.form-control(type='password', name = 'passwordNew')
+            button.btn.btn-primary(type='submit') Xác nhận

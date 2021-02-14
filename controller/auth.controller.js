@@ -1,8 +1,7 @@
 const { signedCookie } = require('cookie-parser')
 const md5 = require('md5')
-
-const db = require('../db')
 const User = require('../models/user.model')
+
 module.exports.index = (req, res) =>{
     res.render('auth/login')
 }

@@ -4,6 +4,7 @@ const router = express.Router()
 
 var controller = require('../controller/admin.controller');
 var validate = require('../validate/adminCreate.validate')
+var validate1 = require('../validate/adminUpdate.validate')
 const { route } = require('./auth.route');
 // const { route } = require('./product.route')
 
@@ -18,7 +19,10 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
+
+
 router.get('', controller.index)
+
 
 
 // admin manager
@@ -29,6 +33,11 @@ router.get('/createAdmin',  controller.addAdmin)
 router.post('/createAdmin', upload.single('avatar'), validate.postAdminCreate, controller.postAdminCreate)
 
 router.post('/:id/deleteAdmin' , controller.deleteAdmin)
+
+router.get('/:id/updateAdmin',controller.updateAdmin )
+
+router.post('/postUpdateAdmin/:id' ,upload.single('avatar'), controller.postUpdateAdmin )
+
 // product manager
 router.get('/productManager', controller.productManager)
 

@@ -8,6 +8,8 @@ module.exports.index = (req, res) =>{
     res.render('admin/dashboard')
 }
 
+
+// ADMIN MANAGER
 module.exports.adminManager = (req, res) =>{
     User.find( (error, data) => {
         if(error){
@@ -55,6 +57,46 @@ module.exports.deleteAdmin = (req, res) =>
     })  
 }
 
+module.exports.updateAdmin = async (req, res) => {
+    
+    var info = await User.findById(req.params.id).exec()
+    // res.send(info)
+    res.render('admin/adminUpdate',
+    {
+        values : info
+    }
+    )
+}
+
+module.exports.postUpdateAdmin = async (req, res) =>{
+    console.log(req.body.passwordOld)
+    var password = md5(req.body.passwordOld)
+    var info = await User.findById(req.params.id).exec()
+    console.log(info)
+    errors = []
+    if (password != info.password)
+    {
+        errors.push('mật khẩu không chính xác')
+        res.render('admin/adminUpdate', {
+            values : info, 
+            errors : errors
+        })
+        return
+    }
+    console.log('throw 2')
+    req.body.password = md5(req.body.passwordNew)
+    console.log(req.body.password)
+    User.findOneAndUpdate( {_id: info._id }, req.body, (err, doc)=> {
+        if (err) {
+            console.log("Something wrong when updating data!");
+        }
+        console.log(doc);
+    })
+    res.redirect('/admin/adminManager')
+    
+}
+
+// ---PRODUCT MANAGER
 module.exports.productManager = async (req, res) => {
     var products = await  Product.find().exec()
 
@@ -64,7 +106,7 @@ module.exports.productManager = async (req, res) => {
     })
 }
 
-// product category manager
+// PRODUCT CATEGORY MANAGER
 module.exports.productCategoryManager = (req, res) => {
     res.render('admin/productCategoryManager')
 }

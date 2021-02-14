@@ -244,7 +244,7 @@ html(lang='en')
                                         i.fas.fa-list.fa-sm.fa-fw.mr-2.text-gray-400
                                         |Activity Log
                                     .dropdown-divider
-                                    a.dropdown-item(href='auth/logout' data-toggle='modal' data-target='#logoutModal')
+                                    a.dropdown-item(href='/auth/logout' data-toggle='modal' data-target='#logoutModal')
                                         i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
                                         | Logout
                     // End of Topbar
@@ -274,7 +274,7 @@ html(lang='en')
                     .modal-body Select "Logout" below if you are ready to end your current session.
                     .modal-footer
                         button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
-                        a.btn.btn-primary(href='auth/logout') Logout
+                        a.btn.btn-primary(href='/auth/logout') Logout
         // Bootstrap core JavaScript
         script(src='sbAdmin2/vendor/jquery/jquery.min.js')
         script(src='sbAdmin2/vendor/bootstrap/js/bootstrap.bundle.min.js')
