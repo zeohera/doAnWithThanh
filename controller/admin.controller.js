@@ -54,7 +54,7 @@ module.exports.deleteAdmin = (req, res) =>
     // db.get('users').remove({id : id}).write()
     User.deleteOne({ _id : id}).then(function(){
         res.redirect('/admin/adminManager')
-    })  
+    })
 }
 
 module.exports.updateAdmin = async (req, res) => {
@@ -103,6 +103,16 @@ module.exports.productManager = async (req, res) => {
     res.render('admin/productManager',
     {
         products : products
+    })
+}
+module.exports.productCreate = (req,res) => {
+    res.render('admin/productCreate')
+}
+module.exports.deleteProduct = (req, res) => {
+    var id = req.params.id
+
+    Product.deleteOne({ _id : id}).then(function(){
+        res.redirect('/admin/productManager')
     })
 }
 

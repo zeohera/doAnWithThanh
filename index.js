@@ -12,6 +12,7 @@ function unpollute(req, res, next) {
   next();
 }
 
+
 mongoose.connect('mongodb://localhost/instrument-dev')
 
 var productRoute = require('./routes/product.route')

@@ -5,13 +5,15 @@ var productSchema = new mongoose.Schema({
     name: String,
     brand:String,
     amount: Number,
+    price: Number,
     image:String,
     description: String,
     introText: String,
-    price: Number,
     day: Date,
     type: String,
-    Subtype: String
+    Subtype: String,
+    display: Boolean,
+
 })
 var Product = mongoose.model('Product', productSchema, 'products' )
 

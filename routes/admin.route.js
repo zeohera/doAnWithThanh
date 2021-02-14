@@ -41,6 +41,9 @@ router.post('/postUpdateAdmin/:id' ,upload.single('avatar'), controller.postUpda
 // product manager
 router.get('/productManager', controller.productManager)
 
+router.get('/createProduct', controller.productCreate)
+
+router.post('/:id/deleteProduct' , controller.deleteProduct)
 
 // product category manager
 router.get('/productCategoryManager', controller.productCategoryManager)

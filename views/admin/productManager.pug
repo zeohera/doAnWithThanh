@@ -3,8 +3,8 @@ extends ../layouts/adminLayout
 block content
     .container-fluid
         h1 Product Manager
-        a.btn.btn-primary.btn-sm(href = "createAdmin") Tạo tài khoản Admin
-        table.table
+        a.btn.btn-primary.btn-sm(href = "createProduct") Tạo một sản phẩm mới
+        table.table.mt-2
                 thead
                     tr
                         th(scope='col') Tên
@@ -24,9 +24,9 @@ block content
                             td= product.phoneNumber
                             td
                                 .action-container
-                                    a.btn.btn-info.btn-sm 
+                                    a.btn.btn-info.btn-sm(href = '/product/' +  product.id)
                                         i.fas.fa-info-circle
-                                    form(Action = product.id + "/deleteAdmin" , method='POST')
+                                    form(Action = product.id + "/deleteProduct" , method='POST')
                                         button.btn.btn-danger.btn-sm(type='submit')
                                             i.fas.fa-trash-alt
                                     a.btn.btn-warning.btn-sm()
