@@ -3,7 +3,7 @@ const shortid = require('shortid')
 const bodyParser = require('body-parser')
 const Product = require('../models/product.model')
 
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
     var page = req.query.page || 1
     var perPage = 12
     var start = (page -1 ) * perPage

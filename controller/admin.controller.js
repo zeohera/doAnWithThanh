@@ -3,6 +3,7 @@ const md5 = require('md5')
 const e = require('express')
 const User = require('../models/user.model')
 const Product = require('../models/product.model')
+const ProductCategory = require('../models/productCategory.model')
 
 module.exports.index = (req, res) =>{
     res.render('admin/dashboard')
@@ -99,15 +100,18 @@ module.exports.postUpdateAdmin = async (req, res) =>{
 // ---PRODUCT MANAGER
 module.exports.productManager = async (req, res) => {
     var products = await  Product.find().exec()
-
     res.render('admin/productManager',
     {
         products : products
     })
 }
-module.exports.productCreate = (req,res) => {
-    res.render('admin/productCreate')
+module.exports.productCreate = async (req,res) => {
+    var productCategory = await ProductCategory.find().exec()
+    res.render('admin/productCreate', {
+        ProductCategories : productCategory
+    })
 }
+
 module.exports.deleteProduct = (req, res) => {
     var id = req.params.id
 
@@ -117,6 +121,19 @@ module.exports.deleteProduct = (req, res) => {
 }
 
 // PRODUCT CATEGORY MANAGER
-module.exports.productCategoryManager = (req, res) => {
-    res.render('admin/productCategoryManager')
+module.exports.productCategoryManager = async (req, res) => {
+    var productCategory = await ProductCategory.find().exec()
+    res.render('admin/productCategoryManager', {
+        productCategories : productCategory
+    })
 }
+
+module.exports.createProductCategory = (req, res)=>{
+    res.render('admin/createProductCategory')
+}
+
+module.exports.postProductCategoryCreate = (req, res) => {
+    ProductCategory.create(req.body)
+    res.redirect('productCategoryManager')
+}
+

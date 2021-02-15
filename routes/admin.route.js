@@ -19,12 +19,7 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-
-
 router.get('', controller.index)
-
-
-
 // admin manager
 router.get('/adminManager',  controller.adminManager)
 
@@ -47,4 +42,8 @@ router.post('/:id/deleteProduct' , controller.deleteProduct)
 
 // product category manager
 router.get('/productCategoryManager', controller.productCategoryManager)
+
+router.get('/createProductCategory', controller.createProductCategory)
+
+router.post('/createProductCategory', controller.postProductCategoryCreate)
 module.exports = router
