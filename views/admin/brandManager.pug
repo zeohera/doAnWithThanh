@@ -2,26 +2,31 @@ extends ../layouts/adminLayout
 
 block content
     .container-fluid
-        h1 Quản lý danh mục sản phẩm
-        a.btn.btn-primary.btn-sm(href = "createProductCategory") Thêm danh mục mới ở đây
-        table.table.mt-2.container
+        h1 Brand Manager
+        a.btn.btn-primary.btn-sm(href = "addBrand") Thêm một nhãn hàng mới
+        table.table.mt-2
                 thead
                     tr
                         th(scope='col') Tên
+                        th(scope='col') Ảnh
                         th(scope='col') Mô tả
                         th(scope='col') Action
                 tbody
-                    each productCategory in productCategories
+                    each brand in brands
                         tr 
-                            td= productCategory.name
-                            td= productCategory.description
+                            td= brand.name 
+                            td
+                                img(src=brand.logo , style="max-height: 50px")
+                            td= brand.description
                             td
                                 .action-container
-                                    a.btn.btn-info.btn-sm(href ='#')
+                                    a.btn.btn-info.btn-sm(href = "#")
                                         i.fas.fa-info-circle
-                                    form(Action = productCategory.id + "/deleteProductCategory" , method='POST')
+                                    form(Action = brand.id + "/deleteBrand" , method='POST')
                                         button.btn.btn-danger.btn-sm(type='submit')
                                             i.fas.fa-trash-alt
                                     a.btn.btn-warning.btn-sm()
                                         i.fas.fa-edit
+                                    a.btn.btn-secondary.btn-sm()
+                                        i.fas.fa-eye-slash
                                     

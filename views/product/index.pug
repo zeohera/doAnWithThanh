@@ -24,7 +24,9 @@ block content
                                 p.card_name= product.name
                                 a.brand(href='')= product.brand
                                 .price
-                                    p.final 4.942.912 &#x20AB;
-                                    p.before 5.090.010 &#x20AB;
+                                    p.final=product.discountedPrice 
+                                        | &#x20AB;
+                                    p.before=product.price 
+                                        | &#x20AB;
                                 .add2cart
                                     button Thêm vào giỏ hàng

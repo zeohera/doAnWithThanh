@@ -4,6 +4,8 @@ const e = require('express')
 const User = require('../models/user.model')
 const Product = require('../models/product.model')
 const ProductCategory = require('../models/productCategory.model')
+const SubProductCategory = require('../models/SubProductCategory.model')
+const Brand = require('../models/brand.model')
 
 module.exports.index = (req, res) =>{
     res.render('admin/dashboard')
@@ -107,18 +109,38 @@ module.exports.productManager = async (req, res) => {
 }
 module.exports.productCreate = async (req,res) => {
     var productCategory = await ProductCategory.find().exec()
+    var brand = await  Brand.find().exec()
+    var subProductCategory = await SubProductCategory.find().exec()
     res.render('admin/productCreate', {
-        ProductCategories : productCategory
+        ProductCategories : productCategory,
+        brands : brand,
+        SubProductCategories : subProductCategory
+    })
+    res.send({
+        ProductCategories : productCategory,
+        brands : brand,
+        SubProductCategories : subProductCategory
     })
 }
 
+module.exports.postProductCreate = (req, res) => {
+    // req.body.price = parseInt(req.body.price)
+    // req.body.discountedPrice = parseInt(req.body.discountedPrice)
+    req.body.image = req.file.path.split('\\').slice(1).join('/')
+    console.log(req.body)
+    Product.create(req.body)
+    res.redirect('productManager') 
+}
+
+
 module.exports.deleteProduct = (req, res) => {
     var id = req.params.id
-
     Product.deleteOne({ _id : id}).then(function(){
         res.redirect('/admin/productManager')
     })
 }
+
+
 
 // PRODUCT CATEGORY MANAGER
 module.exports.productCategoryManager = async (req, res) => {
@@ -137,3 +159,67 @@ module.exports.postProductCategoryCreate = (req, res) => {
     res.redirect('productCategoryManager')
 }
 
+module.exports.deleteProductCategory = (req, res) =>
+{
+    var id = req.params.id
+    ProductCategory.deleteOne({ _id : id}).then(function(){
+        res.redirect('/admin/productCategoryManager')
+    })
+}
+
+
+// BRAND MANAGER    
+module.exports.brandManager = async (req, res) => {
+    var brand = await  Brand.find().exec()
+
+    res.render('admin/brandManager',
+    {
+        brands : brand
+    })
+}
+
+module.exports.addBrand =  (req, res) => {
+    res.render ('admin/addBrand')
+}
+
+module.exports.postAddBrand = (req, res) =>{
+    req.body.logo = req.file.path.split('\\').slice(1).join('/')
+    Brand.create(req.body)
+    res.redirect('brandManager')
+}
+
+module.exports.deleteBrand = (req, res) =>
+{
+    var id = req.params.id
+    Brand.deleteOne({ _id : id}).then(function(){
+        res.redirect('/admin/brandManager')
+    })
+}
+
+// SUBCATEGORY
+module.exports.subProductCategoryManager = async (req, res) =>{
+    var subProductCategory = await SubProductCategory.find().exec()
+    res.render('admin/subProductCategoryManager', 
+    {
+        subProductCategories : subProductCategory
+    })
+}
+module.exports.createSubProductCategory = async (req, res)=>{
+    var productCategory = await ProductCategory.find().exec()
+    res.render('admin/createSubProductCategory',{
+        productCategories : productCategory
+        
+    })
+}
+
+module.exports.postCreateSubProductCategory = async (req, res)=>{
+    SubProductCategory.create(req.body)
+    res.redirect('subProductCategoryManager')
+}
+module.exports.deleteSubProductCategory = (req, res) =>
+{
+    var id = req.params.id
+    SubProductCategory.deleteOne({ _id : id}).then(function(){
+        res.redirect('/admin/subProductCategoryManager')
+    })
+}

@@ -11,11 +11,11 @@ block content
                 input#name.form-control(name = 'name')
 
             label.form-label(for='brand') là một sản phẩm của ?
-            if Brands
+            if brands
                 .mb-3
                     select#brand(name="brand") 
-                        option(selected='') Open this select menu
-                        for brand in Brands
+                        option(selected='') Mở để chọn
+                        for brand in brands
                                 option(value= brand.name)= brand.name
 
             .mb-3 
@@ -25,17 +25,18 @@ block content
             label.form-label(for='category') Thuộc danh mục sản phẩm nào ?
             if ProductCategories
                 .mb-3
-                    select#category.form-select(aria-label='Default select example')
+                    select#category.form-select.firstList.selectFilter(aria-label='Default select example', name = 'category', data-target="secondList")
                         option(selected='') Open this select menu
                         for category in ProductCategories
-                            option(value=category.name)= category.name
+                            option(value=category.name, data-ref=category.name)= category.name
+
             label.form-label(for='subcategory') Thuộc danh mục nhỏ sản phẩm nào ?
             if SubProductCategories
                 .mb-3
-                    select#subcategory.form-select(aria-label='Default select example')
+                    select#subcategory.form-select.secondList.selectFilter(aria-label='Default select example', name = 'subCategory')
                         option(selected='') Open this select menu
-                        for subCategory in ProductSubCategories
-                            option(value=subCategory.name)= subCategory.name
+                        for subCategory in SubProductCategories
+                            option(value=subCategory.name, data-belong=subCategory.mother)= subCategory.name
 
             .mb-3 
                 label.form-label(for='price') Giá bán của sản phẩm :
@@ -45,14 +46,17 @@ block content
                 label(for="image") Ảnh của sản phẩm :
                 br
                 input(name = "image", type="file" )
+
             .mb-3 
                 label.form-label(for='description') Mô tả :
                 br
                 textarea#description.form-control(name="description" ,rows="4", cols="100") 
+
             .mb-3
                 label.form-label(for='introText') giới thiệu ngắn sản phẩm :
                 br
                 textarea#introText.form-control(name="introText" ,rows="4", cols="100") 
+
             .mb-3
                 label.form-label(for='date') Ngày nhập
                 br
@@ -74,12 +78,12 @@ block content
                     input#hide.form-check-input(type='radio',value='0', name='new')
                     label.form-check-label(for='hide') cũ
             .mb-3 
-                label.form-label(for='price') Giảm giá không ?.Nhập số tiền giảm bên dưới 
-                input#price.form-control(type ='number', name = 'price')
+                label.form-label(for='discountedPrice') Giảm giá không ?.Nhập số tiền giảm bên dưới 
+                input#discountedPrice.form-control(type ='number', name = 'discountedPrice')
             .mb-3
-                label.form-label(for='sound') Sản phẩm này Phát ra âm thanh như nào ?
+                label.form-label(for='sound') Sản phẩm này Phát ra âm thanh như nào ? (extended Link)
                 input#name.form-control(name = 'sound')
-              
+            button.btn.btn-primary.btn-sm(type ="submit") Lưu  
                 
 
 

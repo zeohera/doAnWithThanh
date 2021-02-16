@@ -36,21 +36,31 @@ html(lang='en')
                 li.nav-item.active
                     a.nav-link(href='/admin/adminManager')
                         i.fas.fa-users
-                        span Quản lý tài khoản admin
+                        span  Tài khoản admin
                 hr.sidebar-divider
                 li.nav-item.active
                     a.nav-link(href='index.html')
                         i.fas.fa-receipt
-                        span quản lý đơn hàng
+                        span  Đơn hàng
                 hr.sidebar-divider
-                li.nav-item.active
-                    a.nav-link(href='/admin/productCategoryManager')
+                li.nav-item
+                    a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapseTwo' aria-expanded='true' aria-controls='collapseTwo')
                         i.fas.fa-list-ul
-                        span Quản lý danh mục sản phẩm
+                        span Danh mục sản phẩm
+                    #collapseTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordionSidebar')
+                        .bg-white.py-2.collapse-inner.rounded
+                            h6.collapse-header Bao gồm
+                            a.collapse-item(href='/admin/productCategoryManager') Danh mục lớn
+                            a.collapse-item(href='/admin/subProductCategoryManager') Danh mục nhỏ
+                li.nav-item.active
+                    a.nav-link(href='/admin/brandManager')
+                        i.fas.fa-copyright
+                        span  Thông tin hãng
+                
                 li.nav-item.active
                     a.nav-link(href='/admin/productManager')
                         i.fas.fa-guitar
-                        span Quản lý sản phẩm
+                        span  Sản phẩm
                 
                 // Divider
                 hr.sidebar-divider
@@ -58,15 +68,7 @@ html(lang='en')
                 .sidebar-heading
                     | Interface
                 // Nav Item - Pages Collapse Menu
-                li.nav-item
-                    a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapseTwo' aria-expanded='true' aria-controls='collapseTwo')
-                        i.fas.fa-fw.fa-cog
-                        span Components
-                    #collapseTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordionSidebar')
-                        .bg-white.py-2.collapse-inner.rounded
-                            h6.collapse-header Custom Components:
-                            a.collapse-item(href='buttons.html') Buttons
-                            a.collapse-item(href='cards.html') Cards
+                
                 // Nav Item - Utilities Collapse Menu
                 li.nav-item
                     a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapseUtilities' aria-expanded='true' aria-controls='collapseUtilities')
@@ -286,3 +288,4 @@ html(lang='en')
         // Page level custom scripts
         script(src='sbAdmin2/js/demo/chart-area-demo.js')
         script(src='sbAdmin2/js/demo/chart-pie-demo.js')
+        script(src="sbAdmin2/js/selectFilter.min.js")

@@ -18,10 +18,13 @@ block content
                         tr 
                             td= product.name
                             td
-                                img(src=product.image, alt="", style="max-height: 50px")
+                                img(src=product.image, style="max-height: 50px")
                             td= product.brand
-                            td= product.email
-                            td= product.phoneNumber
+                            td
+                                p= product.price 
+                            td
+                                p= product.category 
+                                   | / #{product.subCategory}
                             td
                                 .action-container
                                     a.btn.btn-info.btn-sm(href = '/product/' +  product.id)

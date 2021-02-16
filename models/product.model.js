@@ -6,7 +6,7 @@ var productSchema = new mongoose.Schema({
     brand:String,
     amount: Number,
     category: String,
-    SubCategory: String,
+    subCategory: String,
     price: Number,
     image:String,
     description: String,
@@ -14,7 +14,7 @@ var productSchema = new mongoose.Schema({
     day: Date,
     public: Boolean,
     new: Boolean,
-    discount: Number,
+    discountedPrice: Number,
     sound: String
 })
 var Product = mongoose.model('Product', productSchema, 'products' )
