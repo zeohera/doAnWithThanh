@@ -3,6 +3,7 @@ const shortid = require('shortid')
 const bodyParser = require('body-parser')
 const Product = require('../models/product.model')
 const Cart = require('../models/cart');
+const Bill = require('../models/bill.model');
 const { response } = require('express')
 
 module.exports.index = async (req, res) => {
@@ -19,35 +20,79 @@ module.exports.index = async (req, res) => {
 module.exports.category = async (req, res) =>{
     var name = req.query.name 
     console.log(name)
-    // var category = req.query.name'
     var products = await Product.find({category: name}).exec()
     console.log(products)
     res.render('product/category',{
         products: products
     })
-    // res.send('xxx')
 }
 module.exports.shoppingCart = async (req, res) => {
-    cart = req.session.cart 
-    console.log(cart)
-    res.render('product/shoppingCart')
+    if (!req.session.cart || req.session.cart.totalPrice == '0') 
+    {
+        return res.render('product/shoppingCart', {
+            products: null
+        });
+    } 
+    
+    else
+    {
+        cart = new Cart(req.session.cart)
+        var arr = cart.getItems()
+        console.log(arr)
+        var totalPrice = cart.totalPrice
+        res.render('product/shoppingCart', {
+            title: 'Shopping Cart',
+            products: arr,
+            totalPrice: totalPrice
+        })
+    }
 }
 module.exports.addToShoppingCart = async (req, res) => { 
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     var product = await Product.findOne({'_id' : productId})
-    console.log(product)
+    // console.log(product)
     cart.add(product._doc, productId);
     req.session.cart = cart;
-    console.log(cart)
+    // console.log(cart)
     cartTotalItems = cart.totalItems
     console.log('cartTotalItems', cartTotalItems)
     res.redirect('/product/shoppingCart')
 }
-module.exports.checkOut = async (req, res) => {
-    res.render('product/checkout')
+
+module.exports.removeCartItem = async (req, res) => {
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.remove(productId);
+    req.session.cart = cart;
+    res.redirect('/product/shoppingCart'); 
+
 }
 
+module.exports.checkOut = async (req, res) => {
+    cart = new Cart(req.session.cart)
+    var arr = cart.getItems()
+    console.log(arr)
+    var totalPrice = cart.totalPrice    
+    res.render('product/checkout', {
+        title: 'Checkout',
+        products: arr,
+        totalPrice: totalPrice
+    })
+}
+
+module.exports.postCheckOut = async (req, res) =>
+{
+    cart = new Cart(req.session.cart)
+    var arr = cart.getItems()
+    // console.log('arr\n', cart)
+    req.body.items = cart.items
+    req.body.price = cart.totalPrice
+    console.log(req.body)
+    Bill.create(req.body)
+    req.session.destroy()
+    res.redirect('/product')
+}
 module.exports.search = async (req, res)=>{
     var q = req.query.q
     productsFounded = await Product.find({'name':q}).exec()

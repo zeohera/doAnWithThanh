@@ -24,18 +24,20 @@ router.get('/category', controller.category)
 
 router.get('/shoppingCart', controller.shoppingCart)
 
+router.get('/shoppingCart/remove/:id', controller.removeCartItem)
+
 router.get('/addToShoppingCart/:id', controller.addToShoppingCart)
 
 router.get('/checkOut', controller.checkOut)
 
-router.get('/search', controller.search)
+router.post('/checkOut', controller.postCheckOut)
 
-router.get('/create', controller.create)
+
+router.get('/search', controller.search)
 
 router.get('/:id', controller.detail)
 
 router.post('/create', upload.single('avatar'), validate.postCreate, controller.postCreate)
 
-
-
 module.exports = router
+

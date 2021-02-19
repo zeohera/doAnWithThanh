@@ -28,12 +28,12 @@ block content
                                     if !product.discountedPrice
                                         p.final= product.price 
                                             | &#x20AB;
-                                        p(style="visibility:hidden").before= product.discountedPrice
+                                        p(style="visibility:hidden").mb-2.before= product.discountedPrice
                                             | &#x20AB;
                                     else 
                                         p.final=product.discountedPrice 
                                             | &#x20AB;
-                                        p.before=product.price 
+                                        p.mb-2.before=product.price 
                                             | &#x20AB;
                                 .add2cart.d-flex.justify-content-center
-                                    a(href="/product/addToShoppingCart/" + product.id)  Thêm vào giỏ hàng 
+                                    a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 

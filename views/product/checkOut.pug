@@ -1,4 +1,41 @@
 extends ../layouts/common
 
 block content
-    .container
+    .container.mt-3
+        .row
+            .col-md-6 
+                h3.text-center Hóa đơn gồm các sản phẩm
+                table.table
+                        thead
+                            tr
+                                th(scope="col") sản phẩm
+                                th(scope="col") Số lượng
+                                th(scope="col") Đơn giá
+                                th(scope="col") Giá
+                        tbody
+                            each item in products
+                                tr
+                                    td= item.item.name
+                                    td= item.quantity
+                                    td= item.item.price 
+                                    td= item.price
+                            tr
+                                th
+                                th
+                                th Tổng Giá :
+                                th= totalPrice
+                            tr
+                                th(colspan='4').text-end Giá trên chưa bao gồm chi phí giao hàng
+            .col-md-6
+                h3.text-center Thông tin giao hàng
+                form(action="/product/checkOut", method="post")
+                    .mb-3
+                        label.form-label(for='name') Họ và Tên
+                        input#name.form-control(name = 'name')
+                    .mb-3
+                        label.form-label(for='address') Địa chỉ nhận hàng
+                        input#address.form-control(name = 'address')
+                    .mb-3
+                        label.form-label(for='phoneNumber') Số điện thoại
+                        input#phoneNumber.form-control(name = 'phoneNumber')
+                    button.btn.btn-primary(type='confirm') Đặt Hàng
