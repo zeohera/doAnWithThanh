@@ -1,0 +1,30 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1 Quản lý danh mục sản phẩm
+        a.btn.btn-primary.btn-sm(href = "createSubProductCategory") Thêm danh mục mới ở đây
+        table.table.mt-2.container
+            thead
+                tr
+                    th(scope='col') Tên
+                    th(scope='col') sub của
+                    th(scope='col') Mô tả
+                    th(scope='col') Action
+            tbody
+                if subProductCategories
+                    each subProductCategory in subProductCategories
+                        tr 
+                            td= subProductCategory.name
+                            td= subProductCategory.mother
+                            td= subProductCategory.description
+                            td
+                                .action-container
+                                    a.btn.btn-info.btn-sm(href ='#')
+                                        i.fas.fa-info-circle
+                                    form(Action = subProductCategory.id + "/deleteSubProductCategory" , method='POST')
+                                        button.btn.btn-danger.btn-sm(type='submit')
+                                            i.fas.fa-trash-alt
+                                    a.btn.btn-warning.btn-sm()
+                                        i.fas.fa-edit
+                                    

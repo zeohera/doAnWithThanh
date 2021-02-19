@@ -1,0 +1,23 @@
+extends ../layouts/common
+
+block content
+    .container
+        h1.text-center.text-secondary Kết quả tìm kiếm cho #{q} 
+        .row(style='margin-top: 10px;')
+            each product in products
+                .col-md-2
+                    a.card_link(href= product._id)
+                        .pro_card
+                            .card_image
+                                img(src=product.avatar alt='')
+                                .special
+                                    p Mới về
+                                    p SALE  
+                            .card_content
+                                p.card_name= product.name
+                                a.brand(href='') Suzuki
+                                .price
+                                    p.final 4.942.912 &#x20AB;
+                                    p.before 5.090.010 &#x20AB;
+                                .add2cart
+                                    button Thêm vào giỏ hàng

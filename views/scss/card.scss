@@ -1,0 +1,123 @@
+$base-color: rgb(0, 81, 255);
+$hover-color:  rgb(41, 108, 255);
+
+body{
+
+    // background-image: url("./Huawei.png");
+    background-size:cover;
+    background-repeat: no-repeat;
+    .card_link{
+        text-decoration: none;
+        color: black;
+    }
+    .pro_card{
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 20px;
+        border: 1px solid rgb(94, 94, 94);
+        height: 350px;
+        background-color: white;
+        &:hover{
+            box-shadow: 1px 1px 10px rgba(102, 102, 102, 0.5);
+            transition: box-shadow 0.5s;
+            .img{
+                height: 200px;
+            }
+        }
+        .card_image{
+            background-color: white;
+            overflow: hidden;
+            position: relative;
+            img{
+                height: 196px;
+                margin: auto;
+                object-fit: scale-down;
+                display: block;
+            }
+            .special{
+                position: absolute;
+                display: flex;
+                right: 0;
+                top: 0;
+                width: 100%;
+                justify-content: space-between;
+                p{
+                    display: block;
+                    padding: 0 4px;
+                    color: white;
+                    box-shadow: 0px 0px 1px white;
+                }
+                p:nth-child(1) {
+                    background:#21a453;
+                    border-radius: 0 0 3px;
+
+                }
+                p:nth-child(2) {
+                    background: red;
+                    border-radius: 0 0 0 3px;
+                }
+            }
+        }
+        .card_content{
+            p.card_name{
+                margin: 0px;
+                display: block;
+                text-align: center;
+                font-weight: 500;
+            }   
+            a.brand{
+                margin: 0px;
+                display: block;
+                text-align: right;
+                padding-right: 5px;
+                font-weight: 500;
+                text-decoration: none;
+                color: rgb(42, 54, 221);
+            }         
+            .price{
+                p{
+                    margin: 0;
+                    padding: 0 10px 0 10px;
+                }
+                .final{
+                    background-color: white;
+                    border-radius: 0 10px 0 0px;
+                    font-weight: 500px;
+                    color: rgb(253, 26, 1);
+                    font-size:larger;
+                }
+                .before{
+                    text-decoration: line-through;
+                    color: rgb(122, 122, 122);
+                    font-weight: 400;
+                }
+            }
+            .add2cart{
+                display :flex;
+                margin: auto;
+                width: 100%;
+                button{
+                    display: block;
+                    backdrop-filter: blur(5px);
+                    border: none;
+                    padding: 5px;
+                    width: 90%;
+                    border: 1px solid rgb(0, 162, 255);
+                    color: $base-color;
+                    margin: auto;
+                    transition: width 0.5s;
+                    outline: none;
+                    &:hover{
+                        background-color: $hover-color;
+                        color: white;
+                        transition: background-color 0.3s;
+                    }
+                    &:active{
+                        outline: none;
+                        background-color: rgb(68, 51, 167);
+                    }
+                }
+            }
+        }
+    }
+}

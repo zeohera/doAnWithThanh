@@ -1,0 +1,34 @@
+extends ../layouts/common
+
+block content
+    .container
+        .row
+            if products
+                .col-md-8
+                    
+                    table.table
+                        thead
+                            tr
+                                th(scope="col") sản phẩm
+                                th(scope="col") Ảnh sản phẩm
+                                th.text-center(scope="col") Số lượng
+                        tbody
+                            
+                                each item in products
+                                    tr
+                                        td= item.item.name
+                                        td 
+                                            img(src= item.item.image, alt="", style="max-height: 100px")
+                                        td
+                                            .row
+                                                .col-md-6.mx-auto
+                                                    p.primary= item.quantity
+                                                .col-md-6
+                                                    a.btn.btn-danger(href='/product/shoppingCart/remove/' + item.item._id) Xóa
+                .col-md-4 
+                    p Giá : 
+                        = totalPrice
+                    a.btn.btn-primary(href='/product/checkOut') Check Out
+            else 
+                img(src='https://assets.materialup.com/uploads/66fb8bdf-29db-40a2-996b-60f3192ea7f0/preview.png', style='max-width: 30%').mx-auto
+                h2.text-center Không có sản phẩm nào trong giỏ hàng

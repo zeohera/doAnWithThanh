@@ -1,0 +1,95 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        if errors
+            for error in errors
+                .alert.alert-danger= error
+        form(action="/admin/createProduct", method="post", enctype="multipart/form-data")
+            .mb-3
+                label.form-label(for='name') Tên sản phẩm
+                input#name.form-control(name = 'name')
+
+            label.form-label(for='brand') là một sản phẩm của ?
+            if brands
+                .mb-3
+                    select#brand(name="brand") 
+                        option(selected='') Mở để chọn
+                        for brand in brands
+                                option(value= brand.name)= brand.name
+
+            .mb-3 
+                label.form-label(for='amount') Số lượng của sản phẩm
+                input#amount.form-control(type ='number', name = 'amount')
+
+            label.form-label(for='category') Thuộc danh mục sản phẩm nào ?
+            if ProductCategories
+                .mb-3
+                    select#category.form-select.firstList.selectFilter(aria-label='Default select example', name = 'category', data-target="secondList")
+                        option(selected='') Open this select menu
+                        for category in ProductCategories
+                            option(value=category.name, data-ref=category.name)= category.name
+
+            label.form-label(for='subcategory') Thuộc danh mục nhỏ sản phẩm nào ?
+            if SubProductCategories
+                .mb-3
+                    select#subcategory.form-select.secondList.selectFilter(aria-label='Default select example', name = 'subCategory')
+                        option(selected='') Open this select menu
+                        for subCategory in SubProductCategories
+                            option(value=subCategory.name, data-belong=subCategory.mother)= subCategory.name
+
+            .mb-3 
+                label.form-label(for='price') Giá bán của sản phẩm :
+                input#price.form-control(type ='number', name = 'price')
+            
+            .mb-3
+                label(for="image") Ảnh của sản phẩm :
+                br
+                input(name = "image", type="file" )
+
+            .mb-3 
+                label.form-label(for='description') Mô tả :
+                br
+                textarea#description.form-control(name="description" ,rows="4", cols="100") 
+
+            .mb-3
+                label.form-label(for='introText') giới thiệu ngắn sản phẩm :
+                br
+                textarea#introText.form-control(name="introText" ,rows="4", cols="100") 
+
+            .mb-3
+                label.form-label(for='date') Ngày nhập
+                br
+                input#date(type="date", name="date")
+            .mb-3
+                label.form-check-label(for='public') Hiển thị sản phẩm lên trang người dùng :
+                .form-check
+                    input#public.form-check-input(type='radio',value='1', name='public', checked='')
+                    label.form-check-label(for='public') Hiển thị
+                .form-check
+                    input#hide.form-check-input(type='radio',value='0', name='public')
+                    label.form-check-label(for='hide') Ẩn
+            .mb-3
+                label.form-check-label(for='public') sản phẩm cũ hay mới :
+                .form-check
+                    input#public.form-check-input(type='radio',value='1', name='new', checked='')
+                    label.form-check-label(for='public') mới
+                .form-check
+                    input#hide.form-check-input(type='radio',value='0', name='new')
+                    label.form-check-label(for='hide') cũ
+            .mb-3 
+                label.form-label(for='discountedPrice') Giảm giá không ?.Nhập số tiền giảm bên dưới 
+                input#discountedPrice.form-control(type ='number', name = 'discountedPrice')
+            .mb-3
+                label.form-label(for='sound') Sản phẩm này Phát ra âm thanh như nào ? (extended Link)
+                input#name.form-control(name = 'sound')
+            button.btn.btn-primary.btn-sm(type ="submit") Lưu  
+                
+
+
+            
+                    
+
+            
+        
+    

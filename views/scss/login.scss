@@ -1,0 +1,85 @@
+
+.login_btn{
+    height: 40px;
+    width: 200px;
+    border: white 1px solid;
+    border-radius: 20px;
+    color: white;
+    background: rgb(40, 104, 252);
+    box-shadow: 0px 0px 10px white;
+    transition: background 0.2s;
+    &:focus{
+        outline: none;
+        background: rgb(122, 158, 241);
+    }
+}
+
+
+body{
+
+
+    
+    display: flex;
+    min-height: 100vh;
+    background: rgb(22,85,237);
+    background: linear-gradient(225deg, rgba(22,85,237,1) 21%, rgba(16,219,252,1) 100%);
+    .loginform{
+        box-shadow: 0px 0px 10px gray;
+        overflow: hidden;
+        padding: 0;
+        border-radius: 20px;
+        width: 500px;
+        padding-bottom: 30px;
+        // height: 500px;
+        display: block;
+        background-color: rgba($color: white, $alpha: 0.8);
+        margin: auto;
+        // padding: 30px;
+        h2{
+            box-shadow: 0px 0px 10px gray;
+            line-height: 50px;
+            width: 50%;
+            // color: rgb(156, 42, 0);
+            background-color: white;
+            margin: 0;
+            display: block;
+            text-align: center;
+            border-radius: 0 0 20px;
+        }
+        .account{
+            margin:20px 10px;
+            #account{
+                
+                border: none;
+                height: 40px;
+                box-shadow: 0px 0px 5px lightgray;
+                border-radius: 20px;
+                &:focus{
+                    outline: none;
+
+                }
+
+
+
+            }
+
+        }
+        .password{
+            margin:20px 10px;
+            #password{
+                border: none;
+                height: 40px;
+                box-shadow: 0px 0px 5px lightgray;
+                border-radius: 20px;
+                &:focus{
+                    outline: none;
+                }
+            }
+
+        }
+        .btn_area{
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}

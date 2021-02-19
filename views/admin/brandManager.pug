@@ -1,0 +1,32 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1 Brand Manager
+        a.btn.btn-primary.btn-sm(href = "addBrand") Thêm một nhãn hàng mới
+        table.table.mt-2
+                thead
+                    tr
+                        th(scope='col') Tên
+                        th(scope='col') Ảnh
+                        th(scope='col') Mô tả
+                        th(scope='col') Action
+                tbody
+                    each brand in brands
+                        tr 
+                            td= brand.name 
+                            td
+                                img(src=brand.logo , style="max-height: 50px")
+                            td= brand.description
+                            td
+                                .action-container
+                                    a.btn.btn-info.btn-sm(href = "#")
+                                        i.fas.fa-info-circle
+                                    form(Action = brand.id + "/deleteBrand" , method='POST')
+                                        button.btn.btn-danger.btn-sm(type='submit')
+                                            i.fas.fa-trash-alt
+                                    a.btn.btn-warning.btn-sm()
+                                        i.fas.fa-edit
+                                    a.btn.btn-secondary.btn-sm()
+                                        i.fas.fa-eye-slash
+                                    
