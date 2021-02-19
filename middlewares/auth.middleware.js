@@ -11,6 +11,7 @@ module.exports.requireAuth = async (req, res, next) => {
     var user = await User.findOne({account:req.signedCookies.adminAccount}).exec() 
     if(!user){
         res.redirect('/auth/login')
+        
         return
     }
     

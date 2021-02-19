@@ -5,6 +5,7 @@ const User = require('../models/user.model')
 module.exports.index = (req, res) =>{
     res.render('auth/login')
 }
+
 module.exports.PostIndex = async (req, res) => {
     var account = req.body.account
     var password = req.body.password
@@ -35,10 +36,9 @@ module.exports.PostIndex = async (req, res) => {
     res.cookie('adminAccount', user.account, {
         signed : true
     })
-
     res.redirect('/admin')
-    
 }
+
 module.exports.logout = (req, res) => {
     res.clearCookie('adminAccount')
     res.redirect('/auth/login')

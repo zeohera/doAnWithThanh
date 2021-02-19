@@ -1,0 +1,31 @@
+@import 'color';
+
+@import 'content';
+
+@import 'header';
+
+@import 'footer';
+
+body{
+    height: 1000px;
+}
+
+
+
+button.prm_btn {
+    border: none;
+    background-color: $wooden3;
+    color:$wooden-light;
+    display: inline-block;
+    border-radius: 5px;
+    outline: none;
+    &:hover{
+        background-color: $wooden4;
+        outline: none;
+    }
+    &:active{
+        outline: none;
+    }
+    
+}
+

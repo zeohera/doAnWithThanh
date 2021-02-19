@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --inspect index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass -r views/scss -o  public/css --include-path",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +16,7 @@
     "bootstrap-icons": "^1.3.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "lowdb": "^1.0.0",
     "md5": "^2.3.0",
     "mongoose": "^5.11.15",
@@ -22,6 +25,7 @@
     "shortid": "^2.2.16"
   },
   "devDependencies": {
+    "node-sass": "^5.0.0",
     "nodemon": "^2.0.7"
   }
 }

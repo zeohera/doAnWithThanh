@@ -4,18 +4,18 @@ header(class="fixed-top")
                 .col-md-5.left
                     ul
                         li 
-                            a(href="") Piano/Organ
+                            a(href="/product/category/?name=piano") Piano/Organ
                         li 
-                            a(href="") Guitar
+                            a(href="/product/category/?name=Guitar") Guitar
                         li 
-                            a(href="") Ukulele
+                            a(href="/product/category/?name=ukulele") Ukulele
                         li 
-                            a(href="") Bộ String
+                            a(href="/product/category/?name=string") Bộ String
                         li 
-                            a(href="") Harmonica
+                            a(href="/product/category/?name=harmonica") Harmonica
                 .col-md-2
                     .icon_cover
-                        a(href="")
+                        a(href="/")
                             svg#Layer_1(enable-background='new 0 0 200 200' height='50' viewbox='0 0 511 511' width='50' xmlns='http://www.w3.org/2000/svg')
                                 g
                                     g
@@ -93,6 +93,11 @@ header(class="fixed-top")
                                         .btn-gg-cover
                                             a.gg-arrow-right-o.text-white(href="javascript:$('form').submit()")
                             .col-md-2
-                                .icon
-                                    i.gg-shopping-bag
+                                a(href="/product/shoppingCart").icon
+                                    div
+                                        i.gg-shopping-bag
+                                if cartTotalItems
+                                    p(style="color : white")= cartTotalItems
+                                    
+                                    
 .margin-bot(style="display:block; width:100%;height:64px")

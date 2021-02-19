@@ -20,6 +20,14 @@ router.get('', controller.index)
 
 router.get('/index', controller.index)
 
+router.get('/category', controller.category)
+
+router.get('/shoppingCart', controller.shoppingCart)
+
+router.get('/addToShoppingCart/:id', controller.addToShoppingCart)
+
+router.get('/checkOut', controller.checkOut)
+
 router.get('/search', controller.search)
 
 router.get('/create', controller.create)
@@ -27,5 +35,7 @@ router.get('/create', controller.create)
 router.get('/:id', controller.detail)
 
 router.post('/create', upload.single('avatar'), validate.postCreate, controller.postCreate)
+
+
 
 module.exports = router

@@ -2,31 +2,63 @@ const db = require('../db')
 const shortid = require('shortid')
 const bodyParser = require('body-parser')
 const Product = require('../models/product.model')
+const Cart = require('../models/cart');
+const { response } = require('express')
 
 module.exports.index = async (req, res) => {
     var page = req.query.page || 1
     var perPage = 12
     var start = (page -1 ) * perPage
-    Product.find().skip(start).limit(perPage).then(function(products){
-        res.render('product/index', {
-            products : products
-        })
+    var products = await  Product.find().skip(start).limit(perPage).exec()
+    res.render('product/index', {
+        products : products
     })
+
 }
 
-module.exports.search = (req, res)=>{
+module.exports.category = async (req, res) =>{
+    var name = req.query.name 
+    console.log(name)
+    // var category = req.query.name'
+    var products = await Product.find({category: name}).exec()
+    console.log(products)
+    res.render('product/category',{
+        products: products
+    })
+    // res.send('xxx')
+}
+module.exports.shoppingCart = async (req, res) => {
+    cart = req.session.cart 
+    console.log(cart)
+    res.render('product/shoppingCart')
+}
+module.exports.addToShoppingCart = async (req, res) => { 
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    var product = await Product.findOne({'_id' : productId})
+    console.log(product)
+    cart.add(product._doc, productId);
+    req.session.cart = cart;
+    console.log(cart)
+    cartTotalItems = cart.totalItems
+    console.log('cartTotalItems', cartTotalItems)
+    res.redirect('/product/shoppingCart')
+}
+module.exports.checkOut = async (req, res) => {
+    res.render('product/checkout')
+}
+
+module.exports.search = async (req, res)=>{
     var q = req.query.q
-    productsFounded = Product.find({'name':q}, (error, data) =>{
-        if(error){
-            console.log(error)
-        } else{
-            res.render('product/search',
-            {
-                products: data,
-                q : q
-            })
-        }
-    }).exec()
+    productsFounded = await Product.find({'name':q}).exec()
+    console.log(productsFounded)
+    res.render('product/index',
+    {
+        products: productsFounded,
+        q : q
+    })
+
+    
 }
 
 module.exports.create = (req,res)=>{
@@ -54,6 +86,7 @@ module.exports.postCreate = (req,res)=>{
         })
         return
     }
+
     console.log(req.file)
     req.body.avatar = req.file.path.split('\\').slice(1).join('/')
     db.get('products').push(req.body).write()

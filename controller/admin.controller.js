@@ -107,6 +107,7 @@ module.exports.productManager = async (req, res) => {
         products : products
     })
 }
+
 module.exports.productCreate = async (req,res) => {
     var productCategory = await ProductCategory.find().exec()
     var brand = await  Brand.find().exec()
