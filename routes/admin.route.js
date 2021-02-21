@@ -95,4 +95,12 @@ router.post('/createSubProductCategory', controller.postCreateSubProductCategory
 router.post('/:id/deleteSubProductCategory' , controller.deleteSubProductCategory)
 // missing update
 
+// order manager 
+router.get('/orderManager', controller.orderManager)
+
+router.get('/order/:id', controller.orderDetail)
+
+router.post('/postUpdateOrderDetail/:id' , controller.postUpdateOrderDetail)
+
+router.post('/sendMail/:mail', controller.mailSend)
 module.exports = router

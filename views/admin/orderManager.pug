@@ -1,0 +1,61 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1 order Viewer
+        if orders 
+            .row 
+                table.table 
+                    thead 
+                        tr 
+                            th mã hóa đơn
+                            th Tên khách hàng 
+                            th Giá trị đơn hàng
+                            th Ghi chú
+                            th Action
+                    tbody 
+                        each order in orders
+                            if order.state == 0
+                                tr(style='background-color: white')
+                                    td= order._id
+                                    td= order.name 
+                                    td= order.price 
+                                    td= order.note
+                                    td
+                                        .action-container
+                                            a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
+                                                i.fas.fa-info-circle
+                            
+                            if order.state == 1 
+                                tr(style='background-color: #a3cfbb')
+                                    td= order._id
+                                    td= order.name 
+                                    td= order.price 
+                                    td= order.note
+                                    td
+                                        .action-container
+                                            a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
+                                                i.fas.fa-info-circle
+                            
+                            if order.state == 2
+                                tr(style='background-color: #fd9843')
+                                    td= order._id
+                                    td= order.name 
+                                    td= order.price 
+                                    td= order.note
+                                    td
+                                        .action-container
+                                            a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
+                                                i.fas.fa-info-circle
+                            
+                            if order.state == -1
+                                tr(style='background-color: #f1aeb5')
+                                    td= order._id
+                                    td= order.name 
+                                    td= order.price 
+                                    td= order.note
+                                    td
+                                        .action-container
+                                            a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
+                                                i.fas.fa-info-circle
+                            

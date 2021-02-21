@@ -19,3 +19,18 @@ $(".gg-close-o").click(function (e) {
     $(".search_input").val('');
     $(".gg-search").show();
 });
+
+$("#packageNGo").on('click', function(){
+    $('#shippingInfo').show()
+    $('#cancelInfo').hide()
+    $('#mail').focus()
+})
+
+$("#cancel").on('click', function(){
+    $('#shippingInfo').hide()
+    $('#cancelInfo').show()})
+    $('#mail').focus()
+$("#complete").on('click', function(){
+    $('#shippingInfo').hide()
+    $('#cancelInfo').hide()})
+    $('#mail').focus()

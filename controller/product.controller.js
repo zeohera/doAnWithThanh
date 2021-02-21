@@ -88,6 +88,11 @@ module.exports.postCheckOut = async (req, res) =>
     // console.log('arr\n', cart)
     req.body.items = cart.items
     req.body.price = cart.totalPrice
+    req.body.state = 0
+    userNote = req.body.note 
+    req.body.note = []
+    req.body.note.push(userNote)
+    req.body.date = Date.now()
     console.log(req.body)
     Bill.create(req.body)
     req.session.destroy()
@@ -102,8 +107,6 @@ module.exports.search = async (req, res)=>{
         products: productsFounded,
         q : q
     })
-
-    
 }
 
 module.exports.create = (req,res)=>{

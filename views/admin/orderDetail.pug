@@ -1,0 +1,101 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1 order Detail
+        if order
+            .row 
+                .col-md-6
+                    table.table 
+                        thead 
+                            tr 
+                                th Thuộc tính 
+                                th Thông tin 
+                        tbody 
+                            tr 
+                                th mã hóa đơn 
+                                td= order._id
+                            tr 
+                                th Tên khách hàng 
+                                td= order.name 
+                            tr 
+                                th Số điện thoại khách hàng 
+                                td
+                                    p(style='margin-bottom : 0')= order.phoneNumber
+                                        span 
+                                            a.btn.btn-success.btn-sm(href="tel:" + order.phoneNumber) 
+                                                i.fas.fa-phone
+                            tr
+                                th Email :
+                                td
+                                    p(style='margin-bottom : 0')= order.email 
+                                    form(action="/admin/sendMail/"+ order.email, method="post") 
+                                        textarea#mail.form-control(name="mail", cols="50", rows="10")= email
+                                        br
+                                        input.btn.btn-warning.btn-sm(type='submit')  
+                                        //- i.fas.fa-envelope
+                            tr 
+                                th Địa chỉ  
+                                td= order.address 
+                            tr 
+                                th Trị giá đơn hàng
+                                td= order.price 
+                    div(style='border : 1px solid gray; border-radius: 5px; padding: 10px').w-100.text-start
+                        p Trạng thái đơn hàng :
+                            if order.state != null
+                                if order.state == 0 
+                                    span Chưa xác nhận đơn hàng 
+                                else if order.state === 1 
+                                    span Đã lên đơn 
+                                else if order.state === 2 
+                                    span Giao hàng thành công 
+                                else 
+                                    span Đã hủy đơn hàng
+                        form(action="/admin/postUpdateOrderDetail/"+ order._id, method="post") 
+                            
+                            p Thay đổi trạng thái đơn hàng
+                            input.orderState#packageNGo(type='radio', name='state', value='1')
+                            label(for='1', style='magin-left:5px') &nbsp; Đóng gói và giao hàng
+                            textarea#shippingInfo.form-control(name="shippingInfo" ,rows="4", cols="100",style='display:none') 
+                            br
+                            input.orderState#complete(type='radio', name='state', value='2')
+                            label(for='2', style='magin-left:5px') &nbsp; Hoàn thành đơn hàng
+                            br
+                            input.orderState#cancel(type='radio', name='state', value='-1')
+                            label(for='-1', style='magin-left:5px') &nbsp; Hủy (nêu rõ lý do trong ô bên dưới)
+                            textarea#cancelInfo.form-control(name="note" ,rows="4", cols="100",style='display:none') 
+                            //- input(type="text" , name='cancelInfo', style='display:none ')#cancelInfo.form-control
+                            br
+                            button.btn.btn-primary.btn-sm(type='submit') Cập nhật trạng thái
+                    form(action="/admin/postUpdateOrderDetail/"+ order._id, method="post") 
+                        .mb-3
+                            label.form-label(for='note') Ghi chú 
+                            each note in order.note
+                                p &nbsp;
+                                    span= note
+                                br
+                            input.orderState#note.form-control(name = 'note')
+                        button.btn.btn-primary.btn-sm(type='submit') Thêm ghi chú       
+                    br
+                    
+                .col-md-6
+                    table.table
+                        thead
+                            tr
+                                th(scope="col") sản phẩm
+                                th(scope="col") Số lượng
+                                th(scope="col") Đơn giá
+                                th(scope="col") Giá
+                        tbody
+                            each item in order.items[0]
+                                tr 
+                                    td= item.item.name
+                                    td= item.quantity 
+                                    td= item.item.price
+                                    td= item.price
+                            tr
+                                th
+                                th
+                                th Tổng Giá :
+                                th= order.price
+                                

@@ -6,9 +6,36 @@ const Product = require('../models/product.model')
 const ProductCategory = require('../models/productCategory.model')
 const SubProductCategory = require('../models/SubProductCategory.model')
 const Brand = require('../models/brand.model')
+const Bill = require('../models/bill.model')
+var nodemailer = require('nodemailer')
 
-module.exports.index = (req, res) =>{
-    res.render('admin/dashboard')
+module.exports.index = async (req, res) =>{
+    var Bills = await Bill.find({state: 2})
+    var earning = 0
+    var now = new Date()
+    var nowMonth = now.getMonth()
+    var nowYear = now.getFullYear()
+    console.log(now)
+    Bills.forEach(element => {
+        var dateTime  = new Date(element.date)
+        month = dateTime.getMonth()
+        year = dateTime.getFullYear()
+        if (nowMonth === month)
+            if(nowYear === year)
+                earning += element.price
+    })
+    var Bill2 = await Bill.find({state : 0})
+    var total = 0
+    Bill2.forEach(element => {
+        total += 1
+    })
+    console.log(total)
+    
+
+    res.render('admin/dashboard', {
+        earning : earning ,
+        notConfirm : total
+    })
 }
 
 
@@ -141,8 +168,6 @@ module.exports.deleteProduct = (req, res) => {
     })
 }
 
-
-
 // PRODUCT CATEGORY MANAGER
 module.exports.productCategoryManager = async (req, res) => {
     var productCategory = await ProductCategory.find().exec()
@@ -224,3 +249,56 @@ module.exports.deleteSubProductCategory = (req, res) =>
         res.redirect('/admin/subProductCategoryManager')
     })
 }
+// BILL MANAGER
+module.exports.orderManager = async (req, res) => {
+    var orders = await Bill.find()
+    res.render('admin/orderManager',{
+        orders : orders
+    })
+}
+module.exports.orderDetail = async (req, res) => {
+    var id = req.params.id
+    var order = await Bill.findOne({_id : id })
+    var emailText = 'id đơn hàng của bạn : ' + req.params.id + ' .Có giá trị là:' + order.price 
+    res.render('admin/orderDetail',{
+        order : order,
+        email : emailText
+    })
+}
+module.exports.postUpdateOrderDetail = async (req, res)=>{
+    var id = req.params.id
+    console.log(id , req.body)
+    Bill.findByIdAndUpdate({_id: id}, req.body, (err, doc)=> {
+            if (err) {
+                console.log("Something wrong when updating data!");
+            }
+            console.log(doc);})
+    res.redirect('/admin/order/'+ id) 
+}
+ 
+module.exports.mailSend = (req, res) =>{
+    var mail = req.params.mail
+    var mailOptions = {
+        from: 'buichibao1011@gmail.com',
+        to: mail,
+        subject: 'InsMaster',
+        text: req.body.mail  
+      };
+    console.log(mailOptions)
+    transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Email sent: ' + info.response);
+    }
+    });
+    res.redirect('/admin/')
+}
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'buichibao1011@gmail.com',
+      pass: '101120Bao'
+    }
+  });
