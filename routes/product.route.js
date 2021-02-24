@@ -32,6 +32,7 @@ router.get('/checkOut', controller.checkOut)
 
 router.post('/checkOut', controller.postCheckOut)
 
+router.get('/brandInfo/:brand', controller.brandInfo)
 
 router.get('/search', controller.search)
 

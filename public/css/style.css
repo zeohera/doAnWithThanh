@@ -20,6 +20,84 @@
   --btn-width: 6rem;
   --bez: cubic-bezier(0, 0, 0.43, 1.49); }
 
+.cardContainer {
+  margin-left: 20px; }
+
+.home {
+  background: #3f5efb;
+  background: linear-gradient(48deg, #3f5efb 0%, #2ee3d8 100%); }
+  .home .mt-3.container .brand a.card {
+    max-width: 120px; }
+    .home .mt-3.container .brand a.card img {
+      height: 75px;
+      object-fit: contain; }
+  .home .mt-3.container .priceRange a.btn-light {
+    margin-right: 20px; }
+    .home .mt-3.container .priceRange a.btn-light:hover {
+      background-color: #ff3b30;
+      color: white; }
+
+.category .category-heading {
+  background-color: white; }
+  .category .category-heading h2 {
+    color: #48484a;
+    margin-bottom: 0; }
+
+.category .subCategory a {
+  display: flex;
+  text-decoration: none;
+  color: #48484a;
+  text-align: center;
+  width: 100%;
+  border: 0 2px 0 0 solid gray;
+  background-color: #c7c7cc;
+  border-right: 1px solid darkgray; }
+
+.category .subCategory a.active {
+  background-color: white; }
+
+.category .softNPagination {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid darkgray; }
+  .category .softNPagination .right {
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse; }
+    .category .softNPagination .right .pagination {
+      margin: auto 0;
+      max-height: 38px; }
+  .category .softNPagination .left {
+    display: flex;
+    width: 400px; }
+    .category .softNPagination .left p {
+      margin-bottom: 0; }
+    .category .softNPagination .left a {
+      margin: 10px; }
+      .category .softNPagination .left a:hover {
+        background-color: #007aff; }
+
+.brandContainer {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  min-height: 200%;
+  background-attachment: fixed;
+  background-image: url(https://images.unsplash.com/photo-1469939868368-83e00d69432e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80); }
+  .brandContainer .container .info {
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid white; }
+    .brandContainer .container .info p {
+      padding: 20px; }
+  .brandContainer .container .product {
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 10px; }
+
 header {
   display: flex;
   justify-content: center;

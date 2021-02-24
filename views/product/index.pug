@@ -1,39 +1,172 @@
 extends ../layouts/common
 
 block content
-    .container
-        nav(aria-label='Page navigation example')
-            ul.pagination
-                li.page-item
-                a.page-link(href='?page=1') 1
-                li.page-item
-                a.page-link(href='?page=2') 2
-                li.page-item
-                a.page-link(href='?page=3') 3
-        .row(style='margin-top: 10px;')
-            each product in products
-                .col-md-2
-                    a.card_link(href= 'product/' + product.id)
-                        .pro_card
-                            .card_image
-                                img(src= product.image alt='')
-                                .special
-                                    p(style="visibility:hidden") Mới về
-                                    if product.discountedPrice
-                                        p SALE
-                            .card_content
-                                p.card_name= product.name
-                                a.brand(href='')= product.brand
-                                .price
-                                    if !product.discountedPrice
-                                        p.final= product.price 
-                                            | &#x20AB;
-                                        p(style="visibility:hidden").mb-2.before= product.discountedPrice
-                                            | &#x20AB;
-                                    else 
-                                        p.final=product.discountedPrice 
-                                            | &#x20AB;
-                                        p.mb-2.before=product.price 
-                                            | &#x20AB;
-                                .add2cart.d-flex.justify-content-center
-                                    a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
+    .home
+        #carouselExampleIndicators.carousel.slide(data-bs-ride='carousel')(style='max-height: 350px ; overflow: hidden ')
+            .carousel-indicators
+                button.active(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
+                button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2')
+                button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3')
+            .carousel-inner
+                .carousel-item.active
+                    img.d-block.w-100(src='https://images.unsplash.com/photo-1514119412350-e174d90d280e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')
+                .carousel-item
+                    img.d-block.w-100(src='https://images.unsplash.com/photo-1570684615997-5fc6c4378f1a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80' alt='...')
+                .carousel-item
+                    img.d-block.w-100(src='https://images.unsplash.com/photo-1570684615997-5fc6c4378f1a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80' alt='...')
+            button.carousel-control-prev(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev')
+                span.carousel-control-prev-icon(aria-hidden='true')
+                span.visually-hidden Previous
+            button.carousel-control-next(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='next')
+                span.carousel-control-next-icon(aria-hidden='true')
+                span.visually-hidden Next
+        .mt-3.container
+            .brand
+                h2
+                    span thương hiệu
+                .cardContainer
+                    each brand in brands
+                        a(href="/product/brandInfo/" + brand.name).card
+                            img(src= brand.logo, alt="")
+            .mt-5.priceRange 
+                h2
+                    span Khoảng giá
+                .cardContainer
+                    a.btn.btn-light(href='/product/?range=1') Dưới 2 Triệu
+                    a.btn.btn-light(href='/product/?range=2') 2 - 5 Triệu
+                    a.btn.btn-light(href='/product/?range=3') 5 - 7 Triệu
+                    a.btn.btn-light(href='/product/?range=4') 7 - 10 Triệu
+                    a.btn.btn-light(href='/product/?range=5') 10 - 15 Triệu
+                    a.btn.btn-light(href='/product/?range=6') Trên 15 Triệu
+                .mt-3.row(style='margin-top: 10px;')
+                   if productsInRange
+                        each product in productsInRange
+                            .col-md-2
+                                a.card_link(href= '/product/' + product.id)
+                                    .pro_card
+                                        .card_image
+                                            img(src= product.image alt='')
+                                            .special
+                                                p(style="visibility:hidden") Mới về
+                                                if product.discountedPrice
+                                                    p SALE
+                                        .card_content
+                                            p.card_name= product.name
+                                            a.brand(href='')= product.brand
+                                            .price
+                                                if !product.discountedPrice
+                                                    p.final= product.price 
+                                                        | &#x20AB;
+                                                    p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                                        | &#x20AB;
+                                                else 
+                                                    p.final=product.discountedPrice 
+                                                        | &#x20AB;
+                                                    p.mb-2.before=product.price 
+                                                        | &#x20AB;
+                                            .add2cart.d-flex.justify-content-center
+                                                a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
+                
+            .mt-5.priceRange
+                h2
+                    span Đang giảm giá
+                .mt-3.row(style='margin-top: 10px;')
+                    if productsSale
+                        each product in productsSale
+                            .col-md-2
+                                a.card_link(href= '/product/' + product.id)
+                                    .pro_card
+                                        .card_image
+                                            img(src= product.image alt='')
+                                            .special
+                                                p(style="visibility:hidden") Mới về
+                                                if product.discountedPrice
+                                                    p SALE
+                                        .card_content
+                                            p.card_name= product.name
+                                            a.brand(href='')= product.brand
+                                            .price
+                                                if !product.discountedPrice
+                                                    p.final= product.price 
+                                                        | &#x20AB;
+                                                    p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                                        | &#x20AB;
+                                                else 
+                                                    p.final=product.discountedPrice 
+                                                        | &#x20AB;
+                                                    p.mb-2.before=product.price 
+                                                        | &#x20AB;
+                                            .add2cart.d-flex.justify-content-center
+                                                a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
+                .row
+                    a(href="#", style='display:block; width : 200px').btn.btn-light.btn-lg.mx-auto Xem tất cả            
+            //- .mt-5.priceRange
+                h2
+                    span Bán chạy
+                .mt-3.row(style='margin-top: 10px;')
+                    if productsBestSeller
+                        each product in productsBestSeller
+                            .col-md-2
+                                a.card_link(href= '/product/' + product.id)
+                                    .pro_card
+                                        .card_image
+                                            img(src= product.image alt='')
+                                            .special
+                                                p(style="visibility:hidden") Mới về
+                                                if product.discountedPrice
+                                                    p SALE
+                                        .card_content
+                                            p.card_name= product.name
+                                            a.brand(href='')= product.brand
+                                            .price
+                                                if !product.discountedPrice
+                                                    p.final= product.price 
+                                                        | &#x20AB;
+                                                    p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                                        | &#x20AB;
+                                                else 
+                                                    p.final=product.discountedPrice 
+                                                        | &#x20AB;
+                                                    p.mb-2.before=product.price 
+                                                        | &#x20AB;
+                                            .add2cart.d-flex.justify-content-center
+                                                a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
+            .mt-5.priceRange
+                h2
+                    span Order / Hàng đang về
+                .mt-3.row(style='margin-top: 10px;')
+                    if ProductPreOrder
+                        each product in ProductPreOrder
+                            .col-md-2
+                                a.card_link(href= '/product/' + product.id)
+                                    .pro_card
+                                        .card_image
+                                            img(src= product.image alt='')
+                                            .special
+                                                p(style="visibility:hidden") Mới về
+                                                if product.discountedPrice
+                                                    p SALE
+                                        .card_content
+                                            p.card_name= product.name
+                                            a.brand(href='')= product.brand
+                                            .price
+                                                if !product.discountedPrice
+                                                    p.final= product.price 
+                                                        | &#x20AB;
+                                                    p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                                        | &#x20AB;
+                                                else 
+                                                    p.final=product.discountedPrice 
+                                                        | &#x20AB;
+                                                    p.mb-2.before=product.price 
+                                                        | &#x20AB;
+                                            .add2cart.d-flex.justify-content-center
+                                                a(href="tel:+84335670934").btn.btn-success.btn-sm Gọi để đặt hàng 
+//- nav(aria-label='Page navigation example')
+            //-     ul.pagination
+            //-         li.page-item
+            //-         a.page-link(href='?page=1') 1
+            //-         li.page-item
+            //-         a.page-link(href='?page=2') 2
+            //-         li.page-item
+            //-         a.page-link(href='?page=3') 3

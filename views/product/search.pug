@@ -6,18 +6,27 @@ block content
         .row(style='margin-top: 10px;')
             each product in products
                 .col-md-2
-                    a.card_link(href= product._id)
+                    a.card_link(href= '/product/' + product.id)
                         .pro_card
                             .card_image
-                                img(src=product.avatar alt='')
+                                img(src= product.image alt='')
                                 .special
-                                    p Mới về
-                                    p SALE  
+                                    p(style="visibility:hidden") Mới về
+                                    if product.discountedPrice
+                                        p SALE
                             .card_content
                                 p.card_name= product.name
-                                a.brand(href='') Suzuki
+                                a.brand(href='')= product.brand
                                 .price
-                                    p.final 4.942.912 &#x20AB;
-                                    p.before 5.090.010 &#x20AB;
-                                .add2cart
-                                    button Thêm vào giỏ hàng
+                                    if !product.discountedPrice
+                                        p.final= product.price 
+                                            | &#x20AB;
+                                        p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                            | &#x20AB;
+                                    else 
+                                        p.final=product.discountedPrice 
+                                            | &#x20AB;
+                                        p.mb-2.before=product.price 
+                                            | &#x20AB;
+                                .add2cart.d-flex.justify-content-center
+                                    a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 

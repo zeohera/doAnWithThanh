@@ -1,4 +1,108 @@
 extends ../layouts/common
 
 block content
-    .container
+    .category(style='background-color: #5856d6')
+        .container
+            //- nav(aria-label='Page navigation example')
+            //-         ul.pagination
+            //-             li.page-item
+            //-             a.page-link(href='?page=1') 1
+            //-             li.page-item
+            //-             a.page-link(href='?page=2') 2
+            //-             li.page-item
+            //-             a.page-link(href='?page=3') 3   
+            if category
+                .row.category-heading
+                    h2.text-center= category 
+
+            if subCategories 
+                .row.subCategory 
+                    -var vary = activeSubCategory
+                    each subCategory in subCategories 
+                        -var varx = subCategory.name
+                        -var n = varx.localeCompare(vary)
+                        if n == 0 
+                            a.col.active(href="?name=Guitar&subCategory=" + subCategory.name  )
+                                span.mx-auto= subCategory.name
+                            //- -n = -1
+                        else
+                            a.col(href="?name=Guitar&subCategory=" + subCategory.name)
+                                span.mx-auto= subCategory.name
+            nav.softNPagination.row
+                .left
+                    p sắp xếp theo :
+                        link( href='https://css.gg/arrow-up.css', rel='stylesheet')
+                        link( href='https://css.gg/arrow-down.css', rel='stylesheet')  
+                        if activeSubCategory
+                            if sort == 1 
+                                a(href="?name="+category+"&sort=1&subCategory=" + activeSubCategory).btn.btn-info.btn-sm
+                                    i.gg-arrow-up.text-light
+                                a(href="?name="+category+"&sort=-1&subCategory=" + activeSubCategory).btn.btn-outline-info.btn-sm
+                                    i.gg-arrow-down.text-info
+                            else if sort == -1 
+                                a(href="?name="+category+"&sort=1&subCategory=" + activeSubCategory).btn.btn-outline-info.btn-sm
+                                    i.gg-arrow-up.text-info
+                                a(href="?name="+category+"&sort=-1&subCategory=" + activeSubCategory).btn.btn-info.btn-sm
+                                    i.gg-arrow-down.text-light
+                            else 
+                                a(href="?name="+category+"&sort=1&subCategory=" + activeSubCategory).btn.btn-outline-info.btn-sm
+                                    i.gg-arrow-up.text-info
+                                a(href="?name="+category+"&sort=-1&subCategory=" + activeSubCategory).btn.btn-outline-info.btn-sm
+                                    i.gg-arrow-down.text-info
+                        else 
+                            if sort == 1 
+                                a(href="?name="+category+"&sort=1").btn.btn-info.btn-sm
+                                    i.gg-arrow-up.text-light
+                                a(href="?name="+category+"&sort=-1").btn.btn-outline-info.btn-sm
+                                    i.gg-arrow-down.text-info
+                            else if sort == -1 
+                                a(href="?name="+category+"&sort=1").btn.btn-outline-info.btn-sm
+                                    i.gg-arrow-up.text-info
+                                a(href="?name="+category+"&sort=-1").btn.btn-info.btn-sm
+                                    i.gg-arrow-down.text-light
+                            else 
+                                a(href="?name="+category+"&sort=1").btn.btn-outline-info.btn-sm
+                                    i.gg-arrow-up.text-info
+                                a(href="?name="+category+"&sort=-1").btn.btn-outline-info.btn-sm
+                                    i.gg-arrow-down.text-info
+                .right
+                    ul.pagination
+                        li.page-item
+                            a.page-link(href=currentURL + '&page=1') &laquo;
+                        each page in pageArray
+                            if parseInt(page) == parseInt(recentPage)
+                                li.page-item.active
+                                    a.page-link(href=currentURL + '&page='+ page)= page
+                            else
+                                li.page-item
+                                    a.page-link(href=currentURL + '&page='+ page)= page
+            .row(style='margin-top: 10px;')
+                each product in products
+                    .col-md-2
+                        a.card_link(href= '/product/' + product.id)
+                            .pro_card
+                                .card_image
+                                    img(src= product.image alt='')
+                                    .special
+                                        p(style="visibility:hidden") Mới về
+                                        if product.discountedPrice
+                                            p SALE
+                                .card_content
+                                    p.card_name= product.name
+                                    a.brand(href='')= product.brand
+                                    .price
+                                        if !product.discountedPrice
+                                            p.final= product.price 
+                                                | &#x20AB;
+                                            p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                                | &#x20AB;
+                                        else 
+                                            p.final=product.discountedPrice 
+                                                | &#x20AB;
+                                            p.mb-2.before=product.price 
+                                                | &#x20AB;
+                                    .add2cart.d-flex.justify-content-center
+                                        if product.amount <= 0 
+                                            a(href="tel:+84335670934").btn.btn-success.btn-sm Gọi để đặt hàng 
+                                        else
+                                            a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
