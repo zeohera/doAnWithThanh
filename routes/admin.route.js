@@ -51,7 +51,10 @@ router.get('/createProduct', controller.productCreate)
 router.post('/createProduct',uploadProduct.single('image'), controller.postProductCreate)
 
 router.post('/:id/deleteProduct' , controller.deleteProduct)
-// missing update
+
+router.get('/:id/productUpdate', controller.productUpdate)
+
+router.post('/productUpdate/:id',uploadProduct.single('image'), controller.postProductUpdate)
 
 // product category manager
 router.get('/productCategoryManager', controller.productCategoryManager)

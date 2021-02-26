@@ -152,20 +152,42 @@ module.exports.productCreate = async (req,res) => {
 }
 
 module.exports.postProductCreate = (req, res) => {
-    // req.body.price = parseInt(req.body.price)
-    // req.body.discountedPrice = parseInt(req.body.discountedPrice)
     req.body.image = req.file.path.split('\\').slice(1).join('/')
     console.log(req.body)
     Product.create(req.body)
     res.redirect('productManager') 
 }
 
-
 module.exports.deleteProduct = (req, res) => {
     var id = req.params.id
     Product.deleteOne({ _id : id}).then(function(){
         res.redirect('/admin/productManager')
     })
+}
+
+module.exports.productUpdate = async (req, res ) => {
+    var info = await  Product.findOne({_id : req.params.id}).exec()
+    var err = []
+    var productCategory = await ProductCategory.find().exec()
+    var brand = await  Brand.find().exec()
+    var subProductCategory = await SubProductCategory.find().exec()
+    res.render('admin/productUpdate', {
+        info : info, 
+        errors : err,
+        ProductCategories : productCategory,
+        brands : brand,
+        SubProductCategories : subProductCategory
+    })
+}
+
+module.exports.postProductUpdate = (req, res) => {
+    Product.findOneAndUpdate( {_id: req.params.id }, req.body, (err, doc)=> {
+        if (err) {
+            console.log("Something wrong when updating data!");
+        }
+        console.log(doc);
+    })
+    res.redirect('/admin/productManager')
 }
 
 // PRODUCT CATEGORY MANAGER
@@ -185,7 +207,7 @@ module.exports.postProductCategoryCreate = (req, res) => {
     res.redirect('productCategoryManager')
 }
 
-module.exports.deleteProductCategory = (req, res) =>
+module.exports.deleteProductCategory = async (req, res) =>
 {
     var id = req.params.id
     ProductCategory.deleteOne({ _id : id}).then(function(){
