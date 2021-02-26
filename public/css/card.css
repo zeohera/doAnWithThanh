@@ -10,7 +10,9 @@ body {
     margin-bottom: 20px;
     border: 1px solid #5e5e5e;
     height: 350px;
-    background-color: white; }
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden; }
     body .pro_card:hover {
       box-shadow: 1px 1px 10px rgba(102, 102, 102, 0.5);
       transition: box-shadow 0.5s; }

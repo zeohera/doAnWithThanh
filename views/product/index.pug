@@ -21,15 +21,16 @@ block content
                 span.carousel-control-next-icon(aria-hidden='true')
                 span.visually-hidden Next
         .mt-3.container
-            .brand
-                h2
-                    span thương hiệu
-                .cardContainer
+            .brand.cardCategory
+                h2.cardCategoryHead
+                    span Thương hiệu
+                .cardContainer.row
                     each brand in brands
                         a(href="/product/brandInfo/" + brand.name).card
                             img(src= brand.logo, alt="")
-            .mt-5.priceRange 
-                h2
+                    
+            .mt-5.priceRange.cardCategory
+                h2.cardCategoryHead
                     span Khoảng giá
                 .cardContainer
                     a.btn.btn-light(href='/product/?range=1') Dưới 2 Triệu
@@ -38,40 +39,40 @@ block content
                     a.btn.btn-light(href='/product/?range=4') 7 - 10 Triệu
                     a.btn.btn-light(href='/product/?range=5') 10 - 15 Triệu
                     a.btn.btn-light(href='/product/?range=6') Trên 15 Triệu
-                .mt-3.row(style='margin-top: 10px;')
-                   if productsInRange
-                        each product in productsInRange
-                            .col-md-2
-                                a.card_link(href= '/product/' + product.id)
-                                    .pro_card
-                                        .card_image
-                                            img(src= product.image alt='')
-                                            .special
-                                                p(style="visibility:hidden") Mới về
-                                                if product.discountedPrice
-                                                    p SALE
-                                        .card_content
-                                            p.card_name= product.name
-                                            a.brand(href='')= product.brand
-                                            .price
-                                                if !product.discountedPrice
-                                                    p.final= product.price 
-                                                        | &#x20AB;
-                                                    p(style="visibility:hidden").mb-2.before= product.discountedPrice
-                                                        | &#x20AB;
-                                                else 
-                                                    p.final=product.discountedPrice 
-                                                        | &#x20AB;
-                                                    p.mb-2.before=product.price 
-                                                        | &#x20AB;
-                                            .add2cart.d-flex.justify-content-center
-                                                a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
-                
-            .mt-5.priceRange
-                h2
-                    span Đang giảm giá
-                .mt-3.row(style='margin-top: 10px;')
-                    if productsSale
+                .container
+                    .mt-3.row(style='margin-top: 10px;')
+                        if productsInRange
+                            each product in productsInRange
+                                .col-md-2
+                                    a.card_link(href= '/product/' + product.id)
+                                        .pro_card
+                                            .card_image
+                                                img(src= product.image alt='')
+                                                .special
+                                                    p(style="visibility:hidden") Mới về
+                                                    if product.discountedPrice
+                                                        p SALE
+                                            .card_content
+                                                p.card_name= product.name
+                                                a.brand(href='')= product.brand
+                                                .price
+                                                    if !product.discountedPrice
+                                                        p.final= product.price 
+                                                            | &#x20AB;
+                                                        p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                                            | &#x20AB;
+                                                    else 
+                                                        p.final=product.discountedPrice 
+                                                            | &#x20AB;
+                                                        p.mb-2.before=product.price 
+                                                            | &#x20AB;
+                                                .add2cart.d-flex.justify-content-center
+                                                    a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
+            if productsSale        
+                .mt-5.priceRange.cardCategory
+                    h2.cardCategoryHead
+                        span Đang giảm giá
+                    .mt-3.row(style='margin-top: 10px;')
                         each product in productsSale
                             .col-md-2
                                 a.card_link(href= '/product/' + product.id)
@@ -98,8 +99,8 @@ block content
                                                         | &#x20AB;
                                             .add2cart.d-flex.justify-content-center
                                                 a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
-                .row
-                    a(href="#", style='display:block; width : 200px').btn.btn-light.btn-lg.mx-auto Xem tất cả            
+                    .row
+                        a(href="#", style='display:block; width : 200px').btn.btn-light.btn-lg.mx-auto Xem tất cả            
             //- .mt-5.priceRange
                 h2
                     span Bán chạy
@@ -131,8 +132,8 @@ block content
                                                         | &#x20AB;
                                             .add2cart.d-flex.justify-content-center
                                                 a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
-            .mt-5.priceRange
-                h2
+            .mt-5.priceRange.cardCategory
+                h2.cardCategoryHead
                     span Order / Hàng đang về
                 .mt-3.row(style='margin-top: 10px;')
                     if ProductPreOrder

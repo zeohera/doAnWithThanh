@@ -17,6 +17,8 @@ body{
         border: 1px solid rgb(94, 94, 94);
         height: 350px;
         background-color: white;
+        border-radius: 5px;
+        overflow: hidden;
         &:hover{
             box-shadow: 1px 1px 10px rgba(102, 102, 102, 0.5);
             transition: box-shadow 0.5s;
