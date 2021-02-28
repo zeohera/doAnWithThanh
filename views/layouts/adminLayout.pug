@@ -232,7 +232,7 @@ html(lang='en')
                                 a#userDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
                                     if user
                                         span.mr-2.d-none.d-lg-inline.text-gray-600.small= user.name
-                                    img.img-profile.rounded-circle(src='img/undraw_profile.svg')
+                                    img.img-profile.rounded-circle(src= user.avatar)
                                 // Dropdown - User Information
                                 .dropdown-menu.dropdown-menu-right.shadow.animated--grow-in(aria-labelledby='userDropdown')
                                     a.dropdown-item(href='#')

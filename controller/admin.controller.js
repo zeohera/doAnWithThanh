@@ -108,6 +108,8 @@ module.exports.updateAdmin = async (req, res) => {
     )
 }
 
+
+
 module.exports.postUpdateAdmin = async (req, res) =>{
     console.log(req.body.passwordOld)
     var password = md5(req.body.passwordOld)
@@ -168,11 +170,21 @@ module.exports.postProductCreate = (req, res) => {
     res.redirect('productManager') 
 }
 
-module.exports.deleteProduct = (req, res) => {
+module.exports.deleteProduct = async (req, res) => {
+
     var id = req.params.id
-    Product.deleteOne({ _id : id}).then(function(){
-        res.redirect('/admin/productManager')
-    })
+    var prodDel = await Product.findOne({ _id : id}).exec()
+    var path = prodDel.image
+    try {
+        fs.unlinkSync('public/'+path)
+        console.log("Successfully deleted the file.")
+        Product.deleteOne({ _id : id}).then(function(){
+            res.redirect('/admin/productManager')
+        })
+      } catch(err) {
+        throw err
+      }
+    
 }
 
 module.exports.productUpdate = async (req, res ) => {
