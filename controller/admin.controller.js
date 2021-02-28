@@ -108,6 +108,15 @@ module.exports.updateAdmin = async (req, res) => {
     )
 }
 
+module.exports.detailAdmin = async (req, res) => 
+{
+    var info = await User.findById(req.params.id).exec()
+    // res.send(info)
+    res.render('admin/adminDetail',
+    {
+        values : info
+    })
+}
 
 
 module.exports.postUpdateAdmin = async (req, res) =>{

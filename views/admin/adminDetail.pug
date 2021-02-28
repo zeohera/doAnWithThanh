@@ -1,0 +1,27 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1.text-center Admin detail
+        if values 
+            .container.mt-5
+                .row 
+                    .col-md-3
+                        img(src= values.avatar, alt="", style='max-width:100%;max-height:100%;border-radius: 5px ; overflow: hidden')
+                    .col-md-9
+                        table.table.table-striped(style='max-width:100%;max-height:100%;border-radius: 5px ; overflow: hidden')
+                            tr
+                                th họ tên 
+                                td= values.name
+                            tr
+                                th Số điện thoại
+                                td= values.phoneNumber 
+                            tr
+                                th Địa chỉ Mail
+                                td= values.email
+                            tr
+                                th Giới hạn quyền 
+                                td= values.pro
+                            
+                                        
+                                    

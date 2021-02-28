@@ -29,6 +29,8 @@ router.post('/createAdmin', upload.single('avatar'), validate.postAdminCreate, c
 
 router.post('/:id/deleteAdmin' , controller.deleteAdmin)
 
+router.get('/:id/detailAdmin', controller.detailAdmin)
+
 router.get('/:id/updateAdmin',controller.updateAdmin )
 
 router.post('/postUpdateAdmin/:id' ,upload.single('avatar'), controller.postUpdateAdmin )

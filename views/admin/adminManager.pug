@@ -2,9 +2,9 @@ extends ../layouts/adminLayout
 
 block content
     .container-fluid
-        h1 Admin Manager
+        h1.text-center Admin Manager
         a.btn.btn-primary.btn-sm(href = "createAdmin") Tạo tài khoản Admin
-        table.table
+        table.table.table-striped.mt-3(style='border: 1px solid darkgray; border-radius : 5px; overflow : hidden')
                 thead
                     tr
                         th(scope='col') Tên 
@@ -17,14 +17,14 @@ block content
                     each user in users
                         tr 
                             td= user.name
-                            td
+                            td(style='padding:2px')
                                 img(src=user.avatar, alt="", style="max-height: 50px")
                             td= user.account
                             td= user.email
                             td= user.phoneNumber
                             td
                                 .action-container
-                                    a.btn.btn-info.btn-sm 
+                                    a.btn.btn-info.btn-sm(href= user.id + "/detailAdmin")
                                         i.fas.fa-info-circle
                                     form(Action = user.id + "/deleteAdmin" , method='POST')
                                         button.btn.btn-danger.btn-sm(type='submit')
