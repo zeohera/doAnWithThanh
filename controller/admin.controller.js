@@ -8,6 +8,8 @@ const SubProductCategory = require('../models/SubProductCategory.model')
 const Brand = require('../models/brand.model')
 const Bill = require('../models/bill.model')
 var nodemailer = require('nodemailer')
+const fs = require("fs")
+var path = require('path')
 
 module.exports.index = async (req, res) =>{
     var Bills = await Bill.find({state: 2})
@@ -77,14 +79,22 @@ module.exports.postAdminCreate = (req, res) =>{
     res.redirect('adminManager')
 }
 
-module.exports.deleteAdmin = (req, res) =>
+module.exports.deleteAdmin = async (req, res) =>
 {
-    // chưa xóa được ảnh lưu trong file hệ thống : tìm hiểu cách render file ảnh bằng file binary hoặc xóa ảnh trong hệ thống trước khi xóa document
+    
     var id = req.params.id
-    // db.get('users').remove({id : id}).write()
-    User.deleteOne({ _id : id}).then(function(){
-        res.redirect('/admin/adminManager')
-    })
+    var userDel = await User.findOne({ _id : id}).exec()
+    var path = userDel.avatar
+    try {
+        fs.unlinkSync('public/'+path)
+        console.log("Successfully deleted the file.")
+        User.deleteOne({ _id : id}).then(function(){
+            res.redirect('/admin/adminManager')
+        })
+      } catch(err) {
+        throw err
+      }
+    
 }
 
 module.exports.updateAdmin = async (req, res) => {
