@@ -23,35 +23,36 @@
 .cardContainer {
   margin-left: 20px; }
 
-.home .cardCategory {
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.5);
-  overflow: hidden;
-  border-radius: 10px;
-  border: 1px solid white; }
-  .home .cardCategory .cardCategoryHead {
-    padding: 4px;
-    background: white;
-    background: linear-gradient(90deg, white 4%, white 23%, rgba(255, 255, 255, 0) 35%);
+.home {
+  background: #3f5efb;
+  background: linear-gradient(48deg, #3f5efb 0%, #2ee3d8 100%); }
+  .home .cardCategory {
     -webkit-backdrop-filter: blur(10px);
-    /* Safari 9+ */ }
-  .home .cardCategory .cardContainer {
-    margin-bottom: 5px; }
-  .home .cardCategory .row a {
-    margin-bottom: 4px; }
-
-.home .mt-3.container .brand a.card {
-  max-width: 120px; }
-  .home .mt-3.container .brand a.card img {
-    height: 75px;
-    object-fit: contain; }
-
-.home .mt-3.container .priceRange a.btn-light {
-  margin-right: 20px; }
-  .home .mt-3.container .priceRange a.btn-light:hover {
-    background-color: #ff3b30;
-    color: white; }
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid white; }
+    .home .cardCategory .cardCategoryHead {
+      padding: 4px;
+      background: white;
+      background: linear-gradient(90deg, white 4%, white 23%, rgba(255, 255, 255, 0) 35%);
+      -webkit-backdrop-filter: blur(10px);
+      /* Safari 9+ */ }
+    .home .cardCategory .cardContainer {
+      margin-bottom: 5px; }
+    .home .cardCategory .row a {
+      margin-bottom: 4px; }
+  .home .mt-3.container .brand a.card {
+    max-width: 120px; }
+    .home .mt-3.container .brand a.card img {
+      height: 75px;
+      object-fit: contain; }
+  .home .mt-3.container .priceRange a.btn-light {
+    margin-right: 20px; }
+    .home .mt-3.container .priceRange a.btn-light:hover {
+      background-color: #ff3b30;
+      color: white; }
 
 .category .category-heading {
   background-color: white; }
@@ -237,10 +238,6 @@ footer {
           position: relative;
           color: #1877f2;
           margin: auto; }
-
-body {
-  background: #3f5efb;
-  background: linear-gradient(48deg, #3f5efb 0%, #2ee3d8 100%); }
 
 button.prm_btn {
   border: none;

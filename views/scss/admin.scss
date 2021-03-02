@@ -1,0 +1,31 @@
+.order_state_selector{
+    .col{
+        a{
+            color: black;
+            width: 100%;
+            border: 1px solid white;
+            border-radius: 3px;
+            height: 30px;
+            box-shadow: 1px 1px 5px darkgray;
+        }
+        .notReply{
+            background-color: white;
+        }
+        .packaging{
+            background-color: #a3cfbb
+        }
+        .success{
+            background-color:#fd9843;
+        }
+        .cancel{
+            background-color: rgb(255, 166, 166);
+        }
+    }
+    .mt-3{
+        color: black;
+    }
+}
+.billDetail{
+    border: 1px solid black;
+    border-radius: 10px ;
+}

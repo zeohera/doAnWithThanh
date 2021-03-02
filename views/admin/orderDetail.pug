@@ -2,11 +2,13 @@ extends ../layouts/adminLayout
 
 block content
     .container-fluid
-        h1 order Detail
+        h1.text-center Order detail
         if order
             .row 
-                .col-md-6
+                .col-md-6.billDetail
+                    h2.text-center Thông tin khách hàng
                     table.table 
+
                         thead 
                             tr 
                                 th Thuộc tính 
@@ -26,8 +28,7 @@ block content
                                             a.btn.btn-success.btn-sm(href="tel:" + order.phoneNumber) 
                                                 i.fas.fa-phone
                             tr
-                                th Email :
-                                td
+                                th(colspan=2) Email :
                                     p(style='margin-bottom : 0')= order.email 
                                     form(action="/admin/sendMail/"+ order.email, method="post") 
                                         textarea#mail.form-control(name="mail", cols="50", rows="10")= email
@@ -78,7 +79,8 @@ block content
                         button.btn.btn-primary.btn-sm(type='submit') Thêm ghi chú       
                     br
                     
-                .col-md-6
+                .col-md-6.billDetail
+                    h2.text-center Thông tin mặt hàng
                     table.table
                         thead
                             tr

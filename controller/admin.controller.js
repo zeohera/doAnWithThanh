@@ -304,7 +304,13 @@ module.exports.deleteSubProductCategory = (req, res) =>
 }
 // BILL MANAGER
 module.exports.orderManager = async (req, res) => {
-    var orders = await Bill.find()
+    if (!req.query.stateX)
+        {
+            var orders = await Bill.find()
+        }
+    else{
+        var orders = await Bill.find({'state' : req.query.stateX})
+    }
     res.render('admin/orderManager',{
         orders : orders
     })

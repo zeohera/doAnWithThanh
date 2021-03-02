@@ -179,8 +179,17 @@ module.exports.postCheckOut = async (req, res) =>
     req.body.note = []
     req.body.note.push(userNote)
     req.body.date = Date.now()
-    console.log(req.body)
+    // console.log(req.body)
     Bill.create(req.body)
+    var cart = new Cart(req.body)
+    var arr = cart.getItems()
+    console.log(arr)
+    for (var product  in arr){
+        var obj = arr[product]
+        var newAmount =  obj.item['amount'] -  obj.quantity
+        console.log(newAmount)
+        await Product.findByIdAndUpdate( {_id : obj.item['_id']}, {'amount' : newAmount})
+    }
     req.session.destroy()
     res.redirect('/product')
 }

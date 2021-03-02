@@ -2,12 +2,25 @@ extends ../layouts/adminLayout
 
 block content
     .container-fluid
-        h1 order Viewer
+        h1.text-center order Viewer
+        div.row.order_state_selector
+            .col
+                a(href='/admin/orderManager/?stateX=0').notReply.btn.btn-light đơn hàng chưa phản hồi
+
+            .col 
+                a(href='/admin/orderManager/?stateX=1').packaging.btn đơn hàng đang đóng gói 
+
+            .col 
+                a(href='/admin/orderManager/?stateX=2').success.btn đơn hàng đã giao thành công 
+
+            .col 
+                a(href='/admin/orderManager/?stateX=-1').cancel.btn đơn hàng đã bị hủy
+                
         if orders 
-            .row 
-                table.table 
+            .row.mt-3
+                table.table(style='border-radius: 5px; overflow: hidden') 
                     thead 
-                        tr 
+                        tr.text-dark
                             th mã hóa đơn
                             th Tên khách hàng 
                             th Giá trị đơn hàng
@@ -16,7 +29,7 @@ block content
                     tbody 
                         each order in orders
                             if order.state == 0
-                                tr(style='background-color: white')
+                                tr.text-dark(style='background-color: white')
                                     td= order._id
                                     td= order.name 
                                     td= order.price 
@@ -25,20 +38,19 @@ block content
                                         .action-container
                                             a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
                                                 i.fas.fa-info-circle
-                            
                             if order.state == 1 
-                                tr(style='background-color: #a3cfbb')
+                                tr.text-dark(style='background-color: #a3cfbb')
                                     td= order._id
                                     td= order.name 
                                     td= order.price 
                                     td= order.note
-                                    td
+                                    td  
                                         .action-container
                                             a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
                                                 i.fas.fa-info-circle
                             
                             if order.state == 2
-                                tr(style='background-color: #fd9843')
+                                tr.text-dark(style='background-color: #fd9843')
                                     td= order._id
                                     td= order.name 
                                     td= order.price 
@@ -49,7 +61,7 @@ block content
                                                 i.fas.fa-info-circle
                             
                             if order.state == -1
-                                tr(style='background-color: #f1aeb5')
+                                tr.text-dark(style='background-color: rgb(252, 112, 112);')
                                     td= order._id
                                     td= order.name 
                                     td= order.price 
