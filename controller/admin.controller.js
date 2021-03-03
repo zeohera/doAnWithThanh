@@ -235,6 +235,7 @@ module.exports.createProductCategory = (req, res)=>{
 }
 
 module.exports.postProductCategoryCreate = (req, res) => {
+    req.body.image = req.file.path.split('\\').slice(1).join('/')
     ProductCategory.create(req.body)
     res.redirect('productCategoryManager')
 }
@@ -319,10 +320,9 @@ module.exports.orderManager = async (req, res) => {
 module.exports.orderDetail = async (req, res) => {
     var id = req.params.id
     var order = await Bill.findOne({_id : id })
-    var emailText = 'id đơn hàng của bạn : ' + req.params.id + ' .Có giá trị là:' + order.price 
+    var emailText = 'id đơn hàng của bạn : ' + req.params.id + ' <br>;.Có giá trị là:' + order.price 
     res.render('admin/orderDetail',{
-        order : order,
-        email : emailText
+        order : order
     })
 }
 module.exports.postUpdateOrderDetail = async (req, res)=>{

@@ -34,3 +34,7 @@ $("#complete").on('click', function(){
     $('#shippingInfo').hide()
     $('#cancelInfo').hide()})
     $('#mail').focus()
+
+// $("#shippingInfo").on("input", function () {
+//     $("#mail").val($(this).val());
+// })

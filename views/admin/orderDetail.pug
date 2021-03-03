@@ -31,7 +31,26 @@ block content
                                 th(colspan=2) Email :
                                     p(style='margin-bottom : 0')= order.email 
                                     form(action="/admin/sendMail/"+ order.email, method="post") 
-                                        textarea#mail.form-control(name="mail", cols="50", rows="10")= email
+                                        - var text = + ' .Id đơn hàng của bạn ' + order._id
+                                        textarea#mail.form-control(name="mail", cols="50", rows="10") họ và tên người mua:  
+                                            |
+                                            = order.name
+                                            | &#13;&#10;ID đơn hàng :
+                                            = order._id
+                                            | &#13;&#10;Giá trị đơn hàng : 
+                                            = order.price
+                                            | &#13;&#10;Địa chỉ nhận hàng :
+                                            = order.address
+                                            | &#13;&#10;Các sản phẩm : &#13;&#10;
+                                            each item in order.items[0]
+                                                = item.item.name
+                                                | :
+                                                = item.quantity
+                                                | x 
+                                                = item.item.price
+                                                | =
+                                                = item.price
+                                                |&#13;&#10;
                                         br
                                         input.btn.btn-warning.btn-sm(type='submit')  
                                         //- i.fas.fa-envelope
@@ -57,7 +76,7 @@ block content
                             p Thay đổi trạng thái đơn hàng
                             input.orderState#packageNGo(type='radio', name='state', value='1')
                             label(for='1', style='magin-left:5px') &nbsp; Đóng gói và giao hàng
-                            textarea#shippingInfo.form-control(name="shippingInfo" ,rows="4", cols="100",style='display:none') 
+                            textarea#shippingInfo.form-control(name="shippingInfo" ,rows="4", cols="100",style='display:none')= order.shippingInfo 
                             br
                             input.orderState#complete(type='radio', name='state', value='2')
                             label(for='2', style='magin-left:5px') &nbsp; Hoàn thành đơn hàng

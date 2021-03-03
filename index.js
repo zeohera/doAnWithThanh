@@ -35,8 +35,6 @@ app.use('*/vendor',express.static('public/sbAdmin2/vendor'));
 app.set('view engine', 'pug')
 app.set('views', './views')
 
-
-
 app.use(cookieParser('zxcvbnmasdflkhj'))
 app.use(session({
   secret: 'secret',
@@ -46,7 +44,6 @@ app.use(session({
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(unpollute);
-
 
 app.use('/Auth',authRoute)
 app.use('/product', productRoute)

@@ -59,11 +59,21 @@ router.get('/:id/productUpdate', controller.productUpdate)
 router.post('/productUpdate/:id',uploadProduct.single('image'), controller.postProductUpdate)
 
 // product category manager
+var storageCategoryBackground = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images/categoryBackground/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+var uploadCategoryBackground = multer({ storage: storageCategoryBackground });
+
 router.get('/productCategoryManager', controller.productCategoryManager)
 
 router.get('/createProductCategory', controller.createProductCategory)
 
-router.post('/createProductCategory', controller.postProductCategoryCreate)
+router.post('/createProductCategory',uploadCategoryBackground.single('image'), controller.postProductCategoryCreate)
 
 router.post('/:id/deleteProductCategory', controller.deleteProductCategory)
 //  missing update 
@@ -124,7 +134,7 @@ var storageBanner = multer.diskStorage({
     cb(null, file.originalname)
   }
 });
-var uploadBanner = multer({ storage: storageBrand });
+var uploadBanner = multer({ storage: storageBanner });
 
 router.post('/uploadBanner', uploadBanner.single('image'), controller.postBannerUploader)
 
