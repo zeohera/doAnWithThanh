@@ -1,0 +1,26 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1 Banner Uploader 
+        if errors
+            for error in errors
+                .alert.alert-danger= error
+        form(action = "/admin/uploadBanner", method= "POST", enctype="multipart/form-data")
+            .mb-3
+                label(for="image") ảnh
+                br
+                input(name = "image", type="file" )
+            .mb-3
+                label.form-label(for='Link') Link
+                input#Link.form-control(name = 'link')
+            .mb-3.form-check
+                .form-check
+                    input#flexRadioDefault2.form-check-input(type='radio', name='display', checked='', value = '0')
+                    label.form-check-label(for='flexRadioDefault2')
+                        | Ẩn
+                .form-check
+                    input#flexRadioDefault1.form-check-input(type='radio', name='display', value = '1')
+                    label.form-check-label(for='flexRadioDefault1')
+                        |  Hiển thị
+            button.btn.btn-primary(type='submit') Xác nhận

@@ -108,4 +108,26 @@ router.get('/order/:id', controller.orderDetail)
 router.post('/postUpdateOrderDetail/:id' , controller.postUpdateOrderDetail)
 
 router.post('/sendMail/:mail', controller.mailSend)
+
+
+// Banner 
+router.get('/bannerManager', controller.bannerImageManager)
+
+router.get('/uploadBanner', controller.bannerUploader)
+
+
+var storageBanner = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images/banner/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+var uploadBanner = multer({ storage: storageBrand });
+
+router.post('/uploadBanner', uploadBanner.single('image'), controller.postBannerUploader)
+
+router.post('/:id/deleteBanner', controller.deleteBanner)
+
 module.exports = router

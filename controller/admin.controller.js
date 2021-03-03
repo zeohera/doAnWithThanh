@@ -7,6 +7,7 @@ const ProductCategory = require('../models/productCategory.model')
 const SubProductCategory = require('../models/SubProductCategory.model')
 const Brand = require('../models/brand.model')
 const Bill = require('../models/bill.model')
+const Banner = require('../models/banner.model')
 var nodemailer = require('nodemailer')
 const fs = require("fs")
 var path = require('path')
@@ -361,3 +362,32 @@ var transporter = nodemailer.createTransport({
       pass: '101120Bao'
     }
   });
+
+module.exports.bannerImageManager = async (req, res) => {
+    var banner = await Banner.find({}).exec()
+    res.render('admin/bannerManager', {
+        banners : banner
+    })
+}
+module.exports.bannerUploader = (req, res) =>{
+    res.render('admin/bannerUploader')
+}
+module.exports.postBannerUploader = async (req, res) =>{
+    req.body.image = req.file.path.split('\\').slice(1).join('/')
+    await Banner.create(req.body)
+    res.redirect('/admin/bannerManager')
+}
+module.exports.deleteBanner = async (req, res) => {
+    var id = req.params.id
+    var banner = await Banner.findOne({ _id : id}).exec()
+    var path = banner.image
+    try {
+        fs.unlinkSync('public/'+path)
+        console.log("Successfully deleted the file.")
+        Banner.deleteOne({ _id : id}).then(function(){
+            res.redirect('/admin/adminManager')
+        })
+      } catch(err) {
+        throw err
+      }
+}

@@ -1,0 +1,36 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1 Banner Manager
+        a.btn.btn-primary.btn-sm(href = "uploadBanner") Thêm một banner    
+        if banners
+            table.table.mt-2
+                thead
+                    tr
+                        th(scope='col') ảnh
+                        th(scope='col') Link
+                        th(scope='col') Hiển thị
+                        th(scope='col') Action
+                tbody
+                    each banner in banners
+                        tr 
+                            td
+                                img(src=banner.image , style="max-height: 50px")
+                            td= banner.link 
+                            td
+                                if banner.display = 1
+                                    p Hiển thị
+                                else 
+                                    p Ẩn
+                            td
+                                .action-container
+                                    a.btn.btn-info.btn-sm(href = "#")
+                                        i.fas.fa-info-circle
+                                    form(Action = banner.id + "/deleteBanner" , method='POST')
+                                        button.btn.btn-danger.btn-sm(type='submit')
+                                            i.fas.fa-trash-alt
+                                    a.btn.btn-warning.btn-sm()
+                                        i.fas.fa-edit
+                                    a.btn.btn-secondary.btn-sm()
+                                        i.fas.fa-eye-slash

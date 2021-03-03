@@ -137,10 +137,8 @@ module.exports.addToShoppingCart = async (req, res) => {
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     var product = await Product.findOne({'_id' : productId})
-    // console.log(product)
     cart.add(product._doc, productId);
     req.session.cart = cart;
-    // console.log(cart)
     cartTotalItems = cart.totalItems
     console.log('cartTotalItems', cartTotalItems)
     res.redirect('/product/shoppingCart')
@@ -171,7 +169,6 @@ module.exports.postCheckOut = async (req, res) =>
 {
     cart = new Cart(req.session.cart)
     var arr = cart.getItems()
-    // console.log('arr\n', cart)
     req.body.items = cart.items
     req.body.price = cart.totalPrice
     req.body.state = 0
@@ -179,7 +176,6 @@ module.exports.postCheckOut = async (req, res) =>
     req.body.note = []
     req.body.note.push(userNote)
     req.body.date = Date.now()
-    // console.log(req.body)
     Bill.create(req.body)
     var cart = new Cart(req.body)
     var arr = cart.getItems()
@@ -240,7 +236,6 @@ module.exports.postCreate = (req,res)=>{
         })
         return
     }
-
     console.log(req.file)
     req.body.avatar = req.file.path.split('\\').slice(1).join('/')
     db.get('products').push(req.body).write()
