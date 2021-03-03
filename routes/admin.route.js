@@ -11,7 +11,7 @@ const { route } = require('./auth.route');
 router.get('', controller.index)
 // admin manager
 
-var storage = multer.diskStorage({
+var storageAdmin = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/images/admin/')
   },
@@ -19,13 +19,13 @@ var storage = multer.diskStorage({
     cb(null, file.originalname)
   }
 });
-var upload = multer({ storage: storage });
+var uploadAdmin = multer({ storage: storageAdmin });
 
 router.get('/adminManager',  controller.adminManager)
 
 router.get('/createAdmin',  controller.addAdmin)
 
-router.post('/createAdmin', upload.single('avatar'), validate.postAdminCreate, controller.postAdminCreate)
+router.post('/createAdmin', uploadAdmin.single('avatar'), validate.postAdminCreate, controller.postAdminCreate)
 
 router.post('/:id/deleteAdmin' , controller.deleteAdmin)
 
@@ -33,7 +33,7 @@ router.get('/:id/detailAdmin', controller.detailAdmin)
 
 router.get('/:id/updateAdmin',controller.updateAdmin )
 
-router.post('/postUpdateAdmin/:id' ,upload.single('avatar'), controller.postUpdateAdmin )
+router.post('/postUpdateAdmin/:id' ,uploadAdmin.single('avatar'), controller.postUpdateAdmin )
 
 // product manager
 var storageProduct = multer.diskStorage({
@@ -59,7 +59,7 @@ router.get('/:id/productUpdate', controller.productUpdate)
 router.post('/productUpdate/:id',uploadProduct.single('image'), controller.postProductUpdate)
 
 // product category manager
-var storageCategoryBackground = multer.diskStorage({
+var storageCategoryImage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/images/categoryBackground/')
   },
@@ -67,13 +67,13 @@ var storageCategoryBackground = multer.diskStorage({
     cb(null, file.originalname)
   }
 });
-var uploadCategoryBackground = multer({ storage: storageCategoryBackground });
+var uploadCategoryImage = multer({ storage: storageCategoryImage });
 
 router.get('/productCategoryManager', controller.productCategoryManager)
 
 router.get('/createProductCategory', controller.createProductCategory)
 
-router.post('/createProductCategory',uploadCategoryBackground.single('image'), controller.postProductCategoryCreate)
+router.post('/createProductCategory',uploadCategoryImage.single('image'), controller.postProductCategoryCreate)
 
 router.post('/:id/deleteProductCategory', controller.deleteProductCategory)
 //  missing update 
