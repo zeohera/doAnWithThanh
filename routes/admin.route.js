@@ -8,6 +8,8 @@ var validate1 = require('../validate/adminUpdate.validate')
 const { route } = require('./auth.route');
 // const { route } = require('./product.route')
 
+router.get('/generateReport', controller.generateReport)
+
 router.get('', controller.index)
 // admin manager
 
@@ -19,6 +21,7 @@ var storageAdmin = multer.diskStorage({
     cb(null, file.originalname)
   }
 });
+
 var uploadAdmin = multer({ storage: storageAdmin });
 
 router.get('/adminManager',  controller.adminManager)

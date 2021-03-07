@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const md5 = require('md5')
 const e = require('express')
+const {jsPDF} = require('jspdf')
 const User = require('../models/user.model')
 const Product = require('../models/product.model')
 const ProductCategory = require('../models/productCategory.model')
@@ -12,27 +13,52 @@ var nodemailer = require('nodemailer')
 const fs = require("fs")
 var path = require('path')
 
-module.exports.index = async (req, res) =>{
-    var Bills = await Bill.find({state: 2})
+
+
+module.exports.generateReport = async (req, res) => {
+
+    var date = new Date()
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 1)
+    var bill = await Bill.find({'date' : { $gte: firstDay}, 'state' : 2}).exec()
     var earning = 0
-    var now = new Date()
-    var nowMonth = now.getMonth()
-    var nowYear = now.getFullYear()
-    console.log(now)
-    Bills.forEach(element => {
-        var dateTime  = new Date(element.date)
-        month = dateTime.getMonth()
-        year = dateTime.getFullYear()
-        if (nowMonth === month)
-            if(nowYear === year)
-                earning += element.price
+    bill.forEach(element => {
+        earning = earning + element.price
+    })
+    var doc = new jsPDF()
+    doc.setFont('TimeNewRoman');
+    doc.text("Báo cáo", 10, 10)
+    doc.setFontSize(12);
+    doc.text('Tong thu tu dau thang den ngay  '+ date.toString().replace('(Giờ Đông Dương)', '') +' la : ' + earning , 10, 20)
+
+    var todayTime = new Date()
+    var month = todayTime.getMonth() + 1
+    var day = todayTime.getDate()
+    var year = todayTime .getFullYear()
+    var hour = todayTime.getHours()
+    var min = todayTime.getMinutes()
+    var name = 'time' + hour + min +'date'+ month + "" + day + "" + year + '.pdf'
+    var path = 'public/report/'
+    console.log(name, typeof(name))
+    doc.save(path + name)
+    res.download(path + name)
+    // res.redirect('/admin')
+}
+
+module.exports.index = async (req, res) =>{
+    var date = new Date()
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 1)
+    var bill = await Bill.find({'date' : { $gte: firstDay}, 'state' : 2}).exec()
+    var earning = 0
+    bill.forEach(element => {
+        earning = earning + element.price
     })
     var Bill2 = await Bill.find({state : 0})
     var total = 0
     Bill2.forEach(element => {
         total += 1
     })
-    console.log(total)
     
 
     res.render('admin/dashboard', {
