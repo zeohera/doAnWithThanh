@@ -24,4 +24,13 @@ block content
                                             i.fas.fa-trash-alt
                                     a.btn.btn-warning.btn-sm()
                                         i.fas.fa-edit
+        if pageArray
+            ul.pagination  
+                each page in pageArray
+                    if parseInt(page) == parseInt(recentPage)
+                        li.page-item.active
+                            a.page-link(href=currentURL + '?page='+ page)= page
+                    else
+                        li.page-item
+                            a.page-link(href=currentURL + '?page='+ page)= page 
                                     

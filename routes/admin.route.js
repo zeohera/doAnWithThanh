@@ -58,6 +58,8 @@ router.get('/:id/productUpdate', controller.productUpdate)
 
 router.post('/productUpdate/:id',uploadProduct.single('image'), controller.postProductUpdate)
 
+router.post('/:id/changePublicState', controller.changePublicState)
+
 // product category manager
 var storageCategoryImage = multer.diskStorage({
   destination: function (req, file, cb) {

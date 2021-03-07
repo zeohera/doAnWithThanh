@@ -35,6 +35,4 @@ $("#complete").on('click', function(){
     $('#cancelInfo').hide()})
     $('#mail').focus()
 
-// $("#shippingInfo").on("input", function () {
-//     $("#mail").val($(this).val());
-// })
+// $(".paginationBar").atr("href",  )

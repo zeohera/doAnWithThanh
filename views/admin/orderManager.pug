@@ -1,6 +1,7 @@
 extends ../layouts/adminLayout
 
 block content
+    
     .container-fluid
         h1.text-center order Viewer
         div.row.order_state_selector
@@ -70,4 +71,14 @@ block content
                                         .action-container
                                             a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
                                                 i.fas.fa-info-circle
+        if pageArray
+            ul.pagination  
+                each page in pageArray
+                    if parseInt(page) == parseInt(recentPage)
+                        li.page-item.active
+                            a.page-link(href=currentURL + page)= page
+                    else
+                        li.page-item
+                            a.page-link(href=currentURL +  page)= page 
+                   
                             

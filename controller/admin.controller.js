@@ -119,7 +119,6 @@ module.exports.detailAdmin = async (req, res) =>
     })
 }
 
-
 module.exports.postUpdateAdmin = async (req, res) =>{
     console.log(req.body.passwordOld)
     var password = md5(req.body.passwordOld)
@@ -145,15 +144,30 @@ module.exports.postUpdateAdmin = async (req, res) =>{
         console.log(doc);
     })
     res.redirect('/admin/adminManager')
-    
 }
 
 // ---PRODUCT MANAGER
 module.exports.productManager = async (req, res) => {
-    var products = await  Product.find().exec()
+    var page = req.query.page || 1
+    if (page < 1 ) page = 1
+    var perPage = 20
+    var start = (page -1 ) * perPage
+    
+    var arr = []
+    var pageX = page
+    for ( var i = pageX -2 ; i <= parseInt(page) + 2 ; i++ )
+        if (i > 0) arr.push(i)
+    
+    req.url = req.url.replace("?page=" + page, "")  
+    req.url = req.url + '?page='
+
+    var products = await  Product.find().skip(start).limit(perPage).exec()
     res.render('admin/productManager',
     {
-        products : products
+        products : products,
+        pageArray : arr,
+        currentURL :'/admin' +  req.url
+
     })
 }
 
@@ -197,6 +211,16 @@ module.exports.deleteProduct = async (req, res) => {
     
 }
 
+module.exports.changePublicState = async (req, res)=>{
+    var id = req.params.id
+    var product = await Product.findById(id).exec()
+    if (product.public == true)
+        await Product.findByIdAndUpdate(id , {public : false})
+    else 
+        await Product.findByIdAndUpdate(id , {public : true})
+    res.redirect('/admin/productManager')
+}
+
 module.exports.productUpdate = async (req, res ) => {
     var info = await  Product.findOne({_id : req.params.id}).exec()
     var err = []
@@ -224,9 +248,23 @@ module.exports.postProductUpdate = (req, res) => {
 
 // PRODUCT CATEGORY MANAGER
 module.exports.productCategoryManager = async (req, res) => {
-    var productCategory = await ProductCategory.find().exec()
+    var page = req.query.page || 1
+    if (page < 1 ) page = 1
+    var perPage = 5
+    var start = (page -1 ) * perPage
+
+    var arr = []
+    var pageX = page
+    for ( var i = pageX -2 ; i <= parseInt(page) + 2 ; i++ )
+        if (i > 0) arr.push(i)
+
+    
+    var productCategory = await ProductCategory.find().skip(start).limit(perPage).exec()
+    req.url = req.url.replace("?page=" + page, "")
     res.render('admin/productCategoryManager', {
-        productCategories : productCategory
+        productCategories : productCategory,
+        pageArray : arr,
+        currentURL :'/admin' +  req.url,
     })
 }
 
@@ -306,15 +344,35 @@ module.exports.deleteSubProductCategory = (req, res) =>
 }
 // BILL MANAGER
 module.exports.orderManager = async (req, res) => {
+    var page = req.query.page || 1
+    if (page < 1 ) page = 1
+    var perPage = 20
+    var start = (page -1 ) * perPage
+    
+    var arr = []
+    var pageX = page
+    for ( var i = pageX -2 ; i <= parseInt(page) + 2 ; i++ )
+        if (i > 0) arr.push(i)
+
     if (!req.query.stateX)
         {
-            var orders = await Bill.find()
+            var orders = await Bill.find().skip(start).limit(perPage)
         }
     else{
-        var orders = await Bill.find({'state' : req.query.stateX})
+        var orders = await Bill.find({'state' : req.query.stateX}).skip(start).limit(perPage)
     }
+
+    req.url = req.url.replace("&page=" + page, "")  
+    if(req.url.includes('?stateX='))
+    {
+        req.url = req.url + '&page='
+    }else req.url = req.url 
+
     res.render('admin/orderManager',{
-        orders : orders
+        orders : orders,
+        pageArray : arr,
+        currentURL :'/admin' +  req.url
+
     })
 }
 module.exports.orderDetail = async (req, res) => {

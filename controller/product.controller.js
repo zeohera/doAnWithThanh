@@ -19,31 +19,31 @@ module.exports.index = async (req, res) => {
     var productInRange = []
     if (range == 1)
     {
-        productInRange = await Product.find({ price : {$lt:2000000} }).limit(perPage).exec()
+        productInRange = await Product.find({public : true, price : {$lt:2000000} }).limit(perPage).exec()
     }
     else if (range == 2)
     {
-        productInRange = await  Product.find({}).where('price').gt(2000000).lt(5000000).limit(perPage).exec()
+        productInRange = await  Product.find({public : true,}).where('price').gt(2000000).lt(5000000).limit(perPage).exec()
     }
     else if (range == 3)
     {
-        productInRange = await  Product.find({}).where('price').gt(5000000).lt(7000000).limit(perPage).exec()
+        productInRange = await  Product.find({public : true,}).where('price').gt(5000000).lt(7000000).limit(perPage).exec()
     }
     else if (range == 4)
     {
-        productInRange = await  Product.find({}).where('price').gt(7000000).lt(10000000).limit(perPage).exec()
+        productInRange = await  Product.find({public : true,}).where('price').gt(7000000).lt(10000000).limit(perPage).exec()
     }
     else if (range == 5)
     {
-        productInRange = await  Product.find({}).where('price').gt(10000000).lt(15000000).limit(perPage).exec()
+        productInRange = await  Product.find({public : true,}).where('price').gt(10000000).lt(15000000).limit(perPage).exec()
     }
     else if (range == 6)
     {
-        productInRange = await Product.find({ price : {$gt: 15000000} }).limit(perPage).exec()
+        productInRange = await Product.find({public : true, price : {$gt: 15000000} }).limit(perPage).exec()
     }
 
-    var productsSale = await Product.find({}).where('discountedPrice').ne(0).ne(null).limit(6)
-    var ProductPreOrder = await Product.find({amount : -1}).limit(12)
+    var productsSale = await Product.find({public : true,}).where('discountedPrice').ne(0).ne(null).limit(6)
+    var ProductPreOrder = await Product.find({public : true,amount : -1}).limit(12)
     var page = req.query.page || 1
     var perPage = 12
     var start = (page -1 ) * perPage
@@ -72,25 +72,25 @@ module.exports.category = async (req, res) =>{
         var activeSubCategory = req.query.subCategory
         if (req.query.sort == 1)
             {
-                products = await Product.find({category: name, subCategory : activeSubCategory}).sort({price: 1}).skip(start).limit(perPage).exec()
+                products = await Product.find({public : true,category: name, subCategory : activeSubCategory}).sort({price: 1}).skip(start).limit(perPage).exec()
             }
         else if (req.query.sort == -1)
         {
-            products = await Product.find({category: name, subCategory : activeSubCategory}).sort({price: -1}).skip(start).limit(perPage).exec()
+            products = await Product.find({public : true,category: name, subCategory : activeSubCategory}).sort({price: -1}).skip(start).limit(perPage).exec()
         } 
-        else products = await Product.find({category: name, subCategory : activeSubCategory}).skip(start).limit(perPage).exec()
+        else products = await Product.find({public : true,category: name, subCategory : activeSubCategory}).skip(start).limit(perPage).exec()
     }
     else
     {
         if (req.query.sort == 1)
         {
-            products = await Product.find({category: name}).sort({price: 1}).skip(start).limit(perPage).exec()
+            products = await Product.find({public : true,category: name}).sort({price: 1}).skip(start).limit(perPage).exec()
         }
         else if (req.query.sort == -1)
         {
-            products = await Product.find({category: name}).sort({price: -1}).skip(start).limit(perPage).exec()
+            products = await Product.find({public : true,category: name}).sort({price: -1}).skip(start).limit(perPage).exec()
         } 
-        else products = await Product.find({category: name}).skip(start).limit(perPage).exec()
+        else products = await Product.find({public : true,category: name}).skip(start).limit(perPage).exec()
     }
     req.url = req.url.replace("/category/","")
     req.url = req.url.replace("&page=" + page, "")
@@ -111,6 +111,7 @@ module.exports.category = async (req, res) =>{
         currentURL : req.url,
         pageArray : arr
     })
+
 }
 module.exports.shoppingCart = async (req, res) => {
     if (!req.session.cart || req.session.cart.totalPrice == '0') 
@@ -191,7 +192,7 @@ module.exports.postCheckOut = async (req, res) =>
 }
 module.exports.search = async (req, res)=>{
     var q = req.query.q
-    productsFounded = await Product.find({'name':q}).exec()
+    productsFounded = await Product.find({public : true,'name':q}).exec()
     console.log(productsFounded)
     res.render('product/search',
     {
@@ -216,7 +217,7 @@ module.exports.brandInfo = async (req, res) =>{
     var name = req.params.brand
     console.log(name) 
     var brand = await Brand.findOne({'name' : name}).exec()
-    var product = await Product.find({'brand' : name}).exec()
+    var product = await Product.find({public : true,'brand' : name}).exec()
     res.render('product/brand',{
         products : product,
         brand : brand

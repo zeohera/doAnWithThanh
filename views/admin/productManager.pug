@@ -34,5 +34,19 @@ block content
                                             i.fas.fa-trash-alt
                                     a.btn.btn-warning.btn-sm(href =  product.id + '/productUpdate')
                                         i.fas.fa-edit
-                                    a.btn.btn-secondary.btn-sm()
-                                        i.fas.fa-eye-slash
+                                    form(action= product.id + "/changePublicState", method="post") 
+                                        if product.public == true
+                                            button.btn.btn-success.btn-sm(type='submit')
+                                                i.fas.fa-eye
+                                        else 
+                                            button.btn.btn-secondary.btn-sm(type='submit')
+                                                i.fas.fa-eye-slash
+        if pageArray
+            ul.pagination  
+                each page in pageArray
+                    if parseInt(page) == parseInt(recentPage)
+                        li.page-item.active
+                            a.page-link(href=currentURL + page)= page
+                    else
+                        li.page-item
+                            a.page-link(href=currentURL +  page)= page 
