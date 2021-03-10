@@ -54,46 +54,54 @@
       background-color: #ff3b30;
       color: white; }
 
-.category .category-heading {
-  background-color: white; }
-  .category .category-heading h2 {
-    color: #48484a;
-    margin-bottom: 0; }
-
-.category .subCategory a {
-  display: flex;
-  text-decoration: none;
-  color: #48484a;
-  text-align: center;
-  width: 100%;
-  border: 0 2px 0 0 solid gray;
-  background-color: #c7c7cc;
-  border-right: 1px solid darkgray; }
-
-.category .subCategory a.active {
-  background-color: white; }
-
-.category .softNPagination {
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid darkgray; }
-  .category .softNPagination .right {
-    display: flex;
-    flex: 1;
-    flex-direction: row-reverse; }
-    .category .softNPagination .right .pagination {
-      margin: auto 0;
-      max-height: 38px; }
-  .category .softNPagination .left {
-    display: flex;
-    width: 400px; }
-    .category .softNPagination .left p {
+.category {
+  background-size: auto;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; }
+  .category .container {
+    background-color: rgba(255, 255, 255, 0.329);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    min-height: 100vh; }
+  .category .category-heading {
+    background-color: white; }
+    .category .category-heading h2 {
+      color: #48484a;
       margin-bottom: 0; }
-    .category .softNPagination .left a {
-      margin: 10px; }
-      .category .softNPagination .left a:hover {
-        background-color: #007aff; }
+  .category .subCategory a {
+    display: flex;
+    text-decoration: none;
+    color: #48484a;
+    text-align: center;
+    width: 100%;
+    border: 0 2px 0 0 solid gray;
+    background-color: #c7c7cc;
+    border-right: 1px solid darkgray; }
+  .category .subCategory a.active {
+    background-color: white; }
+  .category .softNPagination {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid darkgray; }
+    .category .softNPagination .right {
+      display: flex;
+      flex: 1;
+      flex-direction: row-reverse; }
+      .category .softNPagination .right .pagination {
+        margin: auto 0;
+        max-height: 38px; }
+    .category .softNPagination .left {
+      display: flex;
+      width: 400px; }
+      .category .softNPagination .left p {
+        margin-bottom: 0; }
+      .category .softNPagination .left a {
+        margin: 10px; }
+        .category .softNPagination .left a:hover {
+          background-color: #007aff; }
 
 .brandContainer {
   background-repeat: no-repeat;

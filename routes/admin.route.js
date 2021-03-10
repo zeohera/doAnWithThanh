@@ -81,6 +81,11 @@ router.get('/createProductCategory', controller.createProductCategory)
 router.post('/createProductCategory',uploadCategoryImage.single('image'), controller.postProductCategoryCreate)
 
 router.post('/:id/deleteProductCategory', controller.deleteProductCategory)
+
+router.get('/updateProductCategory/:id', controller.updateProductCategory)
+
+router.post('/updateProductCategory/:id',uploadCategoryImage.single('image'), controller.postUpdateProductCategory)
+
 //  missing update 
 
 // brand manager

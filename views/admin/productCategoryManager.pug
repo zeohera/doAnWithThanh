@@ -22,7 +22,7 @@ block content
                                     form(Action = productCategory.id + "/deleteProductCategory" , method='POST')
                                         button.btn.btn-danger.btn-sm(type='submit')
                                             i.fas.fa-trash-alt
-                                    a.btn.btn-warning.btn-sm()
+                                    a.btn.btn-warning.btn-sm(href = "updateProductCategory/" + productCategory.id)
                                         i.fas.fa-edit
         if pageArray
             ul.pagination  

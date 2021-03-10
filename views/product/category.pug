@@ -1,16 +1,10 @@
 extends ../layouts/common
 
 block content
-    .category(style='background-color: #5856d6')
-        .container
-            //- nav(aria-label='Page navigation example')
-            //-         ul.pagination
-            //-             li.page-item
-            //-             a.page-link(href='?page=1') 1
-            //-             li.page-item
-            //-             a.page-link(href='?page=2') 2
-            //-             li.page-item
-            //-             a.page-link(href='?page=3') 3   
+
+    //- .category()
+    .category(style='background-image : url('+backgroundImage+')')
+        .container 
             if category
                 .row.category-heading
                     h2.text-center= category 

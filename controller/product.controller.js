@@ -5,6 +5,7 @@ const Product = require('../models/product.model')
 const Cart = require('../models/cart');
 const Bill = require('../models/bill.model');
 const Brand = require('../models/brand.model')
+const ProductCategory = require('../models/productCategory.model')
 const SubProductCategory = require('../models/SubProductCategory.model')
 const { response } = require('express')
 
@@ -99,8 +100,9 @@ module.exports.category = async (req, res) =>{
     var pageX = page
     for ( var i = pageX -2 ; i <= parseInt(page) + 2 ; i++ )
         if (i > 0) arr.push(i)
-        
-    console.log(arr)
+    var category = await ProductCategory.findOne({'name' : name}).exec()
+    var image = category.image
+    console.log("name", name, image)
     res.render('product/category',{
         products: products,
         category : name,
@@ -109,7 +111,8 @@ module.exports.category = async (req, res) =>{
         sort : req.query.sort,
         recentPage : page,
         currentURL : req.url,
-        pageArray : arr
+        pageArray : arr, 
+        backgroundImage : image
     })
 
 }

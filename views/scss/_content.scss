@@ -3,6 +3,7 @@
                 margin-left: 20px;
             }
 .home{
+    
     background: rgb(63,94,251);
     background: linear-gradient(48deg, rgba(63,94,251,1) 0%, rgba(46,227,216,1) 100%);
     .cardCategory{
@@ -53,8 +54,18 @@
     }
 }
 .category{
-    
+    background-size: auto;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     h2{
+    }
+    .container{
+        background-color: rgba(255, 255, 255, 0.329);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        min-height: 100vh;
     }
     .category-heading{
         background-color: white;

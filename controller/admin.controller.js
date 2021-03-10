@@ -217,7 +217,7 @@ module.exports.postProductCreate = (req, res) => {
     req.body.image = req.file.path.split('\\').slice(1).join('/')
     console.log(req.body)
     Product.create(req.body)
-    res.redirect('productManager') 
+    res.redirect('productManager')
 }
 
 module.exports.deleteProduct = async (req, res) => {
@@ -245,6 +245,7 @@ module.exports.changePublicState = async (req, res)=>{
     else 
         await Product.findByIdAndUpdate(id , {public : true})
     res.redirect('/admin/productManager')
+
 }
 
 module.exports.productUpdate = async (req, res ) => {
@@ -262,8 +263,24 @@ module.exports.productUpdate = async (req, res ) => {
     })
 }
 
-module.exports.postProductUpdate = (req, res) => {
-    Product.findOneAndUpdate( {_id: req.params.id }, req.body, (err, doc)=> {
+module.exports.postProductUpdate = async (req, res) => {
+    var prodDel = await Product.findOne({ _id : req.params.id }).exec()
+    var path = prodDel.image
+    console.log(req.body.image)
+    if(req.body.image != undefined)
+    {
+        console.log('inside')
+        try {
+            fs.unlinkSync('public/'+ path)
+            console.log("Successfully deleted the file.")
+            
+        } catch(err) {
+            throw err
+        }
+    }
+    if (req.file)
+        req.body.image = req.file.path.split('\\').slice(1).join('/')
+    await Product.findOneAndUpdate( {_id: req.params.id }, req.body, (err, doc)=> {
         if (err) {
             console.log("Something wrong when updating data!");
         }
@@ -278,13 +295,10 @@ module.exports.productCategoryManager = async (req, res) => {
     if (page < 1 ) page = 1
     var perPage = 5
     var start = (page -1 ) * perPage
-
     var arr = []
     var pageX = page
     for ( var i = pageX -2 ; i <= parseInt(page) + 2 ; i++ )
         if (i > 0) arr.push(i)
-
-    
     var productCategory = await ProductCategory.find().skip(start).limit(perPage).exec()
     req.url = req.url.replace("?page=" + page, "")
     res.render('admin/productCategoryManager', {
@@ -297,6 +311,7 @@ module.exports.productCategoryManager = async (req, res) => {
 module.exports.createProductCategory = (req, res)=>{
     res.render('admin/createProductCategory')
 }
+
 
 module.exports.postProductCategoryCreate = (req, res) => {
     req.body.image = req.file.path.split('\\').slice(1).join('/')
@@ -311,7 +326,33 @@ module.exports.deleteProductCategory = async (req, res) =>
         res.redirect('/admin/productCategoryManager')
     })
 }
-
+module.exports.updateProductCategory = async (req, res) =>{
+    var Category = await ProductCategory.findById(req.params.id).exec()
+    var errors = []
+    // res.send(Category)
+    res.render('admin/updateProductCategory',{
+        category : Category,
+        errors : errors
+    })
+}
+module.exports.postUpdateProductCategory = async (req, res)=> {
+    req.body.image = req.file.path.split('\\').slice(1).join('/')
+    console.log(req.body)
+    try {
+        fs.unlinkSync('public/'+path)
+        console.log("Successfully deleted the file.")
+        await ProductCategory.findOneAndUpdate( {_id: req.params.id }, req.body, (err, doc)=> {
+            if (err) {
+                console.log("Something wrong when updating data!");
+            }
+            console.log(doc);
+            })
+        res.redirect('/admin/productCategoryManager')  
+    } catch(err) {
+        throw err
+    }
+     
+}
 
 // BRAND MANAGER    
 module.exports.brandManager = async (req, res) => {
@@ -321,6 +362,7 @@ module.exports.brandManager = async (req, res) => {
     {
         brands : brand
     })
+
 }
 
 module.exports.addBrand =  (req, res) => {
