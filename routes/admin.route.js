@@ -108,6 +108,10 @@ router.post('/AddBrand', uploadBrand.single('logo'), controller.postAddBrand)
 
 router.post('/:id/deleteBrand' , controller.deleteBrand)
 
+router.get('/updateBrand/:id', controller.updateBrand)
+
+router.post('/updateBrand/:id', uploadBrand.single('image'), controller.postUpdateBrand)
+
 // missing update
 
 // Sub product category manager

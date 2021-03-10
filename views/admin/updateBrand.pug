@@ -1,0 +1,28 @@
+extends ../layouts/adminLayout
+
+block content
+    .container-fluid
+        h1 Brand update
+        if errors
+            for error in errors
+                .alert.alert-danger= error
+        form(action="/admin/updateBrand/" + brand.id, method="post", enctype="multipart/form-data")
+            .mb-3.row
+                .col-md-6
+                    label.form-label(for='name') Tên nhãn hàng
+                    input#name.form-control(name = 'name', value= brand.name)
+                .col-md-6 
+                    img(src=brand.logo, alt="", style='max-height: 100px')
+            .mb-3.row
+                .col-md-6
+                    label(for="image") Ảnh
+                    br
+                    input.form-control(name = "image", type="file" )
+                .col-md-6
+                    if (brand.image)
+                        img(src=brand.image, alt="", style='max-height: 100px')
+            .mb-3 
+                label.form-label(for='description') Mô tả :
+                br
+                textarea#description.form-control(name="description" ,rows="4", cols="100")= brand.description
+            button.btn.btn-primary.btn-sm(type ="submit") Lưu

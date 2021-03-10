@@ -11,7 +11,7 @@ const { response } = require('express')
 
 module.exports.index = async (req, res) => {
     var range = req.query.range || 2
-
+    var backgroundImage = 'images/wall.jpg'
     var page = req.query.page || 1
     if (page < 1 ) page = 1
     var perPage = 18
@@ -55,7 +55,8 @@ module.exports.index = async (req, res) => {
         brands : brand,
         productsInRange : productInRange,
         productsSale : productsSale ,
-        ProductPreOrder : ProductPreOrder
+        ProductPreOrder : ProductPreOrder,
+        backgroundImage : backgroundImage
     })
 
 }
@@ -100,8 +101,9 @@ module.exports.category = async (req, res) =>{
     var pageX = page
     for ( var i = pageX -2 ; i <= parseInt(page) + 2 ; i++ )
         if (i > 0) arr.push(i)
+    
     var category = await ProductCategory.findOne({'name' : name}).exec()
-    var image = category.image
+    var image = category.image 
     console.log("name", name, image)
     res.render('product/category',{
         products: products,
@@ -220,10 +222,12 @@ module.exports.brandInfo = async (req, res) =>{
     var name = req.params.brand
     console.log(name) 
     var brand = await Brand.findOne({'name' : name}).exec()
+    var backgroundImage = brand.image
     var product = await Product.find({public : true,'brand' : name}).exec()
     res.render('product/brand',{
         products : product,
-        brand : brand
+        brand : brand,
+        backgroundImage : backgroundImage
     })
 }
 

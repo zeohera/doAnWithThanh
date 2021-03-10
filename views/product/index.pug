@@ -1,25 +1,41 @@
 extends ../layouts/common
 
 block content
-    .home
-        #carouselExampleIndicators.carousel.slide(data-bs-ride='carousel')(style='max-height: 350px ; overflow: hidden ')
-            .carousel-indicators
-                button.active(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
-                button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2')
-                button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3')
-            .carousel-inner
-                .carousel-item.active
-                    img.d-block.w-100(src='https://images.unsplash.com/photo-1514119412350-e174d90d280e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')
-                .carousel-item
-                    img.d-block.w-100(src='https://images.unsplash.com/photo-1570684615997-5fc6c4378f1a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80' alt='...')
-                .carousel-item
-                    img.d-block.w-100(src='https://images.unsplash.com/photo-1570684615997-5fc6c4378f1a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80' alt='...')
-            button.carousel-control-prev(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev')
-                span.carousel-control-prev-icon(aria-hidden='true')
-                span.visually-hidden Previous
-            button.carousel-control-next(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='next')
-                span.carousel-control-next-icon(aria-hidden='true')
-                span.visually-hidden Next
+    .home(style='background-image : url('+backgroundImage+')')
+        .container.carouselNfriend
+            .row
+                .col-md-8
+                    .carousel#carouselExampleIndicators.slide(data-bs-ride='carousel')(style='max-height: 350px ; overflow: hidden ')
+                        .carousel-indicators
+                            button.active(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
+                            button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2')
+                            button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3')
+                        .carousel-inner
+                            .carousel-item.active
+                                img.d-block.w-100(src='https://images.unsplash.com/photo-1514119412350-e174d90d280e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')
+                            .carousel-item
+                                img.d-block.w-100(src='https://images.unsplash.com/photo-1570684615997-5fc6c4378f1a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80' alt='...')
+                            .carousel-item
+                                img.d-block.w-100(src='https://images.unsplash.com/photo-1570684615997-5fc6c4378f1a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80' alt='...')
+                        button.carousel-control-prev(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev')
+                            span.carousel-control-prev-icon(aria-hidden='true')
+                            span.visually-hidden Previous
+                        button.carousel-control-next(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='next')
+                            span.carousel-control-next-icon(aria-hidden='true')
+                            span.visually-hidden Next
+                .col-md-4
+                    h3 Ghé thăm chúng tôi trên các nền tảng khác
+                    .platform
+                        .platform-row
+                            .platform-link.y
+                                p youtube
+                            .platform-link.f
+                                p facebook
+                        .platform-row
+                            .platform-link.t
+                                p tiktok
+                            .platform-link.i
+                                p instagram
         .mt-3.container
             .brand.cardCategory
                 h2.cardCategoryHead

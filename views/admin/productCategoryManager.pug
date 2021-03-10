@@ -17,7 +17,7 @@ block content
                             td= productCategory.description
                             td
                                 .action-container
-                                    a.btn.btn-info.btn-sm(href ='#')
+                                    a.btn.btn-info.btn-sm(href ='/product/category/?name=' + productCategory.name)
                                         i.fas.fa-info-circle
                                     form(Action = productCategory.id + "/deleteProductCategory" , method='POST')
                                         button.btn.btn-danger.btn-sm(type='submit')

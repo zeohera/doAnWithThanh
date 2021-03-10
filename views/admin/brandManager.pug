@@ -20,13 +20,11 @@ block content
                             td= brand.description
                             td
                                 .action-container
-                                    a.btn.btn-info.btn-sm(href = "#")
+                                    a.btn.btn-info.btn-sm(href = "/product/brandInfo/" + brand.name)
                                         i.fas.fa-info-circle
                                     form(Action = brand.id + "/deleteBrand" , method='POST')
                                         button.btn.btn-danger.btn-sm(type='submit')
                                             i.fas.fa-trash-alt
-                                    a.btn.btn-warning.btn-sm()
+                                    a.btn.btn-warning.btn-sm(href= 'updateBrand/' + brand.id)
                                         i.fas.fa-edit
-                                    a.btn.btn-secondary.btn-sm()
-                                        i.fas.fa-eye-slash
                                     

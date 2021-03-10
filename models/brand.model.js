@@ -5,6 +5,7 @@ var brandSchema = new mongoose.Schema({
     logo : String,
     description : String,
     image :String,
+    
 })
 
 var Brand = mongoose.model('Brand', brandSchema, 'brands' )

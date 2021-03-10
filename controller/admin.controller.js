@@ -336,21 +336,29 @@ module.exports.updateProductCategory = async (req, res) =>{
     })
 }
 module.exports.postUpdateProductCategory = async (req, res)=> {
-    req.body.image = req.file.path.split('\\').slice(1).join('/')
-    console.log(req.body)
-    try {
-        fs.unlinkSync('public/'+path)
-        console.log("Successfully deleted the file.")
-        await ProductCategory.findOneAndUpdate( {_id: req.params.id }, req.body, (err, doc)=> {
-            if (err) {
-                console.log("Something wrong when updating data!");
-            }
-            console.log(doc);
-            })
-        res.redirect('/admin/productCategoryManager')  
-    } catch(err) {
-        throw err
+    var category = await ProductCategory.findOne({ _id : req.params.id }).exec()
+    var path = category.image
+    console.log(req.body.image)
+    if(req.body.image != undefined)
+    {
+        console.log('inside')
+        try {
+            fs.unlinkSync('public/'+ path)
+            console.log("Successfully deleted the file.")
+            
+        } catch(err) {
+            throw err
+        }
     }
+    if (req.file)
+        req.body.image = req.file.path.split('\\').slice(1).join('/')
+    await ProductCategory.findOneAndUpdate( {_id: req.params.id }, req.body, (err, doc)=> {
+        if (err) {
+            console.log("Something wrong when updating data!");
+        }
+        console.log(doc);
+    })
+    res.redirect('/admin/productCategoryManager')
      
 }
 
@@ -381,6 +389,46 @@ module.exports.deleteBrand = (req, res) =>
     Brand.deleteOne({ _id : id}).then(function(){
         res.redirect('/admin/brandManager')
     })
+}
+module.exports.updateBrand = async (req, res)=> {
+    var category = await ProductCategory.findOne({ _id : req.params.id }).exec()
+    var brand = await  Brand.findOne({_id :req.params.id}).exec()
+    console.log('brand', brand)
+    var error = []
+    // res.send
+    res.render('admin/updateBrand',
+    {
+        brand : brand,
+        errors : error
+    })
+}
+
+module.exports.postUpdateBrand = async (req , res)=>{
+
+    var brand = await Brand.findOne({ _id : req.params.id }).exec()
+    var path = brand.image
+    console.log(req.body.image)
+    if(req.body.image != undefined)
+    {
+        console.log('inside')
+        try {
+            fs.unlinkSync('public/'+ path)
+            console.log("Successfully deleted the file.")
+            
+        } catch(err) {
+            throw err
+        }
+    }
+    if (req.file)
+        req.body.image = req.file.path.split('\\').slice(1).join('/')
+    await Brand.findOneAndUpdate( {_id: req.params.id }, req.body, (err, doc)=> {
+        if (err) {
+            console.log("Something wrong when updating data!");
+        }
+        console.log(doc);
+    })
+    res.redirect('/admin/productCategoryManager')
+     
 }
 
 // SUBCATEGORY

@@ -4,8 +4,67 @@
             }
 .home{
     
-    background: rgb(63,94,251);
-    background: linear-gradient(48deg, rgba(63,94,251,1) 0%, rgba(46,227,216,1) 100%);
+    background-size: auto;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    .carouselNfriend{
+        padding-top: 20px;
+        .slide{
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .col-md-4{
+            // margin-left: 6px;
+            // padding: 12px;
+            
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.5);         
+            overflow: hidden;
+            border-radius: 10px;
+            border : 1px solid white;
+            h3{
+                padding: 3px;
+            }
+            .platform{
+                background-color: white;
+                height: 256px;
+                width: 100%;
+                margin-bottom: 12px;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                flex:1 1 auto;
+                border-radius: 5px;
+                overflow: hidden;
+                .platform-row{
+                    display: flex;
+                    flex: 1 1 auto;
+                    .platform-link{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1 1 auto;
+                    }
+                }
+                .y{
+                    background-color: red;
+                }
+                .f{
+                    background-color: blue;
+                }
+                .t{
+                    background-color: black;
+                }
+                .i{
+                    background-color: purple;
+                }
+            }
+        }
+
+    }
     .cardCategory{
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
