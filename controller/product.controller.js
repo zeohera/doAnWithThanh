@@ -5,6 +5,7 @@ const Product = require('../models/product.model')
 const Cart = require('../models/cart');
 const Bill = require('../models/bill.model');
 const Brand = require('../models/brand.model')
+const Banner = require('../models/banner.model')
 const ProductCategory = require('../models/productCategory.model')
 const SubProductCategory = require('../models/SubProductCategory.model')
 const { response } = require('express')
@@ -50,13 +51,16 @@ module.exports.index = async (req, res) => {
     var start = (page -1 ) * perPage
     var brand = await Brand.find().exec()
     var products = await  Product.find().skip(start).limit(perPage).exec()
+    var banner = await Banner.find({}).exec()
+    console.log(banner)
     res.render('product/index', {
         products : products,
         brands : brand,
         productsInRange : productInRange,
         productsSale : productsSale ,
         ProductPreOrder : ProductPreOrder,
-        backgroundImage : backgroundImage
+        backgroundImage : backgroundImage,
+        banners : banner
     })
 
 }
@@ -209,12 +213,14 @@ module.exports.search = async (req, res)=>{
 module.exports.create = (req,res)=>{
     res.render('product/create');
 }
-module.exports.detail = (req,res)=>{
+module.exports.detail = async (req,res)=>{
     var id = req.params.id
-    Product.findOne({_id: id }).then(function(product){
-        res.render('product/view',{
-            product: product
-        })
+    var product = await Product.findOne({_id : id}).exec()
+    var brand = await Brand.findOne({name : product.brand})
+    var brandLogo = brand.logo
+    res.render('product/view', {
+        product : product,
+        brandLogo : brandLogo
     })
 }
 

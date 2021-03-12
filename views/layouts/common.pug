@@ -16,8 +16,8 @@ html(lang="en")
     body
         header
             include includes/header.pug
-            
-        block content
+        .body-content(style='min-height: 100vh')   
+            block content
 
         footer
             include includes/footer.pug

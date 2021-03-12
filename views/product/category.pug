@@ -15,11 +15,11 @@ block content
                         -var varx = subCategory.name
                         -var n = varx.localeCompare(vary)
                         if n == 0 
-                            a.col.active(href="?name=Guitar&subCategory=" + subCategory.name  )
+                            a.col.active(href="?name="+category+"&subCategory=" + subCategory.name  )
                                 span.mx-auto= subCategory.name
                             //- -n = -1
                         else
-                            a.col(href="?name=Guitar&subCategory=" + subCategory.name)
+                            a.col(href="?name="+category+"&subCategory=" + subCategory.name)
                                 span.mx-auto= subCategory.name
             nav.softNPagination.row
                 .left

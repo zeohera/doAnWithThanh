@@ -10,9 +10,17 @@ module.exports = function Cart(cart) {
             cartItem = this.items[id] = {item: item, quantity: 0, price: 0};
         }
         cartItem.quantity++;
-        cartItem.price = cartItem.item.price * cartItem.quantity;
-        this.totalItems++;
-        this.totalPrice += cartItem.item.price;
+        if (cartItem.item.discountedPrice){
+            cartItem.price = cartItem.item.discountedPrice * cartItem.quantity
+            this.totalItems++;
+            this.totalPrice += cartItem.item.discountedPrice;
+        }
+        else {
+            cartItem.price = cartItem.item.price * cartItem.quantity;
+            this.totalItems++;
+            this.totalPrice += cartItem.item.price;
+        } 
+       
     };
 
     this.remove = function(id) {

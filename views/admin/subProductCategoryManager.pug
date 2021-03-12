@@ -20,11 +20,9 @@ block content
                             td= subProductCategory.description
                             td
                                 .action-container
-                                    a.btn.btn-info.btn-sm(href ='#')
-                                        i.fas.fa-info-circle
                                     form(Action = subProductCategory.id + "/deleteSubProductCategory" , method='POST')
                                         button.btn.btn-danger.btn-sm(type='submit')
                                             i.fas.fa-trash-alt
-                                    a.btn.btn-warning.btn-sm()
+                                    a.btn.btn-warning.btn-sm(href = "updateSubCategory/"+ subProductCategory.id)
                                         i.fas.fa-edit
                                     

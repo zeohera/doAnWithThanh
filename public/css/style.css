@@ -61,15 +61,29 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            flex: 1 1 auto; }
+            flex: 1 1 auto;
+            margin: auto;
+            height: 100%;
+            text-decoration: none; }
+            .home .carouselNfriend .col-md-4 .platform .platform-row .platform-link i.fab {
+              transition: all 0.5s ease-in-out;
+              display: flex;
+              margin: auto;
+              color: white; }
+            .home .carouselNfriend .col-md-4 .platform .platform-row .platform-link:hover i.fab {
+              transform: scale(1.4, 1.4); }
         .home .carouselNfriend .col-md-4 .platform .y {
-          background-color: red; }
+          background-color: #ff0000; }
         .home .carouselNfriend .col-md-4 .platform .f {
-          background-color: blue; }
+          width: 30px;
+          background-color: #0572e6; }
         .home .carouselNfriend .col-md-4 .platform .t {
-          background-color: black; }
+          background: #00f3eb;
+          background: linear-gradient(152deg, #00f3eb 8%, black 38%, black 50%, black 62%, #f20047 98%); }
         .home .carouselNfriend .col-md-4 .platform .i {
-          background-color: purple; }
+          background: #d6249f;
+          background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25); }
   .home .cardCategory {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
@@ -165,6 +179,35 @@
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 10px; }
+
+.product-detail {
+  min-height: 120vh; }
+  .product-detail .product-info .col-md-5 img {
+    max-width: 450px; }
+  .product-detail .fixed-bottom {
+    padding-top: 5px;
+    min-height: 100px;
+    background-color: white;
+    box-shadow: -3px 0 10px darkgray; }
+    .product-detail .fixed-bottom .hotline h5 {
+      color: darkgray;
+      text-decoration: none; }
+    .product-detail .fixed-bottom .hotline a {
+      font-size: 24px;
+      font-weight: 400;
+      color: #0D0D0D;
+      text-decoration: none; }
+    .product-detail .fixed-bottom .final-price {
+      color: #ff3b30;
+      font-size: 24px;
+      letter-spacing: 1px; }
+    .product-detail .fixed-bottom .before-price {
+      font-size: 18px;
+      color: #aeaeb2;
+      text-decoration: line-through; }
+    .product-detail .fixed-bottom .add2Cart {
+      margin: auto;
+      text-align: center; }
 
 header {
   display: flex;

@@ -47,19 +47,38 @@
                         display: flex;
                         flex-direction: column;
                         flex: 1 1 auto;
+                        margin: auto;
+                        height: 100%;
+                        text-decoration: none;
+                        i.fab{
+                            transition: all 0.5s ease-in-out;
+                            display: flex;
+                            margin: auto;
+                            color: white;
+                        }
+                        &:hover i.fab{
+                            transform: scale(1.4,1.4);
+                            
+                        }
                     }
                 }
                 .y{
-                    background-color: red;
+                    background-color: #ff0000;
                 }
                 .f{
-                    background-color: blue;
+                    width: 30px;
+                    background-color: #0572e6;
                 }
                 .t{
-                    background-color: black;
+                    
+                    
+                    background: rgb(0,243,235);
+                    background: linear-gradient(152deg, rgba(0,243,235,1) 8%, rgba(0,0,0,1) 38%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 62%, rgba(242,0,71,1) 98%);
                 }
                 .i{
-                    background-color: purple;
+                    background: #d6249f;
+                    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+                    box-shadow: 0px 3px 10px rgba(0,0,0,.25);
                 }
             }
         }
@@ -210,6 +229,49 @@
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border-radius: 10px;
+        }
+    }
+}
+.product-detail{
+    min-height: 120vh;
+    
+    .product-info{
+        .col-md-5{
+            img{
+                max-width: 450px;
+            }
+        }
+    }
+    .fixed-bottom {
+        padding-top: 5px;
+        min-height: 100px ;
+        background-color: white;
+        box-shadow: -3px 0 10px darkgray;
+        .hotline{
+            h5{
+                color: darkgray;
+                text-decoration: none;
+            }
+            a{
+                font-size:24px ;
+                font-weight: 400;
+                color: $wooden-black;
+                text-decoration: none;
+            }
+        }
+        .final-price{
+            color: $systemRed;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        .before-price{
+            font-size: 18px;
+            color: $systemGrayLight1;
+            text-decoration:line-through;
+        }
+        .add2Cart{
+            margin: auto;
+            text-align: center;
         }
     }
 }

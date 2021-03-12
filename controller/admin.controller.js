@@ -458,6 +458,26 @@ module.exports.deleteSubProductCategory = (req, res) =>
         res.redirect('/admin/subProductCategoryManager')
     })
 }
+
+module.exports.updateSubCategory = async (req , res) =>{
+    var subCategory = await SubProductCategory.findOne({_id: req.params.id}).exec()
+    var category = await ProductCategory.find({}).exec()
+    res.render('admin/updateSubCategory', {
+        subCategory : subCategory, 
+        productCategories : category
+    })
+}
+module.exports.postUpdateSubCategory = async (req , res) =>{
+    await SubProductCategory.findOneAndUpdate({_id : req.params.id}, req.body,  (err, doc)=> {
+        if (err) {
+            console.log("Something wrong when updating data!");
+        }
+        console.log(doc);
+    })
+    res.redirect('/admin/subProductCategoryManager')
+
+}
+
 // BILL MANAGER
 module.exports.orderManager = async (req, res) => {
     var page = req.query.page || 1
@@ -483,12 +503,16 @@ module.exports.orderManager = async (req, res) => {
     {
         req.url = req.url + '&page='
     }else req.url = req.url 
-
+    if (Object.entries(req.query).length === 0){
+        console.log('nothing in here')
+        var currentURL = '/admin' + req.url + '/?page='
+    }
+    else
+        var currentURL = '/admin' +  req.url
     res.render('admin/orderManager',{
         orders : orders,
         pageArray : arr,
-        currentURL :'/admin' +  req.url
-
+        currentURL : currentURL
     })
 }
 module.exports.orderDetail = async (req, res) => {

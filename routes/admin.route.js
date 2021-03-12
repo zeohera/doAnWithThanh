@@ -122,6 +122,11 @@ router.get('/createSubProductCategory', controller.createSubProductCategory)
 router.post('/createSubProductCategory', controller.postCreateSubProductCategory)
 
 router.post('/:id/deleteSubProductCategory' , controller.deleteSubProductCategory)
+
+router.get('/updateSubCategory/:id', controller.updateSubCategory)
+
+router.post('/updateSubCategory/:id', controller.postUpdateSubCategory)
+
 // missing update
 
 // order manager 
@@ -148,6 +153,7 @@ var storageBanner = multer.diskStorage({
     cb(null, file.originalname)
   }
 });
+
 var uploadBanner = multer({ storage: storageBanner });
 
 router.post('/uploadBanner', uploadBanner.single('image'), controller.postBannerUploader)

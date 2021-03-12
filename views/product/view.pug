@@ -1,7 +1,62 @@
 extends ../layouts/common
 
 block content
-    h1 view product
-    p  
-        b Name
-        span= product.brand
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    .product-detail
+        .container.mt-3
+            link(href='https://css.gg/menu.css' rel='stylesheet')
+            .row
+                .col-md-10
+                    nav
+                        ol.breadcrumb
+                            li.breadcrumb-item
+                                a(href="/product") 
+                                    i(class='material-icons') storefront
+                            li.breadcrumb-item.active
+                                span product
+                .col-md-2
+                    nav
+                        ol.breadcrumb
+                            li.breadcrumb-item
+                                a(href="/product/category/?name=" + product.category)= product.category
+                            li.breadcrumb-item
+                                a(href="/product/category/?name=" + product.category+ "&subCategory=" + product.subCategory)= product.subCategory
+                
+            .row.product-info
+                .col-md-5 
+                    img(src=product.image, alt="", style='max0')
+                .col-md-7
+                    h1= product.name
+                    p thương hiệu 
+                        a(href="/product/brandInfo/" + product.brand) 
+                            img(src=brandLogo, alt="", style='max-height: 70px')
+                    p Số lượng :
+                        |
+                        = product.amount
+                    p= product.introText
+                    if product.sound
+                        iframe( style='width : 100%; height : 420px' src=product.sound)
+
+            .row
+                h1 Mô tả chi tiết 
+                p= product.description
+            //- .row 
+            //-     h1 Cùng loại nhạc cụ
+        .fixed-bottom
+            .container
+                .row 
+                    .col-md-3.hotline
+                        h5 Hotline :
+                        a(href="tel:+845670934") 
+                            Strong  0335670934
+                    .col-md-3.price
+                        if (product.discountedPrice)
+                            p.final-price= product.discountedPrice
+                                | VNĐ  
+                            p.before-price= product.price
+                                | VNĐ
+                        else 
+                            p.final-price= product.price
+                                | VNĐ
+                    .col-md-6.add2Cart
+                        a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-lg  Thêm vào giỏ hàng 

@@ -11,12 +11,11 @@ block content
                             button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2')
                             button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3')
                         .carousel-inner
-                            .carousel-item.active
-                                img.d-block.w-100(src='https://images.unsplash.com/photo-1514119412350-e174d90d280e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')
-                            .carousel-item
-                                img.d-block.w-100(src='https://images.unsplash.com/photo-1570684615997-5fc6c4378f1a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80' alt='...')
-                            .carousel-item
-                                img.d-block.w-100(src='https://images.unsplash.com/photo-1570684615997-5fc6c4378f1a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80' alt='...')
+                            a.carousel-item.active(href='#')
+                                    img.d-block.w-100(src='https://images.unsplash.com/photo-1534782710882-2f5e2c80c1b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80')
+                            each banner in banners
+                                a.carousel-item(href=banner.link)
+                                    img.d-block.w-100(src=banner.image)
                         button.carousel-control-prev(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev')
                             span.carousel-control-prev-icon(aria-hidden='true')
                             span.visually-hidden Previous
@@ -26,16 +25,17 @@ block content
                 .col-md-4
                     h3 Ghé thăm chúng tôi trên các nền tảng khác
                     .platform
+                        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" )
                         .platform-row
-                            .platform-link.y
-                                p youtube
-                            .platform-link.f
-                                p facebook
+                            a.platform-link.y(href='http://youtube.com')
+                                i.fab.fa-youtube.fa-3x
+                            a.platform-link.f(href='http://fb.com')
+                                i.fab.fa-facebook-f.fa-3x
                         .platform-row
-                            .platform-link.t
-                                p tiktok
-                            .platform-link.i
-                                p instagram
+                            a.platform-link.t(href='http://tiktok.com')
+                                i.fab.fa-tiktok.fa-3x
+                            a.platform-link.i(href='http://instagram.com')
+                                i.fab.fa-instagram.fa-3x
         .mt-3.container
             .brand.cardCategory
                 h2.cardCategoryHead
@@ -117,37 +117,6 @@ block content
                                                 a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
                     .row
                         a(href="#", style='display:block; width : 200px').btn.btn-light.btn-lg.mx-auto Xem tất cả            
-            //- .mt-5.priceRange
-                h2
-                    span Bán chạy
-                .mt-3.row(style='margin-top: 10px;')
-                    if productsBestSeller
-                        each product in productsBestSeller
-                            .col-md-2
-                                a.card_link(href= '/product/' + product.id)
-                                    .pro_card
-                                        .card_image
-                                            img(src= product.image alt='')
-                                            .special
-                                                p(style="visibility:hidden") Mới về
-                                                if product.discountedPrice
-                                                    p SALE
-                                        .card_content
-                                            p.card_name= product.name
-                                            a.brand(href='')= product.brand
-                                            .price
-                                                if !product.discountedPrice
-                                                    p.final= product.price 
-                                                        | &#x20AB;
-                                                    p(style="visibility:hidden").mb-2.before= product.discountedPrice
-                                                        | &#x20AB;
-                                                else 
-                                                    p.final=product.discountedPrice 
-                                                        | &#x20AB;
-                                                    p.mb-2.before=product.price 
-                                                        | &#x20AB;
-                                            .add2cart.d-flex.justify-content-center
-                                                a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
             .mt-5.priceRange.cardCategory
                 h2.cardCategoryHead
                     span Order / Hàng đang về
