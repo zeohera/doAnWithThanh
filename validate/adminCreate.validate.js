@@ -6,9 +6,9 @@ module.exports.postAdminCreate = (req, res, next) => {
     if(!req.body.account) {
         errors.push('cần nhập tên tài khoản đăng nhập')
     }
-    // if(!req.body.avatar) {
-    //     errors.push('chưa chọn ảnh')
-    // }
+    if(!req.file) {
+        errors.push('chưa chọn ảnh')
+    }
     if(!req.body.phoneNumber) {
         errors.push('chưa ghi số điện thoại')
     }

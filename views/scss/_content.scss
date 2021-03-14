@@ -233,12 +233,24 @@
     }
 }
 .product-detail{
+    padding-top: 20px;
     min-height: 120vh;
-    
-    .product-info{
-        .col-md-5{
-            img{
-                max-width: 450px;
+    background-size: auto;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    .container{
+        background-color: rgba(255, 255, 255, 0.8);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        border : 1px solid white;
+        .product-info{
+            .col-md-5{
+                img{
+                    max-width: 450px;
+                }
             }
         }
     }
@@ -275,3 +287,20 @@
         }
     }
 }
+.shopping-cart{
+    padding-top: 5px;
+    min-height: 100px ;
+    background-color: white;
+    box-shadow: -3px 0 10px darkgray;
+    .col-md-4{
+        .price{
+            color: $systemRed;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        a{
+            width: 100%;
+        }
+    }
+}
+

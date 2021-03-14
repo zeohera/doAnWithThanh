@@ -213,14 +213,17 @@ module.exports.search = async (req, res)=>{
 module.exports.create = (req,res)=>{
     res.render('product/create');
 }
+
 module.exports.detail = async (req,res)=>{
     var id = req.params.id
+    var backgroundImage = 'images/wall.jpg'
     var product = await Product.findOne({_id : id}).exec()
     var brand = await Brand.findOne({name : product.brand})
     var brandLogo = brand.logo
     res.render('product/view', {
         product : product,
-        brandLogo : brandLogo
+        brandLogo : brandLogo,
+        backgroundImage : backgroundImage
     })
 }
 
@@ -255,3 +258,4 @@ module.exports.postCreate = (req,res)=>{
     db.get('products').push(req.body).write()
     res.redirect('/product')
 }
+

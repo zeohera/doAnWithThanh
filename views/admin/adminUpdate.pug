@@ -11,16 +11,19 @@ block content
                 h2 Chỉnh sửa thông tin cho tài khoản cho: 
                     = values.account
             .col-md-6 
-                img.rounded(src= values.avatar, alt="" style= 'max-width : 250px')
+                
         form(action = "/admin/postUpdateAdmin/" + values.id, method= "POST", enctype="multipart/form-data")
             .mb-3
+                label(for="name") Tên
                 input#name.form-control(name = 'name', value= values.name)
-            //- .mb-3
-            //-     p thay avatar
-            //-     br
-            //-     label(for="avatar") avatar
-            //-     br
-            //-     input(name = "avatar", type="file" )
+            .mb-3.row
+                label(for="avatar") avatar
+                .col-md-6
+                    br
+                    input(name = "avatar", type="file" )
+                .col-md-6
+                    img.rounded(src= values.avatar, alt="" style= 'max-width : 250px')
+                    
             .mb-3
                 label.form-label(for='phoneNumber') Số điện thoai
                 input#phoneNumber.form-control(name = 'phoneNumber' value=  values.phoneNumber )

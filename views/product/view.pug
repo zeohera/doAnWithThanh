@@ -1,9 +1,10 @@
 extends ../layouts/common
 
 block content
+    
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-    .product-detail
-        .container.mt-3
+    .product-detail(style='background-image : url('+backgroundImage+')')
+        .container
             link(href='https://css.gg/menu.css' rel='stylesheet')
             .row
                 .col-md-10

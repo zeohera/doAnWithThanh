@@ -87,9 +87,6 @@ module.exports.addAdmin = (req, res) => {
 
 module.exports.postAdminCreate = (req, res) =>{
     var errors = []
-    if(!req.body.name) {
-        errors.push('cần nhập tên sản phẩm')
-    }
     if (errors.length){
         res.render('admin/createAdmin',{
             errors : errors,
@@ -98,8 +95,8 @@ module.exports.postAdminCreate = (req, res) =>{
         return
     }
     console.log(req.body)
-    // chưa làm kiểm tra tên file có trong hệ thống hay không
-    req.body.avatar = req.file.path.split('\\').slice(1).join('/')
+    if (req.file.path)
+        req.body.avatar = req.file.path.split('\\').slice(1).join('/')
     var hashedPassword = md5(req.body.password)
     req.body.password = hashedPassword
     User.create(req.body)
@@ -108,7 +105,6 @@ module.exports.postAdminCreate = (req, res) =>{
 
 module.exports.deleteAdmin = async (req, res) =>
 {
-    
     var id = req.params.id
     var userDel = await User.findOne({ _id : id}).exec()
     var path = userDel.avatar
@@ -125,9 +121,8 @@ module.exports.deleteAdmin = async (req, res) =>
 }
 
 module.exports.updateAdmin = async (req, res) => {
-    
+
     var info = await User.findById(req.params.id).exec()
-    // res.send(info)
     res.render('admin/adminUpdate',
     {
         values : info
@@ -163,6 +158,19 @@ module.exports.postUpdateAdmin = async (req, res) =>{
     console.log('throw 2')
     req.body.password = md5(req.body.passwordNew)
     console.log(req.body.password)
+
+    if (req.file){
+        var user2update = await User.findById({_id : req.params.id}).exec()
+        var path = user2update.avatar
+        try {
+            fs.unlinkSync('public/'+path)
+            console.log("Successfully deleted the file.")
+          } catch(err) {
+            throw err
+          }
+          
+    }
+    req.body.avatar = req.file.path.split('\\').slice(1).join('/')
     User.findOneAndUpdate( {_id: info._id }, req.body, (err, doc)=> {
         if (err) {
             console.log("Something wrong when updating data!");
