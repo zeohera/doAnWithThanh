@@ -12,6 +12,7 @@ const Banner = require('../models/banner.model')
 var nodemailer = require('nodemailer')
 const fs = require("fs")
 var path = require('path')
+const { runInNewContext } = require('vm')
 
 
 
@@ -54,17 +55,19 @@ module.exports.index = async (req, res) =>{
     bill.forEach(element => {
         earning = earning + element.price
     })
-    var Bill2 = await Bill.find({state : 0})
-    var total = 0
-    Bill2.forEach(element => {
-        total += 1
-    })
-    
+
+    var Bill2 = await Bill.find({state : 0}).count()
+
+    var product = await Product.find({}).count()
 
     res.render('admin/dashboard', {
         earning : earning ,
-        notConfirm : total
+        notConfirm : Bill2,
+        product : product
     })
+    
+
+
 }
 
 
@@ -337,7 +340,6 @@ module.exports.deleteProductCategory = async (req, res) =>
 module.exports.updateProductCategory = async (req, res) =>{
     var Category = await ProductCategory.findById(req.params.id).exec()
     var errors = []
-    // res.send(Category)
     res.render('admin/updateProductCategory',{
         category : Category,
         errors : errors
@@ -346,7 +348,6 @@ module.exports.updateProductCategory = async (req, res) =>{
 module.exports.postUpdateProductCategory = async (req, res)=> {
     var category = await ProductCategory.findOne({ _id : req.params.id }).exec()
     var path = category.image
-    console.log(req.body.image)
     if(req.body.image != undefined)
     {
         console.log('inside')
@@ -373,7 +374,6 @@ module.exports.postUpdateProductCategory = async (req, res)=> {
 // BRAND MANAGER    
 module.exports.brandManager = async (req, res) => {
     var brand = await  Brand.find().exec()
-
     res.render('admin/brandManager',
     {
         brands : brand
@@ -399,7 +399,6 @@ module.exports.deleteBrand = (req, res) =>
     })
 }
 module.exports.updateBrand = async (req, res)=> {
-    var category = await ProductCategory.findOne({ _id : req.params.id }).exec()
     var brand = await  Brand.findOne({_id :req.params.id}).exec()
     console.log('brand', brand)
     var error = []
@@ -412,7 +411,6 @@ module.exports.updateBrand = async (req, res)=> {
 }
 
 module.exports.postUpdateBrand = async (req , res)=>{
-
     var brand = await Brand.findOne({ _id : req.params.id }).exec()
     var path = brand.image
     console.log(req.body.image)
@@ -492,7 +490,7 @@ module.exports.orderManager = async (req, res) => {
     if (page < 1 ) page = 1
     var perPage = 20
     var start = (page -1 ) * perPage
-    
+
     var arr = []
     var pageX = page
     for ( var i = pageX -2 ; i <= parseInt(page) + 2 ; i++ )
@@ -512,7 +510,6 @@ module.exports.orderManager = async (req, res) => {
         req.url = req.url + '&page='
     }else req.url = req.url 
     if (Object.entries(req.query).length === 0){
-        console.log('nothing in here')
         var currentURL = '/admin' + req.url + '/?page='
     }
     else
@@ -533,13 +530,40 @@ module.exports.orderDetail = async (req, res) => {
 }
 module.exports.postUpdateOrderDetail = async (req, res)=>{
     var id = req.params.id
-    console.log(id , req.body)
-    Bill.findByIdAndUpdate({_id: id}, req.body, (err, doc)=> {
+    var bill = await Bill.findOne({_id : id})
+    if (bill.state >= 0){
+        if(req.body.state < 0)
+        {
+            var items = bill.items[0]
+
+            console.log('items', items, typeof(items) )
+            for( item in items)
+            {
+                console.log(items[item].item._id)
+                var proId =items[item].item._id
+                console.log(typeof(item))
+                var itemQuantity = items[item].quantity
+                var product = await Product.findOne({_id : proId})
+                console.log(product)
+                console.log('ccccc', itemQuantity)
+                var amount = product.amount + itemQuantity
+                await Product.findOneAndUpdate({_id : proId },{ amount : amount})
+            }
+
+        }
+
+        var billNote = bill.note.toObject()
+        billNote.push(req.body.noteNext)
+        req.body.note = billNote
+        Bill.findByIdAndUpdate({_id: id}, req.body, (err, doc)=> {
             if (err) {
                 console.log("Something wrong when updating data!");
             }
-            console.log(doc);})
-    res.redirect('/admin/order/'+ id) 
+            })
+        
+    }
+    res.redirect('/admin/order/'+ id)
+        
 }
  
 module.exports.mailSend = (req, res) =>{
