@@ -1,7 +1,7 @@
 extends ../layouts/common
 
 block content
-    .home(style='background-image : url('+backgroundImage+')')
+    .home(style='background-image : url('+backgroundImage+'); padding-bottom : 20px')
         .container.carouselNfriend
             .row
                 .col-md-8
@@ -88,7 +88,7 @@ block content
                 .mt-5.priceRange.cardCategory
                     h2.cardCategoryHead
                         span Đang giảm giá
-                    .mt-3.row(style='margin-top: 10px;')
+                    .mt-3.container.row(style='margin-top: 10px;')
                         each product in productsSale
                             .col-md-2
                                 a.card_link(href= '/product/' + product.id)
@@ -116,39 +116,39 @@ block content
                                             .add2cart.d-flex.justify-content-center
                                                 a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
                     .row
-                        a(href="#", style='display:block; width : 200px').btn.btn-light.btn-lg.mx-auto Xem tất cả            
-            .mt-5.priceRange.cardCategory
-                h2.cardCategoryHead
-                    span Order / Hàng đang về
-                .mt-3.row(style='margin-top: 10px;')
-                    if ProductPreOrder
-                        each product in ProductPreOrder
-                            .col-md-2
-                                a.card_link(href= '/product/' + product.id)
-                                    .pro_card
-                                        .card_image
-                                            img(src= product.image alt='')
-                                            .special
-                                                p(style="visibility:hidden") Mới về
-                                                if product.discountedPrice
-                                                    p SALE
-                                        .card_content
-                                            p.card_name= product.name
-                                            a.brand(href='')= product.brand
-                                            .price
-                                                if !product.discountedPrice
-                                                    p.final= product.price 
-                                                        | &#x20AB;
-                                                    p(style="visibility:hidden").mb-2.before= product.discountedPrice
-                                                        | &#x20AB;
-                                                else 
-                                                    p.final=product.discountedPrice 
-                                                        | &#x20AB;
-                                                    p.mb-2.before=product.price 
-                                                        | &#x20AB;
-                                            .add2cart.d-flex.justify-content-center
-                                                a(href="tel:+84335670934").btn.btn-success.btn-sm Gọi để đặt hàng 
-//- nav(aria-label='Page navigation example')
+                        a(href="/product/category/?name=discounted", style='display:block; width : 200px').btn.btn-outline-danger.btn-lg.mx-auto Xem tất cả            
+            if (ProductPreOrder.length > 0)
+                .mt-5.priceRange.cardCategory
+                    h2.cardCategoryHead
+                        span Order / Hàng đang về
+                    .mt-3.row(style='margin-top: 10px;')
+                            each product in ProductPreOrder
+                                .col-md-2
+                                    a.card_link(href= '/product/' + product.id)
+                                        .pro_card
+                                            .card_image
+                                                img(src= product.image alt='')
+                                                .special
+                                                    p(style="visibility:hidden") Mới về
+                                                    if product.discountedPrice
+                                                        p SALE
+                                            .card_content
+                                                p.card_name= product.name
+                                                a.brand(href='')= product.brand
+                                                .price
+                                                    if !product.discountedPrice
+                                                        p.final= product.price 
+                                                            | &#x20AB;
+                                                        p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                                            | &#x20AB;
+                                                    else 
+                                                        p.final=product.discountedPrice 
+                                                            | &#x20AB;
+                                                        p.mb-2.before=product.price 
+                                                            | &#x20AB;
+                                                .add2cart.d-flex.justify-content-center
+                                                    a(href="tel:+84335670934").btn.btn-success.btn-sm Gọi để đặt hàng 
+    //- nav(aria-label='Page navigation example')
             //-     ul.pagination
             //-         li.page-item
             //-         a.page-link(href='?page=1') 1

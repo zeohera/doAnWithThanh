@@ -42,8 +42,13 @@ module.exports.generateReport = async (req, res) => {
     var path = 'public/report/'
     console.log(name, typeof(name))
     doc.save(path + name)
-    res.download(path + name)
+    // res.download(path + name)
     // res.redirect('/admin')
+}
+
+module.exports.downloadreport = async (req, res)=> {
+    var path = 'public/report/'
+    
 }
 
 module.exports.index = async (req, res) =>{
@@ -57,17 +62,24 @@ module.exports.index = async (req, res) =>{
     })
 
     var Bill2 = await Bill.find({state : 0}).count()
-
+    var Bill3 = await Bill.find({state : 2}).count()
     var product = await Product.find({}).count()
 
+    const testFolder = './public/report';
+    var files = []
+    fs.readdirSync(testFolder).forEach(file => {
+        files.push(file)
+    });
+    
     res.render('admin/dashboard', {
         earning : earning ,
         notConfirm : Bill2,
-        product : product
+        successBill : Bill3,
+        product : product,
+        files : files
     })
+
     
-
-
 }
 
 

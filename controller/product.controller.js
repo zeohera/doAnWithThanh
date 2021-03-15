@@ -52,7 +52,8 @@ module.exports.index = async (req, res) => {
     var brand = await Brand.find().exec()
     var products = await  Product.find().skip(start).limit(perPage).exec()
     var banner = await Banner.find({}).exec()
-    console.log(banner)
+    console.log(ProductPreOrder)
+    // console.log(banner)
     res.render('product/index', {
         products : products,
         brands : brand,
@@ -67,6 +68,23 @@ module.exports.index = async (req, res) => {
 
 module.exports.category = async (req, res) =>{
     var name = req.query.name 
+    if( req.query.name == 'discounted')
+    {
+        // res.send('oke')
+        var productsSale = await Product.find({public : true,}).where('discountedPrice').ne(0).ne(null)
+        var backgroundImage = 'images/wall.jpg'
+        res.render('product/category',{
+            products: productsSale,
+            category : name,
+            subCategories : subCategories,
+            activeSubCategory : activeSubCategory,
+            sort : req.query.sort,
+            recentPage : page,
+            currentURL : req.url,
+            pageArray : arr, 
+            backgroundImage : backgroundImage
+        })
+    }
     var subCategories = await SubProductCategory.find({mother : name}).exec()
     var products
     var page = req.query.page || 1
@@ -175,6 +193,7 @@ module.exports.checkOut = async (req, res) => {
     })
 }
 
+
 module.exports.postCheckOut = async (req, res) =>
 {
     cart = new Cart(req.session.cart)
@@ -221,7 +240,7 @@ module.exports.detail = async (req,res)=>{
     var brand = await Brand.findOne({name : product.brand})
     var brandLogo = brand.logo
     res.render('product/view', {
-        product : product,
+        productDetail : product,
         brandLogo : brandLogo,
         backgroundImage : backgroundImage
     })

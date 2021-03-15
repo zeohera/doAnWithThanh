@@ -60,15 +60,16 @@ block content
                                     i.gg-arrow-down.text-info
                 .right
                     ul.pagination
-                        li.page-item
-                            a.page-link(href=currentURL + '&page=1') &laquo;
-                        each page in pageArray
-                            if parseInt(page) == parseInt(recentPage)
-                                li.page-item.active
-                                    a.page-link(href=currentURL + '&page='+ page)= page
-                            else
-                                li.page-item
-                                    a.page-link(href=currentURL + '&page='+ page)= page
+                        if pageArray
+                            li.page-item
+                                a.page-link(href=currentURL + '&page=1') &laquo;
+                            each page in pageArray
+                                if parseInt(page) == parseInt(recentPage)
+                                    li.page-item.active
+                                        a.page-link(href=currentURL + '&page='+ page)= page
+                                else
+                                    li.page-item
+                                        a.page-link(href=currentURL + '&page='+ page)= page
             .row(style='margin-top: 10px;')
                 each product in products
                     .col-md-2

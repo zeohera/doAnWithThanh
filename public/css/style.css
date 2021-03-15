@@ -332,8 +332,8 @@ footer {
   background-color: #F4F2F1;
   color: #0D0D0D; }
   footer .row {
-    margin-top: 10px;
-    margin-bottom: 20px; }
+    padding-top: 10px;
+    padding-bottom: 20px; }
     footer .row .col-md-3 {
       display: block; }
       footer .row .col-md-3 span {
