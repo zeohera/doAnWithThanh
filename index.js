@@ -19,6 +19,7 @@ var productRoute = require('./routes/product.route')
 var adminRoute = require('./routes/admin.route')
 var authRoute = require('./routes/auth.route')
 var authMiddleware = require('./middlewares/auth.middleware')
+var apiProductRoute = require('./API/routes/product.route')
 app.use(express.static('public'))
 
 app.use('*/css',express.static('public/css'));
@@ -48,7 +49,7 @@ app.use(unpollute);
 app.use('/Auth',authRoute)
 app.use('/product', productRoute)
 app.use('/admin', authMiddleware.requireAuth, adminRoute )
-
+app.use('/api/product', apiProductRoute)
 app.get('/', (req, res) => {
     res.redirect('/product')
 })
