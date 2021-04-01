@@ -35,6 +35,17 @@ block content
                         |
                         = productDetail.amount
                     p= productDetail.introText
+                    if productDetail.gift 
+                        .giftProductList
+                            h5 Quà tặng kèm
+                            each gift in giftList
+                                a.row(href="/product/" + gift.giftID) 
+                                    .col-md-2
+                                        p= gift.giftName
+                                    .col-md-10
+                                        img(src=gift.giftImage, alt="" , style='height : 50px')
+
+
                     if productDetail.sound
                         iframe( style='width : 100%; height : 420px' src=productDetail.sound)
 

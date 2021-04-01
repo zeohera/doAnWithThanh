@@ -54,7 +54,7 @@ block content
                         input(name = "image", type="file",  )
 
                     .md-6 
-                        img(src= info.image, alt="", style='max-heoght : 200px')
+                        img(src= info.image, alt="", style='max-height : 200px')
                         p= info.image
 
             .mb-3 
@@ -94,6 +94,12 @@ block content
             .mb-3
                 label.form-label(for='sound') Sản phẩm này Phát ra âm thanh như nào ? (extended Link)
                 input#name.form-control(name = 'sound', value=info.sound)
+            .mb-3 
+                label.form-label(for='refProduct') Những sản phẩm có liên quan (productID), nhiều sản phẩm cách nhau bởi dấu ','
+                input#name.form-control(name = 'refProduct')
+            .mb-3 
+                label.form-label(for='gift') Quà tặng kèm (ProductID)
+                input#name.form-control(name = 'gift')
             button.btn.btn-primary.btn-sm(type ="submit") Lưu  
                 
 

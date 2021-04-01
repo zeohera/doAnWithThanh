@@ -8,7 +8,8 @@ const Brand = require('../models/brand.model')
 const Banner = require('../models/banner.model')
 const ProductCategory = require('../models/productCategory.model')
 const SubProductCategory = require('../models/SubProductCategory.model')
-const { response } = require('express')
+const { response } = require('express');
+const { NULL } = require('node-sass');
 
 module.exports.index = async (req, res) => {
     var range = req.query.range || 2
@@ -237,12 +238,26 @@ module.exports.detail = async (req,res)=>{
     var id = req.params.id
     var backgroundImage = 'images/wall.jpg'
     var product = await Product.findOne({_id : id}).exec()
-    var brand = await Brand.findOne({name : product.brand})
+    console.log(product.brand)
+    var brand = await Brand.findOne({name : product.brand}).exec()
+    console.log(brand)
     var brandLogo = brand.logo
+    var giftListID = product.gift
+    var giftList = []
+    if (giftListID != "")
+        for ( var giftID of giftListID){
+            var giftProduct = await Product.findOne({'_id' : giftID}).exec()
+            console.log(giftProduct)
+            var giftName = giftProduct.name
+            var giftImage = giftProduct.image
+            giftList.push({giftName : giftName, giftID : giftID, giftImage : giftImage})
+        }
+    console.log(giftList[0])
     res.render('product/view', {
         productDetail : product,
         brandLogo : brandLogo,
-        backgroundImage : backgroundImage
+        backgroundImage : backgroundImage,
+        giftList : giftList
     })
 }
 
@@ -250,7 +265,8 @@ module.exports.brandInfo = async (req, res) =>{
     var name = req.params.brand
     console.log(name) 
     var brand = await Brand.findOne({'name' : name}).exec()
-    var backgroundImage = brand.image
+    console.log(brand)
+    var backgroundImage = brand.image || '1'
     var product = await Product.find({public : true,'brand' : name}).exec()
     res.render('product/brand',{
         products : product,

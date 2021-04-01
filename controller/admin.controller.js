@@ -575,7 +575,6 @@ module.exports.postUpdateOrderDetail = async (req, res)=>{
         
     }
     res.redirect('/admin/order/'+ id)
-        
 }
  
 module.exports.mailSend = (req, res) =>{
