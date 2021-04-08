@@ -3,7 +3,6 @@
                 margin-left: 20px;
             }
 .home{
-    
     background-size: auto;
     min-height: 100vh;
     background-repeat: no-repeat;
@@ -233,6 +232,7 @@
     }
 }
 .product-detail{
+    padding-bottom: 20px;
     padding-top: 20px;
     min-height: 120vh;
     background-size: auto;
@@ -252,6 +252,28 @@
                     max-width: 450px;
                 }
             }
+        }
+        .giftProductList{
+            padding-left: 22px;
+            margin-bottom: 10px;
+            .giftProduct{
+                text-decoration: none;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgb(233, 233, 255);
+                padding: 3px;
+                p{
+                    margin: 0;
+                }
+                img{
+                    padding-left: auto;
+                    border-radius: 3px;
+
+                }
+            }
+
         }
     }
     .fixed-bottom {

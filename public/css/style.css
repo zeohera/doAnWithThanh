@@ -181,6 +181,7 @@
     border-radius: 10px; }
 
 .product-detail {
+  padding-bottom: 20px;
   padding-top: 20px;
   min-height: 120vh;
   background-size: auto;
@@ -196,6 +197,22 @@
     border: 1px solid white; }
     .product-detail .container .product-info .col-md-5 img {
       max-width: 450px; }
+    .product-detail .container .giftProductList {
+      padding-left: 22px;
+      margin-bottom: 10px; }
+      .product-detail .container .giftProductList .giftProduct {
+        text-decoration: none;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e9e9ff;
+        padding: 3px; }
+        .product-detail .container .giftProductList .giftProduct p {
+          margin: 0; }
+        .product-detail .container .giftProductList .giftProduct img {
+          padding-left: auto;
+          border-radius: 3px; }
   .product-detail .fixed-bottom {
     padding-top: 5px;
     min-height: 100px;

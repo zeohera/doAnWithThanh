@@ -278,10 +278,12 @@ module.exports.brandInfo = async (req, res) =>{
 module.exports.postCreate = (req,res)=>{
     req.body.id = shortid.generate()
     var errors = []
-    if(!req.body.name) {
+    if(!req.body.name) 
+    {
         errors.push('cần nhập tên sản phẩm')
     }
-    if (errors.length){
+    if (errors.length)
+    {
         res.render('product/create',{
             errors : errors,
             values : req.body

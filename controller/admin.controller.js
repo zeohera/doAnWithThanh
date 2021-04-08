@@ -238,6 +238,7 @@ module.exports.productCreate = async (req,res) => {
 
 module.exports.postProductCreate = (req, res) => {
     req.body.image = req.file.path.split('\\').slice(1).join('/')
+    req.body.gift = req.body.gift.split(",")
     console.log(req.body)
     Product.create(req.body)
     res.redirect('productManager')
@@ -256,7 +257,7 @@ module.exports.deleteProduct = async (req, res) => {
         })
       } catch(err) {
         throw err
-      }
+    }
     
 }
 
@@ -288,6 +289,7 @@ module.exports.productUpdate = async (req, res ) => {
 
 module.exports.postProductUpdate = async (req, res) => {
     var prodDel = await Product.findOne({ _id : req.params.id }).exec()
+    req.body.gift = req.body.gift.split(",")
     var path = prodDel.image
     console.log(req.body.image)
     if(req.body.image != undefined)
@@ -390,7 +392,6 @@ module.exports.brandManager = async (req, res) => {
     {
         brands : brand
     })
-
 }
 
 module.exports.addBrand =  (req, res) => {
@@ -414,7 +415,6 @@ module.exports.updateBrand = async (req, res)=> {
     var brand = await  Brand.findOne({_id :req.params.id}).exec()
     console.log('brand', brand)
     var error = []
-    // res.send
     res.render('admin/updateBrand',
     {
         brand : brand,

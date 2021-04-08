@@ -35,15 +35,15 @@ block content
                         |
                         = productDetail.amount
                     p= productDetail.introText
-                    if productDetail.gift 
-                        .giftProductList
+                    if (giftList.length > 0)
+                        .giftProductList.row
                             h5 Quà tặng kèm
                             each gift in giftList
-                                a.row(href="/product/" + gift.giftID) 
-                                    .col-md-2
+                                a.col-md-6.row.giftProduct(href="/product/" + gift.giftID) 
+                                    .col-md-8
                                         p= gift.giftName
-                                    .col-md-10
-                                        img(src=gift.giftImage, alt="" , style='height : 50px')
+                                    .col-md-4
+                                        img(src=gift.giftImage, alt="" , style='height : 70px')
 
 
                     if productDetail.sound
@@ -52,8 +52,7 @@ block content
             .row
                 h1 Mô tả chi tiết 
                 p= productDetail.description
-            //- .row 
-            //-     h1 Cùng loại nhạc cụ
+
         .fixed-bottom
             .container
                 .row 

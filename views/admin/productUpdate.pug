@@ -98,8 +98,9 @@ block content
                 label.form-label(for='refProduct') Những sản phẩm có liên quan (productID), nhiều sản phẩm cách nhau bởi dấu ','
                 input#name.form-control(name = 'refProduct')
             .mb-3 
-                label.form-label(for='gift') Quà tặng kèm (ProductID)
-                input#name.form-control(name = 'gift')
+                label.form-label(for='gift') Quà tặng kèm (ProductID)- edit mảng sau theo mã sản phẩm để thêm , sửa hoặc xóa sản phẩm tặng kèm
+                - var giftx = info.gift.join()
+                input#name.form-control(name = 'gift', value= giftx)
             button.btn.btn-primary.btn-sm(type ="submit") Lưu  
                 
 
