@@ -10,7 +10,7 @@ header{
     display: flex;
     height: 62px;
     width: 100%;
-    background-color: $systemGrayDark2;
+    background-color: rgba(28, 48, 48, 0.6);
     .container{
         .row{
             .col-md-5.left{
@@ -23,7 +23,6 @@ header{
                     display: flex;
                     justify-content: space-around;
                     li{
-                        
                         a{
                             line-height: 50px;
                             text-decoration: none;

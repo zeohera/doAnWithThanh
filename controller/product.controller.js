@@ -71,8 +71,17 @@ module.exports.category = async (req, res) =>{
     var name = req.query.name 
     if( req.query.name == 'discounted')
     {
-        // res.send('oke')
-        var productsSale = await Product.find({public : true,}).where('discountedPrice').ne(0).ne(null)
+        var activeSubCategory = req.query.subCategory
+        if (req.query.sort == 1)
+            {
+                var productsSale = await Product.find({public : true,}).where('discountedPrice').ne(0).ne(null).sort({price: 1})
+            }
+        else if (req.query.sort == -1)
+        {
+            var productsSale = await Product.find({public : true,}).where('discountedPrice').ne(0).ne(null).sort({price: -1})
+        } 
+        else var productsSale = await Product.find({public : true,}).where('discountedPrice').ne(0).ne(null)
+        
         var backgroundImage = 'images/wall.jpg'
         res.render('product/category',{
             products: productsSale,
@@ -136,7 +145,7 @@ module.exports.category = async (req, res) =>{
         sort : req.query.sort,
         recentPage : page,
         currentURL : req.url,
-        pageArray : arr, 
+        pageArray : arr,
         backgroundImage : image
     })
 
@@ -215,6 +224,7 @@ module.exports.postCheckOut = async (req, res) =>
         var newAmount =  obj.item['amount'] -  obj.quantity
         console.log(newAmount)
         await Product.findByIdAndUpdate( {_id : obj.item['_id']}, {'amount' : newAmount})
+        
     }
     req.session.destroy()
     res.redirect('/product')

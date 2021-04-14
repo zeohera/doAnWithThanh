@@ -18,6 +18,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "jspdf": "^2.3.0",
+    "jspdf-autotable": "^3.5.14",
     "lowdb": "^1.0.0",
     "md5": "^2.3.0",
     "mongoose": "^5.11.15",

@@ -2,6 +2,8 @@ const bodyParser = require('body-parser')
 const md5 = require('md5')
 const e = require('express')
 const {jsPDF} = require('jspdf')
+const autoTable = require ('jspdf-autotable')
+// import autoTable from 'jspdf-autotable'
 const User = require('../models/user.model')
 const Product = require('../models/product.model')
 const ProductCategory = require('../models/productCategory.model')
@@ -22,16 +24,32 @@ module.exports.generateReport = async (req, res) => {
     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 1)
     var bill = await Bill.find({'date' : { $gte: firstDay}, 'state' : 2}).exec()
+    console.log(typeof(bill))
+    var bills = []
     var earning = 0
-    bill.forEach(element => {
+    bill.forEach( element => {
         earning = earning + element.price
+        var oneBill = []
+        oneBill.push(element._id)
+        oneBill.push(element.price)
+        oneBill.push(element.date.toString().replace('(Giờ Đông Dương)', ''))
+        bills.push(oneBill)
     })
+    
     var doc = new jsPDF()
     doc.setFont('TimeNewRoman');
     doc.text("Báo cáo", 10, 10)
     doc.setFontSize(12);
     doc.text('Tong thu tu dau thang den ngay  '+ date.toString().replace('(Giờ Đông Dương)', '') +' la : ' + earning , 10, 20)
 
+    doc.text("Danh Sach hoa don : ", 10 , 30)
+    doc.autoTable(
+        {
+        head : [['Ma Don Hang', 'gia tri don hang', 'ngay thang hoa don']],
+        body : bills, margin : {top :40},
+    })
+
+    // tenfile
     var todayTime = new Date()
     var month = todayTime.getMonth() + 1
     var day = todayTime.getDate()
@@ -43,12 +61,12 @@ module.exports.generateReport = async (req, res) => {
     console.log(name, typeof(name))
     doc.save(path + name)
     // res.download(path + name)
-    // res.redirect('/admin')
+    res.redirect('/admin')
 }
 
 module.exports.downloadreport = async (req, res)=> {
     var path = 'public/report/'
-    
+    // res.download(path + name)
 }
 
 module.exports.index = async (req, res) =>{

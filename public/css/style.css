@@ -126,12 +126,12 @@
   .category .category-heading {
     background-color: white; }
     .category .category-heading h2 {
-      color: #48484a;
+      color: rgba(72, 72, 74, 0.5);
       margin-bottom: 0; }
   .category .subCategory a {
     display: flex;
     text-decoration: none;
-    color: #48484a;
+    color: rgba(72, 72, 74, 0.5);
     text-align: center;
     width: 100%;
     border: 0 2px 0 0 solid gray;
@@ -239,10 +239,13 @@
       text-align: center; }
 
 .shopping-cart {
+  margin-top: 50px;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   padding-top: 5px;
+  padding-bottom: 20px;
   min-height: 100px;
-  background-color: white;
-  box-shadow: -3px 0 10px darkgray; }
+  background-color: white; }
   .shopping-cart .col-md-4 .price {
     color: #ff3b30;
     font-size: 24px;
@@ -258,7 +261,7 @@ header {
   display: flex;
   height: 62px;
   width: 100%;
-  background-color: #48484a; }
+  background-color: rgba(28, 48, 48, 0.6); }
   header .container .row .col-md-5.left {
     display: flex;
     padding: 0; }
