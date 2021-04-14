@@ -21,12 +21,11 @@ var authRoute = require('./routes/auth.route')
 var authMiddleware = require('./middlewares/auth.middleware')
 var apiProductRoute = require('./API/routes/product.route')
 app.use(express.static('public'))
-
 app.use('*/css',express.static('public/css'));
 app.use('*/js',express.static('public/js'));
 app.use('*/images',express.static('public/images'));
 // app.use('*/images',express.static('public/images/products'));
-
+app.use('*/slide', express.static(path.join(__dirname + 'node_modules/@splidejs/splide/dist')));
 app.use('*/css',express.static('public/sbAdmin2/css'));
 app.use('*/js',express.static('public/sbAdmin2/js'));
 app.use('*/img',express.static('public/sbAdmin2/img'));

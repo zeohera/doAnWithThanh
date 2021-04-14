@@ -1,30 +1,25 @@
 extends ../layouts/common
 
 block content
+    script.
+        window.onload = function() {setTimeout(function(){document.getElementById('body-content').style.filter="blur(0)";},500);};
+    style.
+        #body-content  {filter : blur(5px)}
+
     .home(style='background-image : url('+backgroundImage+'); padding-bottom : 20px')
+        
         .container.carouselNfriend
             .row
                 .col-md-8
-                    .carousel#carouselExampleIndicators.slide(data-bs-ride='carousel')(style='max-height: 350px ; overflow: hidden ')
-                        .carousel-indicators
-                            button.active(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
-                            button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2')
-                            button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3')
-                        .carousel-inner
-                            a.carousel-item.active(href='#')
-                                    img.d-block.w-100(src='https://images.unsplash.com/photo-1534782710882-2f5e2c80c1b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80')
-                            each banner in banners
-                                a.carousel-item(href=banner.link)
-                                    img.d-block.w-100(src=banner.image)
-                        button.carousel-control-prev(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev')
-                            span.carousel-control-prev-icon(aria-hidden='true')
-                            span.visually-hidden Previous
-                        button.carousel-control-next(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='next')
-                            span.carousel-control-next-icon(aria-hidden='true')
-                            span.visually-hidden Next
+                    #image-slider.splide
+                        .splide__track
+                            ul.splide__list
+                                each banner in banners
+                                    a.splide__slide(href=banner.link, style="border-radius : 10px ; border : 1px solid white;")
+                                        img(src=banner.image)
                 .col-md-4
-                    h3 Ghé thăm chúng tôi trên các nền tảng khác
                     .platform
+                        h3 Ghé thăm chúng tôi trên các nền tảng khác
                         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" )
                         .platform-row
                             a.platform-link.y(href='http://youtube.com')
@@ -36,6 +31,13 @@ block content
                                 i.fab.fa-tiktok.fa-3x
                             a.platform-link.i(href='http://instagram.com')
                                 i.fab.fa-instagram.fa-3x
+                    .extendLink
+                        a(href="") 
+                            i.fas.fa-map-marked-alt
+                            | Tìm cửa hàng gần bạn 
+                        a(href="") 
+                            i.fas.fa-truck
+                            |Tra cứu trạng thái đơn hàng của bạn
         .mt-3.container
             .brand.cardCategory
                 h2.cardCategoryHead
@@ -45,7 +47,7 @@ block content
                         a(href="/product/brandInfo/" + brand.name).card
                             img(src= brand.logo, alt="")
                     
-            .mt-5.priceRange.cardCategory
+            .mt-3.priceRange.cardCategory
                 h2.cardCategoryHead
                     span Khoảng giá
                 .cardContainer
@@ -85,7 +87,7 @@ block content
                                                 .add2cart.d-flex.justify-content-center
                                                     a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
             if productsSale        
-                .mt-5.priceRange.cardCategory
+                .mt-3.priceRange.cardCategory
                     h2.cardCategoryHead
                         span Đang giảm giá
                     .mt-3.container.row(style='margin-top: 10px;')
@@ -118,7 +120,7 @@ block content
                     .row
                         a(href="/product/category/?name=discounted", style='display:block; width : 200px').btn.btn-outline-danger.btn-lg.mx-auto Xem tất cả            
             if (ProductPreOrder.length > 0)
-                .mt-5.priceRange.cardCategory
+                .mt-3.priceRange.cardCategory
                     h2.cardCategoryHead
                         span Order / Hàng đang về
                     .mt-3.row(style='margin-top: 10px;')

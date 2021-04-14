@@ -2,6 +2,10 @@
 .cardContainer{
                 margin-left: 20px;
             }
+html {
+    position: relative;
+    min-height: 100%;
+}
 .home{
     background-size: auto;
     min-height: 100vh;
@@ -11,23 +15,24 @@
     .carouselNfriend{
         padding-top: 20px;
         .slide{
+            border : 1px solid white;
             border-radius: 15px;
             overflow: hidden;
+            a{
+                border : 1px solid white;
+            }
         }
         .col-md-4{
-            // margin-left: 6px;
-            // padding: 12px;
-            
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.5);         
-            overflow: hidden;
-            border-radius: 10px;
-            border : 1px solid white;
-            h3{
-                padding: 3px;
-            }
             .platform{
+                background-color: rgba(255, 255, 255, 0.5);         
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+                overflow: hidden;
+                border-radius: 10px;
+                border : 1px solid white;
+                h3{
+                    padding: 3px;
+                }
                 background-color: white;
                 height: 256px;
                 width: 100%;
@@ -50,14 +55,13 @@
                         height: 100%;
                         text-decoration: none;
                         i.fab{
-                            transition: all 0.5s ease-in-out;
+                            transition: all 0.1s ease-in-out;
                             display: flex;
                             margin: auto;
                             color: white;
                         }
                         &:hover i.fab{
-                            transform: scale(1.4,1.4);
-                            
+                            transform: scale(1.2,1.2);
                         }
                     }
                 }
@@ -80,12 +84,31 @@
                     box-shadow: 0px 3px 10px rgba(0,0,0,.25);
                 }
             }
+            .extendLink{
+                background-color: rgba(255, 255, 255, 0.5);         
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+                border-radius: 10px;
+                border : 1px solid white;
+                a{
+                    padding: 10px;
+                    display: block;
+                    text-decoration: none;
+                    color: rgb(41, 41, 66);
+                    line-height: 50px;
+                    i{
+                        margin-right: 20px;
+                        font-size: larger;
+                        
+                    }
+                }
+            }
         }
 
     }
     .cardCategory{
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
         background-color: rgba(255, 255, 255, 0.5);         
         overflow: hidden;
         border-radius: 10px;
@@ -94,7 +117,7 @@
             padding: 4px;
             background: rgb(255,255,255);
             background: linear-gradient(90deg, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 23%, rgba(255,255,255,0) 35%);
-            -webkit-backdrop-filter: blur(10px); /* Safari 9+ */
+            -webkit-backdrop-filter: blur(20px); /* Safari 9+ */
             
         }
         .cardContainer {
@@ -112,6 +135,7 @@
             
             a.card{
                 max-width: 120px;
+                margin-right: 20px;
                 img{
                     height: 75px;
                     object-fit: contain;
@@ -140,8 +164,8 @@
     }
     .container{
         background-color: rgba(255, 255, 255, 0.329);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
         min-height: 100vh;
     }
     .category-heading{
@@ -215,8 +239,8 @@
         }
         .info{
             background-color: rgba(255, 255, 255, 0.8);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             border-radius: 10px;
             border : 1px solid white;
             p{
@@ -225,8 +249,8 @@
         }
         .product{
             background-color: rgba(255, 255, 255, 0.8);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             border-radius: 10px;
         }
     }
@@ -241,15 +265,17 @@
     background-attachment: fixed;
     background-size: cover;
     .container{
+        padding-top: 10px;
         background-color: rgba(255, 255, 255, 0.8);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
         border-radius: 10px;
         border : 1px solid white;
         .product-info{
             .col-md-5{
                 img{
                     max-width: 450px;
+                    border-radius: 10px;
                 }
             }
         }
@@ -277,6 +303,10 @@
         }
     }
     .fixed-bottom {
+        position: fixed; /* Set the navbar to fixed position */
+//   top: 0;
+        // position: absolute;
+        bottom: 0;
         padding-top: 5px;
         min-height: 100px ;
         background-color: white;

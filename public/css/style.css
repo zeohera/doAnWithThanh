@@ -23,6 +23,10 @@
 .cardContainer {
   margin-left: 20px; }
 
+html {
+  position: relative;
+  min-height: 100%; }
+
 .home {
   background-size: auto;
   min-height: 100vh;
@@ -32,61 +36,78 @@
   .home .carouselNfriend {
     padding-top: 20px; }
     .home .carouselNfriend .slide {
+      border: 1px solid white;
       border-radius: 15px;
       overflow: hidden; }
-    .home .carouselNfriend .col-md-4 {
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
+      .home .carouselNfriend .slide a {
+        border: 1px solid white; }
+    .home .carouselNfriend .col-md-4 .platform {
       background-color: rgba(255, 255, 255, 0.5);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
       overflow: hidden;
       border-radius: 10px;
-      border: 1px solid white; }
-      .home .carouselNfriend .col-md-4 h3 {
+      border: 1px solid white;
+      background-color: white;
+      height: 256px;
+      width: 100%;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      border-radius: 5px;
+      overflow: hidden; }
+      .home .carouselNfriend .col-md-4 .platform h3 {
         padding: 3px; }
-      .home .carouselNfriend .col-md-4 .platform {
-        background-color: white;
-        height: 256px;
-        width: 100%;
-        margin-bottom: 12px;
-        border-radius: 10px;
+      .home .carouselNfriend .col-md-4 .platform .platform-row {
         display: flex;
-        flex-direction: column;
-        flex: 1 1 auto;
-        border-radius: 5px;
-        overflow: hidden; }
-        .home .carouselNfriend .col-md-4 .platform .platform-row {
+        flex: 1 1 auto; }
+        .home .carouselNfriend .col-md-4 .platform .platform-row .platform-link {
+          width: 100%;
           display: flex;
-          flex: 1 1 auto; }
-          .home .carouselNfriend .col-md-4 .platform .platform-row .platform-link {
-            width: 100%;
+          flex-direction: column;
+          flex: 1 1 auto;
+          margin: auto;
+          height: 100%;
+          text-decoration: none; }
+          .home .carouselNfriend .col-md-4 .platform .platform-row .platform-link i.fab {
+            transition: all 0.1s ease-in-out;
             display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
             margin: auto;
-            height: 100%;
-            text-decoration: none; }
-            .home .carouselNfriend .col-md-4 .platform .platform-row .platform-link i.fab {
-              transition: all 0.5s ease-in-out;
-              display: flex;
-              margin: auto;
-              color: white; }
-            .home .carouselNfriend .col-md-4 .platform .platform-row .platform-link:hover i.fab {
-              transform: scale(1.4, 1.4); }
-        .home .carouselNfriend .col-md-4 .platform .y {
-          background-color: #ff0000; }
-        .home .carouselNfriend .col-md-4 .platform .f {
-          width: 30px;
-          background-color: #0572e6; }
-        .home .carouselNfriend .col-md-4 .platform .t {
-          background: #00f3eb;
-          background: linear-gradient(152deg, #00f3eb 8%, black 38%, black 50%, black 62%, #f20047 98%); }
-        .home .carouselNfriend .col-md-4 .platform .i {
-          background: #d6249f;
-          background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25); }
+            color: white; }
+          .home .carouselNfriend .col-md-4 .platform .platform-row .platform-link:hover i.fab {
+            transform: scale(1.2, 1.2); }
+      .home .carouselNfriend .col-md-4 .platform .y {
+        background-color: #ff0000; }
+      .home .carouselNfriend .col-md-4 .platform .f {
+        width: 30px;
+        background-color: #0572e6; }
+      .home .carouselNfriend .col-md-4 .platform .t {
+        background: #00f3eb;
+        background: linear-gradient(152deg, #00f3eb 8%, black 38%, black 50%, black 62%, #f20047 98%); }
+      .home .carouselNfriend .col-md-4 .platform .i {
+        background: #d6249f;
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25); }
+    .home .carouselNfriend .col-md-4 .extendLink {
+      background-color: rgba(255, 255, 255, 0.5);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-radius: 10px;
+      border: 1px solid white; }
+      .home .carouselNfriend .col-md-4 .extendLink a {
+        padding: 10px;
+        display: block;
+        text-decoration: none;
+        color: #292942;
+        line-height: 50px; }
+        .home .carouselNfriend .col-md-4 .extendLink a i {
+          margin-right: 20px;
+          font-size: larger; }
   .home .cardCategory {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     background-color: rgba(255, 255, 255, 0.5);
     overflow: hidden;
     border-radius: 10px;
@@ -95,14 +116,15 @@
       padding: 4px;
       background: white;
       background: linear-gradient(90deg, white 4%, white 23%, rgba(255, 255, 255, 0) 35%);
-      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(20px);
       /* Safari 9+ */ }
     .home .cardCategory .cardContainer {
       margin-bottom: 5px; }
     .home .cardCategory .row a {
       margin-bottom: 4px; }
   .home .mt-3.container .brand a.card {
-    max-width: 120px; }
+    max-width: 120px;
+    margin-right: 20px; }
     .home .mt-3.container .brand a.card img {
       height: 75px;
       object-fit: contain; }
@@ -120,8 +142,8 @@
   background-size: cover; }
   .category .container {
     background-color: rgba(255, 255, 255, 0.329);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     min-height: 100vh; }
   .category .category-heading {
     background-color: white; }
@@ -168,16 +190,16 @@
   background-attachment: fixed; }
   .brandContainer .container .info {
     background-color: rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border-radius: 10px;
     border: 1px solid white; }
     .brandContainer .container .info p {
       padding: 20px; }
   .brandContainer .container .product {
     background-color: rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border-radius: 10px; }
 
 .product-detail {
@@ -190,13 +212,15 @@
   background-attachment: fixed;
   background-size: cover; }
   .product-detail .container {
+    padding-top: 10px;
     background-color: rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border-radius: 10px;
     border: 1px solid white; }
     .product-detail .container .product-info .col-md-5 img {
-      max-width: 450px; }
+      max-width: 450px;
+      border-radius: 10px; }
     .product-detail .container .giftProductList {
       padding-left: 22px;
       margin-bottom: 10px; }
@@ -214,6 +238,9 @@
           padding-left: auto;
           border-radius: 3px; }
   .product-detail .fixed-bottom {
+    position: fixed;
+    /* Set the navbar to fixed position */
+    bottom: 0;
     padding-top: 5px;
     min-height: 100px;
     background-color: white;
@@ -261,7 +288,8 @@ header {
   display: flex;
   height: 62px;
   width: 100%;
-  background-color: rgba(28, 48, 48, 0.6); }
+  background-color: rgba(21, 43, 43, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; }
   header .container .row .col-md-5.left {
     display: flex;
     padding: 0; }
@@ -377,6 +405,10 @@ footer {
           position: relative;
           color: #1877f2;
           margin: auto; }
+
+body .splide__slide img {
+  width: 100%;
+  height: 300px; }
 
 button.prm_btn {
   border: none;
