@@ -3,7 +3,6 @@ const md5 = require('md5')
 const e = require('express')
 const {jsPDF} = require('jspdf')
 const autoTable = require ('jspdf-autotable')
-// import autoTable from 'jspdf-autotable'
 const User = require('../models/user.model')
 const Product = require('../models/product.model')
 const ProductCategory = require('../models/productCategory.model')
@@ -11,12 +10,13 @@ const SubProductCategory = require('../models/SubProductCategory.model')
 const Brand = require('../models/brand.model')
 const Bill = require('../models/bill.model')
 const Banner = require('../models/banner.model')
+const City = require('../models/city.model')
+const Store = require('../models/store.model')
+const District = require('../models/district.model')
 var nodemailer = require('nodemailer')
 const fs = require("fs")
 var path = require('path')
 const { runInNewContext } = require('vm')
-
-
 
 module.exports.generateReport = async (req, res) => {
 
@@ -60,13 +60,14 @@ module.exports.generateReport = async (req, res) => {
     var path = 'public/report/'
     console.log(name, typeof(name))
     doc.save(path + name)
-    // res.download(path + name)
     res.redirect('/admin')
 }
 
-module.exports.downloadreport = async (req, res)=> {
+module.exports.deleteReport = async (req, res)=> {
     var path = 'public/report/'
-    // res.download(path + name)
+    path = path + req.params.name
+    fs.unlinkSync(path)
+    res.redirect('/admin')
 }
 
 module.exports.index = async (req, res) =>{
@@ -565,7 +566,6 @@ module.exports.postUpdateOrderDetail = async (req, res)=>{
         if(req.body.state < 0)
         {
             var items = bill.items[0]
-
             console.log('items', items, typeof(items) )
             for( item in items)
             {
@@ -649,4 +649,67 @@ module.exports.deleteBanner = async (req, res) => {
       } catch(err) {
         throw err
       }
+}
+
+module.exports.store = async (req, res)=>{
+    var city = await City.find().exec()
+    var district = await District.find().exec()
+    var store = await Store.find().exec()
+    console.log(city)
+    res.render('admin/storeManager',{
+        cities : city,
+        districts : district,
+        stores : store
+    })
+}
+module.exports.addCity = async (req, res) => {
+    console.log(req.body)
+    City.create(req.body)
+    res.redirect('/admin/store')
+}
+
+module.exports.removeCity = async (req, res) => {
+    console.log(req.body.id)
+    try {
+        City.deleteOne({ _id: req.body.id }).then(function(){
+            res.redirect('/admin/store')
+            console.log('xóa thành phố thành công')
+
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+module.exports.addDistrict = async (req, res ) => {
+    console.log(req.body)
+    await District.create(req.body)
+    res.redirect('/admin/store')
+
+}
+
+module.exports.removeDistrict = async (req, res) => {
+    console.log(req.body.id)
+    try {
+        District.deleteOne({ _id: req.body.id }).then(function(){
+            res.redirect('/admin/store')
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+module.exports.addStore = async (req, res)=> {
+    await Store.create(req.body)
+    res.redirect('/admin/store')
+}
+
+module.exports.removeStore = async (req, res) => {
+    try {
+        District.deleteOne({ _id: req.body.id }).then(function(){
+            res.redirect('/admin/store')
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }

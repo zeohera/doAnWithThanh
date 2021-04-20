@@ -1,6 +1,10 @@
 extends ../layouts/common
 
 block content
+    script.
+        window.onload = function() {setTimeout(function(){document.getElementById('body-content').style.filter="blur(0)";},500);};
+    style.
+        #body-content  {filter : blur(5px)}
 
     //- .category()
     .category(style='background-image : url('+backgroundImage+')')

@@ -1,0 +1,101 @@
+extends ../layouts/adminLayout
+
+block content
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js") 
+    
+    .container-fluid
+        .row
+            .col-md-6
+                .card.p-3.mb-3
+                    h5 Thêm cửa hàng
+                    form(action="/admin/addStore" method="POST" id="addStore") 
+                        label.mt-3 Chọn thành phố 
+                        select#city(name="city", onchange='citySelect()').form-control
+                                each city in cities 
+                                    option(value=city.name)= city.name
+                        label.mt-3 Chọn quận huyện
+                        select#district(name="district", onchange='').form-control
+                            each district in districts 
+                                option(value=district.name)= district.city
+                                    |- 
+                                    = district.name
+                        label.mt-3(for="address") Địa chỉ : 
+                        input#address(type="text", name="address").form-control
+                        label.mt-3(for="embeddedLink") Link Google Map : 
+                        input#embeddedLink(type="text", name="embeddedLink").form-control
+                        button(type="submit").btn.btn-success.mt-3 Lưu
+                    hr
+                    button.btn.btn-outline-info.mt-3(data-toggle="collapse" data-target="#listStore" aria-expanded="false" aria-controls="listStore") Xem tất cả các store
+                    ul.list-group.mt-3.collapse#listStore
+                        each store in stores
+                            li.list-group-item.d-flex.justify-content-between
+                                .div.info
+                                    p.id-store.d-none= store.id
+                                    p.storeBigAddress= store.city 
+                                        |-
+                                        = store.district
+                                    p.storeSmallAddress= store.address
+                                    a(href=store.embeddedLink, target='_blank') link : 
+                                        = store.embeddedLink
+                                    br
+                                    button.btn.btn-warning.btn-sm.btn_editStore(data-id=store._id, data-toggle='modal', data-target="#exampleModalCenter") Sửa
+                                form(action="/admin/removeStore/" method='post')
+                                    input(type="text" value=store.id name='id').d-none
+                                    button.btn.btn-outline-danger.btn-sm Xóa
+
+            .col-md-6 
+                .card.p-3.mb-3
+                    h5 Thêm thành phố
+                    form(action="/admin/addCity" method="post" id="postCity").form-inline
+                        label(for="city").mr-3 Tên thành phố
+                        input(type="text" , id="cityName", name="name").form-control.mr-3
+                        button(type="submit").btn.btn-success Thêm
+                    button.btn.btn-outline-info.btn-sm.mt-3(onclick='viewAllCity()') Xem tất cả thành phố
+                    ul.list-group.mt-3#listCity(style='display:none')
+                        each city in cities
+                            li.list-group-item.d-flex.justify-content-between
+                                p= city.name
+                                form(action="/admin/removeCity/" method='post') 
+                                    input(type="text" value=city.id name='id').d-none
+                                    button.btn.btn-outline-danger.btn-sm Xóa    
+                .card.p-3.mb-3
+                    h5 Thêm quận huyện 
+                    form(action="/admin/addDistrict" method='post' id='districtForm')
+                        select#city(name="city", onchange='cityOnChange()').form-control
+                            option(value='') Chọn thành phố 
+                            each city in cities 
+                                option(value=city.name)= city.name
+                        .form-inline.mt-3
+                            label(for="district").mr-3 Tên quận huyện
+                            input(type="text" , id="district", name="name").form-control.mr-3
+                            button(type="submit").btn.btn-success Thêm
+                    button.btn.btn-outline-info.btn-sm.mt-3(onclick='viewAllDistrict()') Xem tất cả
+                    ul.list-group.mt-3#listDistrict(style='display:none')
+                        each district in districts
+                            li.list-group-item.d-flex.justify-content-between
+                                p#cityName= district.city
+                                span - 
+                                    =district.name
+                                form(action="/admin/removeDistrict/" method='post') 
+                                    input(type="text" value=district.id name='id').d-none
+                                    button.btn.btn-outline-danger.btn-sm Xóa      
+    #exampleModalCenter.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true')
+        .modal-dialog.modal-dialog-centered(role='document')
+            .modal-content
+                .modal-header
+                    h5#exampleModalLongTitle.modal-title Sửa 
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') ×
+                .modal-body
+                form(id='storeEditInfo').m-3
+                    p#editID
+                    p Vị trí : 
+                        span#editViewAddress
+                    label(for="editAddress") Địa chỉ :
+                    input(type="text" name="address")#editAddress.form-control
+                    label(for="editLink") Link :
+                    input(type="text" name="embeddedLink" id="editLink").form-control
+                    .modal-footer
+                        button.btn.btn-secondary( data-dismiss='modal') Close
+                        button.btn.btn-primary(type='submit') Gửi
+                           

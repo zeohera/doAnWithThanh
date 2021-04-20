@@ -10,6 +10,9 @@ const { route } = require('./auth.route');
 
 router.get('/generateReport', controller.generateReport)
 
+router.get('/deleteReport/:name', controller.deleteReport)
+
+
 router.get('', controller.index)
 // admin manager
 
@@ -159,5 +162,19 @@ var uploadBanner = multer({ storage: storageBanner });
 router.post('/uploadBanner', uploadBanner.single('image'), controller.postBannerUploader)
 
 router.post('/:id/deleteBanner', controller.deleteBanner)
+
+router.get('/store', controller.store)
+
+router.post('/addCity', controller.addCity)
+
+router.post('/removeCity', controller.removeCity)
+
+router.post('/addDistrict', controller.addDistrict)
+
+router.post('/removeDistrict', controller.removeDistrict)
+
+router.post('/addStore', controller.addStore)
+
+router.post('/removeStore', controller.removeStore)
 
 module.exports = router

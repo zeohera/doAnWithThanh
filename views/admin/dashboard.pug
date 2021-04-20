@@ -56,8 +56,9 @@ block content
         if files
             ul.list-group
                 each file in files
-                    li.list-group-item
+                    li.list-group-item.pdf_colection
                         a(href='/report/'+ file)= file
+                        a(href="admin/deleteReport/" + file  ).btn.btn-outline-danger.btn-sm Xóa
                         
 
         

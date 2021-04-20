@@ -9,6 +9,7 @@ $(".gg-search").click(function (e) {
     $(".search_form").css("display","flex");
     $(".search_input").focus();
 });
+
 $(".gg-close-o").click(function (e) { 
     e.preventDefault();
     $(".gg-search").animate({

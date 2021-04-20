@@ -132,13 +132,17 @@ html {
     
     .mt-3.container{
         .brand{
-            
-            a.card{
-                max-width: 120px;
-                margin-right: 20px;
-                img{
-                    height: 75px;
-                    object-fit: contain;
+            .row{
+                display: flex;
+                padding: 0 20px;
+                // justify-content: center;
+                a.card{
+                    max-width: 120px;
+                    margin: 20px;
+                    img{
+                        height: 75px;
+                        object-fit: contain;
+                    }
                 }
             }
             
@@ -273,6 +277,9 @@ html {
         border : 1px solid white;
         .product-info{
             .col-md-5{
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 img{
                     max-width: 450px;
                     border-radius: 10px;
@@ -303,39 +310,42 @@ html {
         }
     }
     .fixed-bottom {
-        position: fixed; /* Set the navbar to fixed position */
-//   top: 0;
-        // position: absolute;
         bottom: 0;
         padding-top: 5px;
         min-height: 100px ;
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
         box-shadow: -3px 0 10px darkgray;
-        .hotline{
-            h5{
-                color: darkgray;
-                text-decoration: none;
+        .container{
+            background-color: none;
+            border: none;
+            .hotline{
+                h5{
+                    color: darkgray;
+                    text-decoration: none;
+                }
+                a{
+                    font-size:24px ;
+                    font-weight: 400;
+                    color: $wooden-black;
+                    text-decoration: none;
+                }
             }
-            a{
-                font-size:24px ;
-                font-weight: 400;
-                color: $wooden-black;
-                text-decoration: none;
+            .final-price{
+                color: $systemRed;
+                font-size: 24px;
+                letter-spacing: 1px;
             }
-        }
-        .final-price{
-            color: $systemRed;
-            font-size: 24px;
-            letter-spacing: 1px;
-        }
-        .before-price{
-            font-size: 18px;
-            color: $systemGrayLight1;
-            text-decoration:line-through;
-        }
-        .add2Cart{
-            margin: auto;
-            text-align: center;
+            .before-price{
+                font-size: 18px;
+                color: $systemGrayLight1;
+                text-decoration:line-through;
+            }
+            .add2Cart{
+                margin: auto;
+                text-align: center;
+            }
+
         }
     }
 }
@@ -360,3 +370,4 @@ html {
     }
 }
 
+@import 'map'

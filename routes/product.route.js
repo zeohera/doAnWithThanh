@@ -20,6 +20,8 @@ router.get('', controller.index)
 
 router.get('/index', controller.index)
 
+router.get('/storeOnMap', controller.storeOnMap)
+
 router.get('/category', controller.category)
 
 router.get('/shoppingCart', controller.shoppingCart)
@@ -39,6 +41,8 @@ router.get('/search', controller.search)
 router.get('/:id', controller.detail)
 
 router.post('/create', upload.single('avatar'), validate.postCreate, controller.postCreate)
+
+
 
 module.exports = router
 

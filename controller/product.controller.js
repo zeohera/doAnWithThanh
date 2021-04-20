@@ -231,7 +231,7 @@ module.exports.postCheckOut = async (req, res) =>
 }
 module.exports.search = async (req, res)=>{
     var q = req.query.q
-    productsFounded = await Product.find({public : true,'name':q}).exec()
+    productsFounded = await Product.find({public : true,'name':{'$regex': q}}).exec()
     console.log(productsFounded)
     res.render('product/search',
     {
@@ -306,3 +306,6 @@ module.exports.postCreate = (req,res)=>{
     res.redirect('/product')
 }
 
+module.exports.storeOnMap = (req, res)=>{
+    res.render('product/map')
+}

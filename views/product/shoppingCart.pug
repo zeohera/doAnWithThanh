@@ -5,7 +5,6 @@ block content
         .row
             if products
                 .col-md-8
-                    
                     table.table
                         thead
                             tr
@@ -15,7 +14,6 @@ block content
                                 th.text-center(scope="col") Số lượng
                                 th action
                         tbody
-
                                 each item in products
                                     tr
                                         td= item.item.name

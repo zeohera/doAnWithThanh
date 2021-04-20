@@ -32,7 +32,7 @@ block content
                             a.platform-link.i(href='http://instagram.com')
                                 i.fab.fa-instagram.fa-3x
                     .extendLink
-                        a(href="") 
+                        a(href="/product/storeOnMap") 
                             i.fas.fa-map-marked-alt
                             | Tìm cửa hàng gần bạn 
                         a(href="") 
@@ -46,7 +46,6 @@ block content
                     each brand in brands
                         a(href="/product/brandInfo/" + brand.name).card
                             img(src= brand.logo, alt="")
-                    
             .mt-3.priceRange.cardCategory
                 h2.cardCategoryHead
                     span Khoảng giá

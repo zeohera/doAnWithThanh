@@ -122,12 +122,15 @@ html {
       margin-bottom: 5px; }
     .home .cardCategory .row a {
       margin-bottom: 4px; }
-  .home .mt-3.container .brand a.card {
-    max-width: 120px;
-    margin-right: 20px; }
-    .home .mt-3.container .brand a.card img {
-      height: 75px;
-      object-fit: contain; }
+  .home .mt-3.container .brand .row {
+    display: flex;
+    padding: 0 20px; }
+    .home .mt-3.container .brand .row a.card {
+      max-width: 120px;
+      margin: 20px; }
+      .home .mt-3.container .brand .row a.card img {
+        height: 75px;
+        object-fit: contain; }
   .home .mt-3.container .priceRange a.btn-light {
     margin-right: 20px; }
     .home .mt-3.container .priceRange a.btn-light:hover {
@@ -218,9 +221,13 @@ html {
     backdrop-filter: blur(20px);
     border-radius: 10px;
     border: 1px solid white; }
-    .product-detail .container .product-info .col-md-5 img {
-      max-width: 450px;
-      border-radius: 10px; }
+    .product-detail .container .product-info .col-md-5 {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .product-detail .container .product-info .col-md-5 img {
+        max-width: 450px;
+        border-radius: 10px; }
     .product-detail .container .giftProductList {
       padding-left: 22px;
       margin-bottom: 10px; }
@@ -238,32 +245,34 @@ html {
           padding-left: auto;
           border-radius: 3px; }
   .product-detail .fixed-bottom {
-    position: fixed;
-    /* Set the navbar to fixed position */
     bottom: 0;
     padding-top: 5px;
     min-height: 100px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
     box-shadow: -3px 0 10px darkgray; }
-    .product-detail .fixed-bottom .hotline h5 {
-      color: darkgray;
-      text-decoration: none; }
-    .product-detail .fixed-bottom .hotline a {
-      font-size: 24px;
-      font-weight: 400;
-      color: #0D0D0D;
-      text-decoration: none; }
-    .product-detail .fixed-bottom .final-price {
-      color: #ff3b30;
-      font-size: 24px;
-      letter-spacing: 1px; }
-    .product-detail .fixed-bottom .before-price {
-      font-size: 18px;
-      color: #aeaeb2;
-      text-decoration: line-through; }
-    .product-detail .fixed-bottom .add2Cart {
-      margin: auto;
-      text-align: center; }
+    .product-detail .fixed-bottom .container {
+      background-color: none;
+      border: none; }
+      .product-detail .fixed-bottom .container .hotline h5 {
+        color: darkgray;
+        text-decoration: none; }
+      .product-detail .fixed-bottom .container .hotline a {
+        font-size: 24px;
+        font-weight: 400;
+        color: #0D0D0D;
+        text-decoration: none; }
+      .product-detail .fixed-bottom .container .final-price {
+        color: #ff3b30;
+        font-size: 24px;
+        letter-spacing: 1px; }
+      .product-detail .fixed-bottom .container .before-price {
+        font-size: 18px;
+        color: #aeaeb2;
+        text-decoration: line-through; }
+      .product-detail .fixed-bottom .container .add2Cart {
+        margin: auto;
+        text-align: center; }
 
 .shopping-cart {
   margin-top: 50px;

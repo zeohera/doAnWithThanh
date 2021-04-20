@@ -24,3 +24,7 @@
 .billDetail {
   border: 1px solid black;
   border-radius: 10px; }
+
+.pdf_colection {
+  display: flex;
+  justify-content: space-between; }

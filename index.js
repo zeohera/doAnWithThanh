@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 var session = require('express-session');
 var path = require('path')
 var _ = require('lodash');
-
+var cors = require('cors')
 function unpollute(req, res, next) {
   req.body = _.omit(req.body, '__proto__');
   next();
@@ -20,6 +20,7 @@ var adminRoute = require('./routes/admin.route')
 var authRoute = require('./routes/auth.route')
 var authMiddleware = require('./middlewares/auth.middleware')
 var apiProductRoute = require('./API/routes/product.route')
+var apiAdminRoute = require('./API/routes/admin.route')
 app.use(express.static('public'))
 app.use('*/css',express.static('public/css'));
 app.use('*/js',express.static('public/js'));
@@ -48,7 +49,8 @@ app.use(unpollute);
 app.use('/Auth',authRoute)
 app.use('/product', productRoute)
 app.use('/admin', authMiddleware.requireAuth, adminRoute )
-app.use('/api/product', apiProductRoute)
+app.use('/api/product',cors(), apiProductRoute)
+app.use('/api/admin', authMiddleware.requireAuth, cors(), apiAdminRoute )
 app.get('/', (req, res) => {
     res.redirect('/product')
 })

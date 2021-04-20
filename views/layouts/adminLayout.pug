@@ -15,6 +15,7 @@ html(lang='en')
         link(href='sbAdmin/css/sb-admin-2.css' rel='stylesheet')
         link(href='sbAdmin/css/singleModule.css' rel='stylesheet')
         link(rel="stylesheet", href="css/admin.css")
+        script( type="text/javascript" src="js/storeManager.js")
     body#page-top
         #wrapper
             // Sidebar
@@ -66,6 +67,10 @@ html(lang='en')
                     a.nav-link(href='/admin/bannerManager')
                         i.fas.fa-ad
                         span  Banner
+                li.nav-item.active
+                    a.nav-link(href='/admin/store')
+                        i.fas.fa-store
+                        span  Cửa hàng
                 
                 // Divider
                 hr.sidebar-divider
@@ -187,16 +192,9 @@ html(lang='en')
                                     img.img-profile.rounded-circle(src= user.avatar)
                                 // Dropdown - User Information
                                 .dropdown-menu.dropdown-menu-right.shadow.animated--grow-in(aria-labelledby='userDropdown')
-                                    a.dropdown-item(href='#')
+                                    a.dropdown-item(href='/admin/'+ user._id + '/detailAdmin')
                                         i.fas.fa-user.fa-sm.fa-fw.mr-2.text-gray-400
                                         |Profile
-                                    a.dropdown-item(href='#')
-                                        i.fas.fa-cogs.fa-sm.fa-fw.mr-2.text-gray-400
-                                        |Settings
-                                    a.dropdown-item(href='#')
-                                        i.fas.fa-list.fa-sm.fa-fw.mr-2.text-gray-400
-                                        |Activity Log
-                                    .dropdown-divider
                                     a.dropdown-item(href='/auth/logout' data-toggle='modal' data-target='#logoutModal')
                                         i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
                                         | Logout
@@ -242,3 +240,4 @@ html(lang='en')
         script(src='sbAdmin2/js/demo/chart-pie-demo.js')
         script(src="sbAdmin2/js/selectFilter.min.js")
         script(src="js/header.js")
+        script( type="text/javascript" src="js/storeManager.js")
