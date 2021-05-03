@@ -1,0 +1,35 @@
+extends ../layouts/common
+
+block content
+    .container.shippingInfoContainer
+        script(src="js/delivery.js") 
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" )
+        h1.text-center.mt-5 Tra cứu trạng thái đơn hàng của bạn
+        .searchBar 
+            form(action="/api/product/getDeliveryInfo", method="get") 
+                .form-group.mt-3
+                    input.form-control#customerName(type="text" placeholder="Nhập họ và tên của bạn" name="customerName" )
+                .form-group.mt-3
+                    input#billID.form-control(type="text", name="BillID", placeholder="Nhập ID đơn hàng của bạn")
+                button.btn.btn-primary.mt-3(type="submit") Tra cứu
+        .shippingInfo.d-none
+            .border.border-primary.rounded
+                .iconInfo
+                    .boxIcon.confirm
+                        i.fas.fa-user-cog
+                        p Chờ Admin xác nhận
+                    .boxIcon.shipping
+                        i.fas.fa-shipping-fast
+                        p Đóng gói và vận chuyển
+                    .boxIcon.complete
+                        i.fas.fa-check
+                        p Giao hàng thành công
+                    .boxIcon.cancel
+                        i.fas.fa-ban
+                        p Đơn hàng đã hủy
+                .packageText.p-3
+                    p Xem thêm thông tin trong email chúng tôi gửi cho bạn
+                    p.email
+                    p.customerName
+

@@ -61,7 +61,6 @@ function citySelect(){
     })
 }
 
-
 var storeList = document.getElementsByClassName('btn_editStore')
 console.log(storeList)
 function callStore(event) {
@@ -87,7 +86,6 @@ var form = document.querySelector('#storeEditInfo')
 
 form.addEventListener("submit", (e)=>
 {
-
     var id = document.querySelector('#storeEditInfo #editID').innerText
     let data = new FormData(document.querySelector('#storeEditInfo'))
     var embeddedLink = data.get('embeddedLink')
@@ -101,5 +99,4 @@ form.addEventListener("submit", (e)=>
     })
     .catch((err) => {throw err});
     form.style.display = 'none'
-    
 })

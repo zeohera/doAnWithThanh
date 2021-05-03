@@ -706,7 +706,8 @@ module.exports.addStore = async (req, res)=> {
 
 module.exports.removeStore = async (req, res) => {
     try {
-        District.deleteOne({ _id: req.body.id }).then(function(){
+        console.log('req.body.id', req.body.id)
+        Store.deleteOne({ _id: req.body.id }).then(function(){
             res.redirect('/admin/store')
         })
     } catch (error) {

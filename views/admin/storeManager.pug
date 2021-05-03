@@ -1,7 +1,6 @@
 extends ../layouts/adminLayout
 
 block content
-    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js") 
     
     .container-fluid
         .row
@@ -35,7 +34,7 @@ block content
                                         |-
                                         = store.district
                                     p.storeSmallAddress= store.address
-                                    a(href=store.embeddedLink, target='_blank') link : 
+                                    //- a(href=store.embeddedLink, target='_blank') link : 
                                         = store.embeddedLink
                                     br
                                     button.btn.btn-warning.btn-sm.btn_editStore(data-id=store._id, data-toggle='modal', data-target="#exampleModalCenter") Sửa

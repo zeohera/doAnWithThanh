@@ -1,5 +1,6 @@
 const express = require('express')
 var multer  = require('multer')
+const { route } = require('../API/routes/product.route')
 const router = express.Router()
 
 var controller = require('../controller/product.controller')
@@ -22,6 +23,8 @@ router.get('/index', controller.index)
 
 router.get('/storeOnMap', controller.storeOnMap)
 
+router.get('/deliveryInfo', controller.deliveryInfo)
+
 router.get('/category', controller.category)
 
 router.get('/shoppingCart', controller.shoppingCart)
@@ -38,9 +41,11 @@ router.get('/brandInfo/:brand', controller.brandInfo)
 
 router.get('/search', controller.search)
 
+router.get('/moreInfo', controller.moreInfo)
+
 router.get('/:id', controller.detail)
 
-router.post('/create', upload.single('avatar'), validate.postCreate, controller.postCreate)
+// router.post('/create', upload.single('avatar'), validate.postCreate, controller.postCreate)
 
 
 

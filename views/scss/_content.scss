@@ -369,5 +369,61 @@ html {
         }
     }
 }
-
+.shippingInfoContainer{
+    overflow: hidden;
+    .shippingInfo{
+        overflow: hidden;
+        .iconInfo{
+            display: flex ;
+            width: 100%;
+            border-radius: 0 10px 10px 0;
+            .boxIcon{
+                padding: 7px;
+                justify-content: space-between;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex: 1;
+                i{
+                    padding-top: 10px;
+                    font-size: 30px;
+                    color: rgb(115, 149, 175);
+                }
+                p{
+                    padding-top: 10px;
+                    color: rgb(115, 149, 175);
+                }
+                
+            }
+            .confirm.done{
+                background: rgb(196,255,201);
+                background: linear-gradient(270deg, rgba(196,255,201,1) 0%, rgba(255,255,255,1) 95%);
+                i, p{
+                    color: rgb(5, 59, 5);
+                }
+            }
+            .cancel.done{
+                background: rgb(71, 71, 71);
+                background: linear-gradient(90deg, rgba(82, 82, 82, 0.947) 0%, rgba(255,255,255,1) 95%);
+                i, p{
+                    color: rgb(14, 14, 14);
+                }
+            }
+            .shipping.done{
+                background: rgb(166,40,40);
+                background: linear-gradient(270deg, rgba(255, 68, 68, 0.947) 0%, rgba(255,255,255,1) 95%);
+                i, p{
+                    color: rgb(59, 5, 5);
+                }
+            }
+            .complete.done{
+                background: rgb(40,133,166);
+                background: linear-gradient(270deg, rgba(64, 189, 235, 0.947) 0%, rgba(255,255,255,1) 95%);
+                i, p{
+                    color: rgb(5, 37, 59);
+                }
+            }
+        }
+    }
+}
 @import 'map'

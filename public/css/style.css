@@ -289,6 +289,49 @@ html {
   .shopping-cart .col-md-4 a {
     width: 100%; }
 
+.shippingInfoContainer {
+  overflow: hidden; }
+  .shippingInfoContainer .shippingInfo {
+    overflow: hidden; }
+    .shippingInfoContainer .shippingInfo .iconInfo {
+      display: flex;
+      width: 100%;
+      border-radius: 0 10px 10px 0; }
+      .shippingInfoContainer .shippingInfo .iconInfo .boxIcon {
+        padding: 7px;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1; }
+        .shippingInfoContainer .shippingInfo .iconInfo .boxIcon i {
+          padding-top: 10px;
+          font-size: 30px;
+          color: #7395af; }
+        .shippingInfoContainer .shippingInfo .iconInfo .boxIcon p {
+          padding-top: 10px;
+          color: #7395af; }
+      .shippingInfoContainer .shippingInfo .iconInfo .confirm.done {
+        background: #c4ffc9;
+        background: linear-gradient(270deg, #c4ffc9 0%, white 95%); }
+        .shippingInfoContainer .shippingInfo .iconInfo .confirm.done i, .shippingInfoContainer .shippingInfo .iconInfo .confirm.done p {
+          color: #053b05; }
+      .shippingInfoContainer .shippingInfo .iconInfo .cancel.done {
+        background: #474747;
+        background: linear-gradient(90deg, rgba(82, 82, 82, 0.947) 0%, white 95%); }
+        .shippingInfoContainer .shippingInfo .iconInfo .cancel.done i, .shippingInfoContainer .shippingInfo .iconInfo .cancel.done p {
+          color: #0e0e0e; }
+      .shippingInfoContainer .shippingInfo .iconInfo .shipping.done {
+        background: #a62828;
+        background: linear-gradient(270deg, rgba(255, 68, 68, 0.947) 0%, white 95%); }
+        .shippingInfoContainer .shippingInfo .iconInfo .shipping.done i, .shippingInfoContainer .shippingInfo .iconInfo .shipping.done p {
+          color: #3b0505; }
+      .shippingInfoContainer .shippingInfo .iconInfo .complete.done {
+        background: #2885a6;
+        background: linear-gradient(270deg, rgba(64, 189, 235, 0.947) 0%, white 95%); }
+        .shippingInfoContainer .shippingInfo .iconInfo .complete.done i, .shippingInfoContainer .shippingInfo .iconInfo .complete.done p {
+          color: #05253b; }
+
 header {
   display: flex;
   justify-content: center;

@@ -1,34 +1,27 @@
 extends ../layouts/common
 
 block content
-    style.
-        #map {
-        height: 100%;
-        }
-        html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        }
-    //- script(async='' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDNrRDzN6tWDYeFgVy8CmT3AftIAti5wZg&callback=initMap')
-    //- script(src="js/map.js") 
+
+    script(src="js/store.js") 
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js") 
     .container
         h1.mt-3 Danh sách cửa hàng
-        select#city.form-control(name="city") 
-            option(value="all") tất cả khu vực
-            option(value="hanoi") Hà Nội 
-        br
-        select#district.form-control(name="district") 
-            option(value="all") chọn quận huyện
-            option(value="bactuliem") Bắc Từ Liêm
         .row
-            ul.mt-3.col-md-4
-                .list-group
-                    li.list-group-item
-                        a   (href="#") 234 Hoàng Quốc Việt
-            .col-md-8
-                .map.mt-3
-                    iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.6575906466933!2d105.78278231542347!3d21.04638239255127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abb158a2305d%3A0x5c357d21c785ea3d!2zxJDhuqFpIGjhu41jIMSQaeG7h24gTOG7sWM!5e0!3m2!1svi!2s!4v1618587318538!5m2!1svi!2s' width='500px' height='500px' style='border:0;' allowfullscreen='true' loading='lazy')
-
-
-        
+            select#citySelect.form-select.col-md-6(name="city" )
+                option(value='') Chọn thành phố
+                each city in cities
+                    option(value=city._id)= city.name
+            br
+            select#districtSelect.form-select.mt-3.col-md-6(name="district") 
+                option(value="") Chọn quận / huyện
+                each district in districts 
+                    option(value=district._id)= district.city
+                        |- 
+                        = district.name                 
+        .row.mt-3#storeCardHolder
+        .row#faraway.mt-5.pt-5
+            h3 Mua hàng từ xa 
+            p Bạn có thể mua hàng từ xa thông qua trang web chính thức của cửa hàng , gọi điện cho cửa hàng thông qua HOTLINE 
+                a(href="tel:+84335670934") 0335670934
+                |  cũng như trên các sàn thương mại điện tử khác như Lazada , Tiki , Shopee, chúc các bạn có một ngày làm việc vui vẻ , hiệu quả .

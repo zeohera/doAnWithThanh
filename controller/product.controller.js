@@ -6,6 +6,9 @@ const Cart = require('../models/cart');
 const Bill = require('../models/bill.model');
 const Brand = require('../models/brand.model')
 const Banner = require('../models/banner.model')
+const District = require('../models/district.model')
+const City = require('../models/city.model')
+const Store = require('../models/store.model')
 const ProductCategory = require('../models/productCategory.model')
 const SubProductCategory = require('../models/SubProductCategory.model')
 const { response } = require('express');
@@ -306,6 +309,21 @@ module.exports.postCreate = (req,res)=>{
     res.redirect('/product')
 }
 
-module.exports.storeOnMap = (req, res)=>{
-    res.render('product/map')
+module.exports.storeOnMap = async (req, res)=>{
+    var district = await District.find()
+    var city = await City.find()
+    var store = await Store.find()
+    console.log(city, district, store)
+
+    res.render('product/map', {
+        districts : district,
+        cities : city ,
+        stores : store
+    } )  
+}
+module.exports.deliveryInfo = (req, res)=>{
+    res.render('product/deliveryState')
+}
+module.exports.moreInfo = (req, res)=>{
+    res.render('product/moreInfo')
 }
