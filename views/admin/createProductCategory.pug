@@ -9,13 +9,13 @@ block content
         form(action="/admin/createProductCategory", method="post", enctype="multipart/form-data") 
             .mb-3
                 label.form-label(for='name') tên 
-                input#name.form-control(name = 'name')
+                input#name.form-control(name = 'name' required)
             .mb-3
                 label(for="image") avatar
                 br
-                input(name = "image", type="file" )
+                input(name = "image", type="file" required)
             .mb-3
                 label.form-label(for='description') Mô tả
                 br
-                textarea#description.form-control(name="description" ,rows="4", cols="100") 
+                textarea#description.form-control(name="description" ,rows="4", cols="100", required) 
             button.btn.btn-primary(type='submit') Xác nhận

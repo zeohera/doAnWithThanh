@@ -8,23 +8,23 @@ block content
         form(action = "/admin/createAdmin", method= "POST", enctype="multipart/form-data")
             .mb-3
                 label.form-label(for='exampleInputEmail1') Họ và tên
-                input#name.form-control(name = 'name')
+                input#name.form-control(name = 'name' required)
             .mb-3
                 label.form-label(for='exampleInputEmail1') account
-                input#account.form-control(name = 'account')
+                input#account.form-control(name = 'account' required)
             .mb-3
                 label(for="avatar") avatar
                 br
                 input(name = "avatar", type="file" )
             .mb-3
                 label.form-label(for='exampleInputEmail1') Số điện thoai
-                input#phoneNumber.form-control(name = 'phoneNumber')
+                input#phoneNumber.form-control(name = 'phoneNumber' required)
             .mb-3
                 label.form-label(for='exampleInputEmail1') Địa chỉ Email
-                input#exampleInputEmail1.form-control(type='email', name= 'email' )
+                input#exampleInputEmail1.form-control(type='email', name= 'email' required)
             .mb-3
                 label.form-label(for='exampleInputPassword1') Mật khẩu
-                input#exampleInputPassword1.form-control(type='password', name = 'password')
+                input#exampleInputPassword1.form-control(type='password', name = 'password' required)
             .mb-3.form-check
                 .form-check
                     input#flexRadioDefault2.form-check-input(type='radio', name='pro', checked='', value = 'Normal')

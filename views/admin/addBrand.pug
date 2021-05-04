@@ -9,13 +9,13 @@ block content
         form(action="/admin/addBrand", method="post", enctype="multipart/form-data")
             .mb-3
                 label.form-label(for='name') Tên nhãn hàng
-                input#name.form-control(name = 'name')
+                input#name.form-control(name = 'name' required)
             .mb-3 
                 label(for="logo") Logo
                 br
-                input(name = "logo", type="file" )
+                input(name = "logo", type="file" required )
             .mb-3 
                 label.form-label(for='description') Mô tả :
                 br
-                textarea#description.form-control(name="description" ,rows="4", cols="100") 
+                textarea#description.form-control(required name="description" ,rows="4", cols="100") 
             button.btn.btn-primary.btn-sm(type ="submit") Lưu

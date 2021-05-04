@@ -8,18 +8,18 @@ block content
         form(action="/admin/createSubProductCategory", method="post") 
             .mb-3
                 label.form-label(for='name') tên 
-                input#name.form-control(name = 'name')
+                input#name.form-control(name = 'name' required)
 
             .mb-3 
                 label.form-label(for='category') Thuộc loại sản phẩm nào
                 if productCategories
                     .mb-3
-                        select#category.form-select(aria-label='Default select example' name ='mother')
+                        select#category.form-select(aria-label='Default select example' name ='mother' required)
                             option(selected='') Open this select menu
                             for category in productCategories
                                 option(value=category.name)= category.name
             .mb-3
                 label.form-label(for='description') Mô tả
                 br
-                textarea#description.form-control(name="description" ,rows="4", cols="100") 
+                textarea#description.form-control(required name="description" ,rows="4", cols="100") 
             button.btn.btn-primary(type='submit') Xác nhận

@@ -10,10 +10,10 @@ block content
             .mb-3
                 label(for="image") ảnh
                 br
-                input(name = "image", type="file" )
+                input(name = "image", type="file" required )
             .mb-3
                 label.form-label(for='Link') Link
-                input#Link.form-control(name = 'link')
+                input#Link.form-control(name = 'link' required)
             .mb-3.form-check
                 .form-check
                     input#flexRadioDefault2.form-check-input(type='radio', name='display', checked='', value = '0')
