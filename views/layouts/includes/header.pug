@@ -1,7 +1,26 @@
 header(class="fixed-top",  style="backdrop-filter: blur(30px)")
+        link(rel='stylesheet' href='https://pro.fontawesome.com/releases/v5.10.0/css/all.css' integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p' crossorigin='anonymous')
         .container
             .row
-                .col-md-5.left
+                .menu.col-2
+                    button
+                        i.fas.fa-bars
+                    .menuOption#menuOption.d-none
+                        form.search_form(action = "/product/search" method = "GET")
+                            input#search.search_input(type="text", name = "q",placeholder="Tìm gì đó")
+                        hr
+                        ul
+                            li 
+                                a(href="/product/category/?name=Piano") Piano/Organ
+                            li 
+                                a(href="/product/category/?name=Guitar") Guitar
+                            li 
+                                a(href="/product/category/?name=ukulele") Ukulele
+                            li 
+                                a(href="/product/category/?name=String") Bộ String
+                            li 
+                                a(href="/product/category/?name=Harmonica") Harmonica
+                .col-lg-5.left
                     ul
                         li 
                             a(href="/product/category/?name=Piano") Piano/Organ
@@ -13,7 +32,7 @@ header(class="fixed-top",  style="backdrop-filter: blur(30px)")
                             a(href="/product/category/?name=String") Bộ String
                         li 
                             a(href="/product/category/?name=Harmonica") Harmonica
-                .col-md-2
+                .col-lg-2.center.col-8
                     .icon_cover
                         a(href="/")
                             svg#Layer_1(enable-background='new 0 0 200 200' height='50' viewbox='0 0 511 511' width='50' xmlns='http://www.w3.org/2000/svg')
@@ -80,10 +99,10 @@ header(class="fixed-top",  style="backdrop-filter: blur(30px)")
                                         circle(cx='302.365' cy='256' fill='#373c41' r='8.898')
                                     g
                                         circle(cx='218.84' cy='256' fill='#373c41' r='8.898')
-                .col-md-5.right
+                .col-lg-5.right.col-2
                     .container
                         .row
-                            .col-md-10
+                            .col-lg-10.col-10.searchFormCover
                                 .icon
                                     i.gg-search
                                     form.search_form(action = "/product/search" method = "GET")
@@ -92,7 +111,7 @@ header(class="fixed-top",  style="backdrop-filter: blur(30px)")
                                         input#search.search_input(type="text", name = "q",placeholder="Tìm gì đó")
                                         .btn-gg-cover
                                             a.gg-arrow-right-o.text-white(href="javascript:$('form').submit()")
-                            .col-md-2
+                            .col-lg-2.col-2.cartCover
                                 a(href="/product/shoppingCart").icon
                                     div
                                         i.gg-shopping-bag

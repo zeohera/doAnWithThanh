@@ -43,3 +43,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
             'heightRatio': 0.5,
         } ).mount();
     } );
+
+document.querySelector('header .menu button').addEventListener('click', toggleMenu)
+function toggleMenu(e){
+    $('#menuOption').toggleClass('d-none');
+    $('.fixed-bottom').toggleClass('d-none');
+}

@@ -22,7 +22,7 @@ html {
                 border : 1px solid white;
             }
         }
-        .col-md-4{
+        .rightTheSlide{
             .platform{
                 background-color: rgba(255, 255, 255, 0.5);         
                 -webkit-backdrop-filter: blur(20px);
@@ -158,6 +158,7 @@ html {
         }
     }
 }
+
 .category{
     background-size: auto;
     min-height: 100vh;
@@ -426,4 +427,28 @@ html {
         }
     }
 }
-@import 'map'
+
+@media only screen and ( max-width : 991px ){
+    html {
+        scroll-behavior: smooth;
+    }
+    .home{
+        background: rgb(134,186,205)!important;
+        background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
+        .splide{
+            display: none;
+        }
+    }
+    .brandContainer{
+        background: rgb(134,186,205)!important;
+        background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
+    }
+    .category{
+        background: rgb(134,186,205)!important;
+        background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
+    }
+    .product-detail{
+        background: rgb(134,186,205)!important;
+        background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
+    }
+}

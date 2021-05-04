@@ -8,14 +8,14 @@ block content
     .home(style='background-image : url('+backgroundImage+'); padding-bottom : 20px')
         .container.carouselNfriend
             .row
-                .col-md-8
+                .col-md-12.col-sm-12.col-lg-8
                     #image-slider.splide
                         .splide__track
                             ul.splide__list
                                 each banner in banners
                                     a.splide__slide(href=banner.link, style="border-radius : 10px ; border : 1px solid white;")
                                         img(src=banner.image)
-                .col-md-4
+                .rightTheSlide.col-md-12.col-lg-4
                     .platform
                         h3 Ghé thăm chúng tôi trên các nền tảng khác
                         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" )
@@ -48,17 +48,17 @@ block content
                 h2.cardCategoryHead
                     span Khoảng giá
                 .cardContainer
-                    a.btn.btn-light(href='/product/?range=1') Dưới 2 Triệu
-                    a.btn.btn-light(href='/product/?range=2') 2 - 5 Triệu
-                    a.btn.btn-light(href='/product/?range=3') 5 - 7 Triệu
-                    a.btn.btn-light(href='/product/?range=4') 7 - 10 Triệu
-                    a.btn.btn-light(href='/product/?range=5') 10 - 15 Triệu
-                    a.btn.btn-light(href='/product/?range=6') Trên 15 Triệu
+                    a.btn.btn-light.mb-3(href='/product/?range=1') Dưới 2 Triệu
+                    a.btn.btn-light.mb-3(href='/product/?range=2') 2 - 5 Triệu
+                    a.btn.btn-light.mb-3(href='/product/?range=3') 5 - 7 Triệu
+                    a.btn.btn-light.mb-3(href='/product/?range=4') 7 - 10 Triệu
+                    a.btn.btn-light.mb-3(href='/product/?range=5') 10 - 15 Triệu
+                    a.btn.btn-light.mb-3(href='/product/?range=6') Trên 15 Triệu
                 .container
                     .mt-3.row(style='margin-top: 10px;')
                         if productsInRange
                             each product in productsInRange
-                                .col-md-2
+                                .col-lg-2.col-sm-6.col-6.col-md-4
                                     a.card_link(href= '/product/' + product.id)
                                         .pro_card
                                             .card_image
@@ -87,33 +87,34 @@ block content
                 .mt-3.priceRange.cardCategory
                     h2.cardCategoryHead
                         span Đang giảm giá
-                    .mt-3.container.row(style='margin-top: 10px;')
-                        each product in productsSale
-                            .col-md-2
-                                a.card_link(href= '/product/' + product.id)
-                                    .pro_card
-                                        .card_image
-                                            img(src= product.image alt='')
-                                            .special
-                                                p(style="visibility:hidden") Mới về
-                                                if product.discountedPrice
-                                                    p SALE
-                                        .card_content
-                                            p.card_name= product.name
-                                            a.brand(href='')= product.brand
-                                            .price
-                                                if !product.discountedPrice
-                                                    p.final= product.price 
-                                                        | &#x20AB;
-                                                    p(style="visibility:hidden").mb-2.before= product.discountedPrice
-                                                        | &#x20AB;
-                                                else 
-                                                    p.final=product.discountedPrice 
-                                                        | &#x20AB;
-                                                    p.mb-2.before=product.price 
-                                                        | &#x20AB;
-                                            .add2cart.d-flex.justify-content-center
-                                                a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
+                    .container
+                        .mt-3.row(style='margin-top: 10px;')
+                            each product in productsSale
+                                .col-lg-2.col-sm-6.col-6.col-md-4
+                                    a.card_link(href= '/product/' + product.id)
+                                        .pro_card
+                                            .card_image
+                                                img(src= product.image alt='')
+                                                .special
+                                                    p(style="visibility:hidden") Mới về
+                                                    if product.discountedPrice
+                                                        p SALE
+                                            .card_content
+                                                p.card_name= product.name
+                                                a.brand(href='')= product.brand
+                                                .price
+                                                    if !product.discountedPrice
+                                                        p.final= product.price 
+                                                            | &#x20AB;
+                                                        p(style="visibility:hidden").mb-2.before= product.discountedPrice
+                                                            | &#x20AB;
+                                                    else 
+                                                        p.final=product.discountedPrice 
+                                                            | &#x20AB;
+                                                        p.mb-2.before=product.price 
+                                                            | &#x20AB;
+                                                .add2cart.d-flex.justify-content-center
+                                                    a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
                     .row
                         a(href="/product/category/?name=discounted", style='display:block; width : 200px').btn.btn-outline-danger.btn-lg.mx-auto Xem tất cả            
             if (ProductPreOrder.length > 0)
