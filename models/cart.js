@@ -20,11 +20,15 @@ module.exports = function Cart(cart) {
             this.totalItems++;
             this.totalPrice += cartItem.item.price;
         } 
-       
+        
     };
-
+    this.minus = function (id) {
+        this.items[id].quantity -= 1;
+        this.totalPrice -= this.items[id].price;
+      }
     this.remove = function(id) {
         this.totalItems -= this.items[id].quantity;
+        this.quantity -= 1;
         this.totalPrice -= this.items[id].price;
         delete this.items[id];
     };

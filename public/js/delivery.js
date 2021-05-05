@@ -39,6 +39,7 @@ window.onload=function(){
                 }
             }
             document.querySelector('.packageText .email').innerHTML = 'email :' + res.data.email
+            document.querySelector('.packageText #deliveryStateInfo').innerHTML = 'Trạng thái giao hàng : ' + res.data.shippingInfo
             
             document.querySelector('.packageText .customerName').innerHTML = 'Họ tên :' + res.data.name
         })

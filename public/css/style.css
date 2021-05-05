@@ -27,6 +27,9 @@ html {
   position: relative;
   min-height: 100%; }
 
+.solidBackgroundHeader {
+  background-color: #292828; }
+
 .home {
   background-size: auto;
   min-height: 100vh;
@@ -221,11 +224,11 @@ html {
     backdrop-filter: blur(20px);
     border-radius: 10px;
     border: 1px solid white; }
-    .product-detail .container .product-info .col-md-5 {
+    .product-detail .container .product-info .col-lg-5 {
       display: flex;
       justify-content: center;
       align-items: center; }
-      .product-detail .container .product-info .col-md-5 img {
+      .product-detail .container .product-info .col-lg-5 img {
         max-width: 450px;
         border-radius: 10px; }
     .product-detail .container .giftProductList {
@@ -276,17 +279,20 @@ html {
 
 .shopping-cart {
   margin-top: 50px;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   padding-top: 5px;
   padding-bottom: 20px;
   min-height: 100px;
   background-color: white; }
-  .shopping-cart .col-md-4 .price {
+  .shopping-cart .aProduct .infoCover .name {
+    font-size: 20px;
+    font-weight: bolder; }
+  .shopping-cart .priceCover .price {
     color: #ff3b30;
     font-size: 24px;
     letter-spacing: 1px; }
-  .shopping-cart .col-md-4 a {
+  .shopping-cart .priceCover a {
     width: 100%; }
 
 .shippingInfoContainer {
@@ -332,6 +338,10 @@ html {
         .shippingInfoContainer .shippingInfo .iconInfo .complete.done i, .shippingInfoContainer .shippingInfo .iconInfo .complete.done p {
           color: #05253b; }
 
+.searchContainer {
+  background: #86bacd !important;
+  background: linear-gradient(283deg, #86bacd 14%, #9bc6d6 100%) !important; }
+
 @media only screen and (max-width: 991px) {
   html {
     scroll-behavior: smooth; }
@@ -339,16 +349,29 @@ html {
     background: #86bacd !important;
     background: linear-gradient(283deg, #86bacd 14%, #9bc6d6 100%) !important; }
     .home .splide {
-      display: none; }
+      margin-bottom: 20px; }
   .brandContainer {
     background: #86bacd !important;
     background: linear-gradient(283deg, #86bacd 14%, #9bc6d6 100%) !important; }
-  .category {
+    .brandContainer h1 a {
+      text-decoration: none;
+      color: white; }
+    .brandContainer .contentWrap {
+      flex-direction: column-reverse !important; }
+      .brandContainer .contentWrap #info {
+        padding-top: 50px; }
+  .category .searchContainer {
     background: #86bacd !important;
     background: linear-gradient(283deg, #86bacd 14%, #9bc6d6 100%) !important; }
   .product-detail {
     background: #86bacd !important;
-    background: linear-gradient(283deg, #86bacd 14%, #9bc6d6 100%) !important; } }
+    background: linear-gradient(283deg, #86bacd 14%, #9bc6d6 100%) !important; }
+    .product-detail .fixed-bottom {
+      min-height: 64px !important; }
+      .product-detail .fixed-bottom .hotline {
+        display: none !important; }
+      .product-detail .fixed-bottom .price p {
+        margin-bottom: 0; } }
 
 header {
   display: flex;

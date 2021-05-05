@@ -11,8 +11,9 @@ const City = require('../models/city.model')
 const Store = require('../models/store.model')
 const ProductCategory = require('../models/productCategory.model')
 const SubProductCategory = require('../models/SubProductCategory.model')
-const { response } = require('express');
-const { NULL } = require('node-sass');
+var nodemailer = require('nodemailer')
+// const { response } = require('express');
+// const { NULL } = require('node-sass');
 
 module.exports.index = async (req, res) => {
     var range = req.query.range || 2
@@ -165,7 +166,7 @@ module.exports.shoppingCart = async (req, res) => {
     {
         cart = new Cart(req.session.cart)
         var arr = cart.getItems()
-        console.log(arr)
+        // console.log(arr)
         var totalPrice = cart.totalPrice
         res.render('product/shoppingCart', {
             title: 'Shopping Cart',
@@ -180,16 +181,20 @@ module.exports.addToShoppingCart = async (req, res) => {
     var product = await Product.findOne({'_id' : productId})
     cart.add(product._doc, productId);
     req.session.cart = cart;
-    cartTotalItems = cart.totalItems
-    console.log('cartTotalItems', cartTotalItems)
+    cartTotalItems = cart.totalItems;
+    res.cookie('cartTotalItems', cartTotalItems)
+    console.log('cartTotalItems', cartTotalItems, cart)
     res.redirect('/product/shoppingCart')
 }
 
 module.exports.removeCartItem = async (req, res) => {
     var productId = req.params.id;
+    console.log()   
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     cart.remove(productId);
     req.session.cart = cart;
+    cartTotalItems = cart.totalItems;
+    res.cookie('cartTotalItems', cartTotalItems)
     res.redirect('/product/shoppingCart'); 
 
 }
@@ -218,7 +223,10 @@ module.exports.postCheckOut = async (req, res) =>
     req.body.note = []
     req.body.note.push(userNote)
     req.body.date = Date.now()
-    Bill.create(req.body)
+    thisBillID = ''
+    Bill.create(req.body, (err, data)=>{
+        thisBillID = data._id
+    })
     var cart = new Cart(req.body)
     var arr = cart.getItems()
     console.log(arr)
@@ -227,11 +235,44 @@ module.exports.postCheckOut = async (req, res) =>
         var newAmount =  obj.item['amount'] -  obj.quantity
         console.log(newAmount)
         await Product.findByIdAndUpdate( {_id : obj.item['_id']}, {'amount' : newAmount})
-        
     }
+    
+    // email
+    var BillProduct = req.body.items
+    var stringBillProduct = ''
+    for (var e in BillProduct){
+        stringBillProduct +=  BillProduct[e].item.name + ':' + BillProduct[e].item.price + ' * ' + BillProduct[e].quantity + ' = ' + BillProduct[e].price + '<br>'
+    }
+    console.log(stringBillProduct)
+    var emailText = "<br>Họ và tên người mua:  " +req.body.name + "<br> ID đơn hàng :"+ thisBillID +"<br> Giá trị đơn hàng : "+req.body.price+"<br> Địa chỉ nhận hàng :" + req.body.address+"<br> Các sản phẩm : <br>" + stringBillProduct 
+    var mail = req.params.mail
+    var mailOptions = {
+        from: 'buichibao1011@gmail.com',
+        to: req.body.email,
+        subject: 'InsMaster',
+        text: 'Xin chào ', 
+        html : emailText
+      };
+    console.log(mailOptions)
+    transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Email sent: ' + info.response);
+    }
+    });
     req.session.destroy()
     res.redirect('/product')
 }
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'buichibao1011@gmail.com',
+      pass: '101120Bao'
+    }
+  });
+
 module.exports.search = async (req, res)=>{
     var q = req.query.q
     productsFounded = await Product.find({public : true,'name':{'$regex': q}}).exec()
@@ -241,10 +282,6 @@ module.exports.search = async (req, res)=>{
         products: productsFounded,
         q : q
     })
-}
-
-module.exports.create = (req,res)=>{
-    res.render('product/create');
 }
 
 module.exports.detail = async (req,res)=>{
@@ -276,9 +313,9 @@ module.exports.detail = async (req,res)=>{
 
 module.exports.brandInfo = async (req, res) =>{
     var name = req.params.brand
-    console.log(name) 
+    // console.log(name) 
     var brand = await Brand.findOne({'name' : name}).exec()
-    console.log(brand)
+    // console.log(brand)
     var backgroundImage = brand.image || '1'
     var product = await Product.find({public : true,'brand' : name}).exec()
     res.render('product/brand',{

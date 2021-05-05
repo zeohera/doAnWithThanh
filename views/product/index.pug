@@ -1,10 +1,11 @@
 extends ../layouts/common
 
 block content
-    script.
-        window.onload = function() {setTimeout(function(){document.getElementById('body-content').style.filter="blur(0)";},500);};
-    style.
-        #body-content  {filter : blur(5px)}
+    
+    //- script.
+    //-     window.onload = function() {setTimeout(function(){document.getElementById('body-content').style.filter="blur(0)";},500);};
+    //- style.
+    //-     #body-content  {filter : blur(5px)}
     .home(style='background-image : url('+backgroundImage+'); padding-bottom : 20px')
         .container.carouselNfriend
             .row
@@ -72,15 +73,15 @@ block content
                                                 a.brand(href='')= product.brand
                                                 .price
                                                     if !product.discountedPrice
-                                                        p.final= product.price 
-                                                            | &#x20AB;
+                                                        p.numberPrice.final= product.price 
+                                                            
                                                         p(style="visibility:hidden").mb-2.before= product.discountedPrice
-                                                            | &#x20AB;
+                                                            
                                                     else 
-                                                        p.final=product.discountedPrice 
-                                                            | &#x20AB;
+                                                        p.numberPrice.final=product.discountedPrice 
+                                                            
                                                         p.mb-2.before=product.price 
-                                                            | &#x20AB;
+                                                            
                                                 .add2cart.d-flex.justify-content-center
                                                     a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
             if productsSale        
@@ -104,15 +105,15 @@ block content
                                                 a.brand(href='')= product.brand
                                                 .price
                                                     if !product.discountedPrice
-                                                        p.final= product.price 
-                                                            | &#x20AB;
+                                                        p.numberPrice.final= product.price 
+                                                            
                                                         p(style="visibility:hidden").mb-2.before= product.discountedPrice
-                                                            | &#x20AB;
+                                                            
                                                     else 
-                                                        p.final=product.discountedPrice 
-                                                            | &#x20AB;
+                                                        p.numberPrice.final=product.discountedPrice 
+                                                            
                                                         p.mb-2.before=product.price 
-                                                            | &#x20AB;
+                                                            
                                                 .add2cart.d-flex.justify-content-center
                                                     a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
                     .row
@@ -137,14 +138,15 @@ block content
                                                 a.brand(href='')= product.brand
                                                 .price
                                                     if !product.discountedPrice
-                                                        p.final= product.price 
-                                                            | &#x20AB;
+                                                        p.numberPrice.final= product.price 
+                                                            
                                                         p(style="visibility:hidden").mb-2.before= product.discountedPrice
-                                                            | &#x20AB;
+                                                            
                                                     else 
-                                                        p.final=product.discountedPrice 
-                                                            | &#x20AB;
+                                                        p.numberPrice.final=product.discountedPrice 
+                                                            
                                                         p.mb-2.before=product.price 
-                                                            | &#x20AB;
+                                                            
                                                 .add2cart.d-flex.justify-content-center
                                                     a(href="tel:+84335670934").btn.btn-success.btn-sm Gọi để đặt hàng 
+    script( type="text/javascript" src="js/script.js")

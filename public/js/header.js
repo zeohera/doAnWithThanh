@@ -44,8 +44,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
         } ).mount();
     } );
 
-document.querySelector('header .menu button').addEventListener('click', toggleMenu)
-function toggleMenu(e){
-    $('#menuOption').toggleClass('d-none');
-    $('.fixed-bottom').toggleClass('d-none');
+var Elementx = document.querySelector('header .menu button')
+if (Elementx){
+    Elementx.addEventListener('click', toggleMenu)
+    function toggleMenu(e){
+        $('#menuOption').toggleClass('d-none');
+        $('.fixed-bottom').toggleClass('d-none');
+        $('header').toggleClass('solidBackgroundHeader');
+    }
 }

@@ -3,6 +3,7 @@
 window.onload=function(){
     document.getElementById('citySelect').addEventListener('change', selectCity);
     function selectCity (e){
+        console.log('hehe')
         var thisCity = document.getElementById('citySelect').value
         if (thisCity == ''){
             axios.get('/api/product/getAllCity').then(res=>{
@@ -27,7 +28,7 @@ window.onload=function(){
                 document.getElementById('districtSelect').innerHTML = string;
                 var string2 = ''
                 res.data.store.forEach(e =>{
-                    string2 += '<div class="col-md-4 mt-3"><div class="card"><li class="list-group-item">'+e.address+'</li><iframe src="'+e.embeddedLink+'" width="100%" height="300px" style="border:0;" allowfullscreen="true" loading="lazy"></iframe></div></div>'
+                    string2 += '<div class="col-12 col-lg-4 mt-3"><div class="card"><li class="list-group-item">'+e.address+'</li><iframe src="'+e.embeddedLink+'" width="100%" height="300px" style="border:0;" allowfullscreen="true" loading="lazy"></iframe></div></div>'
                 })
                 document.getElementById('storeCardHolder').innerHTML = string2;
             })
@@ -40,7 +41,7 @@ window.onload=function(){
         axios.get('/api/product/getStoreByDistrict/' + thisDistrict).then(res=>{
             var string2 = ''
             res.data.forEach(e =>{
-                string2 += '<div class="col-md-4 mt-3"><div class="card"><li class="list-group-item">'+e.address+'</li><iframe src="'+e.embeddedLink+'" width="100%" height="300px" style="border:0;" allowfullscreen="true" loading="lazy"></iframe></div></div>'
+                string2 += '<div class="col-12 col-lg-4 mt-3"><div class="card"><li class="list-group-item">'+e.address+'</li><iframe src="'+e.embeddedLink+'" width="100%" height="300px" style="border:0;" allowfullscreen="true" loading="lazy"></iframe></div></div>'
             })
             document.getElementById('storeCardHolder').innerHTML = string2;
         })

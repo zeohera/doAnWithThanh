@@ -3,14 +3,16 @@ extends ../layouts/common
 block content
     .brandContainer(style='background-image : url('+backgroundImage+')')
         .container
-            h1.text-center.text-light= brand.name 
-            .info
-                p= brand.description
-            .product.container.mt-3
+            h1.text-center.text-light.pt-5
+                a(href="#info")= brand.name 
+            .contentWrap.d-flex.flex-column
+                .info#info.overflow-hidden
+                    p= brand.description
+                .product.container.mt-3
                 .row
                     if products
                     each product in products
-                        .col-md-2.mt-3
+                        .col-lg-2.mt-3.col-6.col-md-4
                             a.card_link(href= '/product/' + product.id)
                                 .pro_card
                                     .card_image
@@ -24,14 +26,15 @@ block content
                                         a.brand(href='')= product.brand
                                         .price
                                             if !product.discountedPrice
-                                                p.final= product.price 
+                                                p.final.numberPrice= product.price 
                                                     | &#x20AB;
                                                 p(style="visibility:hidden").mb-2.before= product.discountedPrice
                                                     | &#x20AB;
                                             else 
-                                                p.final=product.discountedPrice 
+                                                p.final.numberPrice=product.discountedPrice 
                                                     | &#x20AB;
                                                 p.mb-2.before=product.price 
                                                     | &#x20AB;
                                         .add2cart.d-flex.justify-content-center
                                             a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng                
+    script( type="text/javascript" src="js/script.js")

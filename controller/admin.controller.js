@@ -529,10 +529,10 @@ module.exports.orderManager = async (req, res) => {
 
     if (!req.query.stateX)
         {
-            var orders = await Bill.find().skip(start).limit(perPage)
+            var orders = await Bill.find().skip(start).limit(perPage).sort({date: 'desc'})
         }
     else{
-        var orders = await Bill.find({'state' : req.query.stateX}).skip(start).limit(perPage)
+        var orders = await Bill.find({'state' : req.query.stateX}).skip(start).limit(perPage).sort({date: 'desc'})
     }
 
     req.url = req.url.replace("&page=" + page, "")  

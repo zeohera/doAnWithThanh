@@ -1,22 +1,21 @@
 extends ../layouts/adminLayout
 
 block content
-    
+    script(src="js/orderManagerUI.js") 
     .container-fluid
         h1.text-center order Viewer
         div.row.order_state_selector
             .col
-                a(href='/admin/orderManager/?stateX=0').notReply.btn.btn-light đơn hàng chưa phản hồi
+                a(style='height:auto' href='/admin/orderManager/?stateX=0').notReply.btn.btn-light Đơn hàng chưa phản hồi
 
             .col 
-                a(href='/admin/orderManager/?stateX=1').packaging.btn đơn hàng đang đóng gói 
+                a(style='height:auto' href='/admin/orderManager/?stateX=1').packaging.btn Đơn hàng đang đóng gói 
 
             .col 
-                a(href='/admin/orderManager/?stateX=2').success.btn đơn hàng đã giao thành công 
+                a(style='height:auto' href='/admin/orderManager/?stateX=2').success.btn Đơn hàng đã giao thành công 
 
             .col 
-                a(href='/admin/orderManager/?stateX=-1').cancel.btn đơn hàng đã bị hủy
-                
+                a(style='height:auto' href='/admin/orderManager/?stateX=-1').cancel.btn Đơn hàng đã bị hủy      
         if orders 
             .row.mt-3
                 table.table(style='border-radius: 5px; overflow: hidden') 
@@ -40,7 +39,7 @@ block content
                                             a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
                                                 i.fas.fa-info-circle
                             if order.state == 1 
-                                tr.text-dark(style='background-color: #a3cfbb')
+                                tr.text-dark(style='background-color: #c3f8e0')
                                     td= order._id
                                     td= order.name 
                                     td= order.price 
@@ -51,7 +50,7 @@ block content
                                                 i.fas.fa-info-circle
                             
                             if order.state == 2
-                                tr.text-dark(style='background-color: #fd9843')
+                                tr.text-dark(style='background-color: #ffca9e')
                                     td= order._id
                                     td= order.name 
                                     td= order.price 
@@ -62,7 +61,7 @@ block content
                                                 i.fas.fa-info-circle
                             
                             if order.state == -1
-                                tr.text-dark(style='background-color: rgb(252, 112, 112);')
+                                tr.text-dark(style='background-color: #ffbebe;')
                                     td= order._id
                                     td= order.name 
                                     td= order.price 
@@ -72,7 +71,7 @@ block content
                                             a.btn.btn-info.btn-sm(href ='/admin/order/' + order._id)
                                                 i.fas.fa-info-circle
         if pageArray
-            ul.pagination  
+            ul.pagination#orderPagination
                 each page in pageArray
                     if parseInt(page) == parseInt(recentPage)
                         li.page-item.active
@@ -80,5 +79,5 @@ block content
                     else
                         li.page-item
                             a.page-link(href=currentURL +  page)= page 
-                   
+
                             

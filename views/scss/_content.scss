@@ -6,6 +6,9 @@ html {
     position: relative;
     min-height: 100%;
 }
+.solidBackgroundHeader{
+    background-color: rgb(41, 40, 40);
+}
 .home{
     background-size: auto;
     min-height: 100vh;
@@ -277,7 +280,7 @@ html {
         border-radius: 10px;
         border : 1px solid white;
         .product-info{
-            .col-md-5{
+            .col-lg-5{
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -352,14 +355,22 @@ html {
 }
 .shopping-cart{
     margin-top: 50px;
-    border-radius: 30px;
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     padding-top: 5px;
     padding-bottom: 20px;
     min-height: 100px ;
     background-color: white;
     // box-shadow: -3px 0 10px darkgray;
-    .col-md-4{
+    .aProduct{
+        .infoCover{
+            .name{
+                font-size: 20px;
+                font-weight: bolder;
+            }
+        }
+    }
+    .priceCover{
         .price{
             color: $systemRed;
             font-size: 24px;
@@ -427,7 +438,10 @@ html {
         }
     }
 }
-
+.searchContainer{
+    background: rgb(134,186,205)!important;
+        background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
+}
 @media only screen and ( max-width : 991px ){
     html {
         scroll-behavior: smooth;
@@ -436,19 +450,43 @@ html {
         background: rgb(134,186,205)!important;
         background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
         .splide{
-            display: none;
+            margin-bottom: 20px;
         }
     }
     .brandContainer{
+        h1{
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        }
         background: rgb(134,186,205)!important;
         background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
+        .contentWrap{
+            flex-direction: column-reverse!important;
+            #info{
+                padding-top: 50px;
+
+            }
+        }
     }
-    .category{
+    .category .searchContainer{
         background: rgb(134,186,205)!important;
         background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
     }
     .product-detail{
         background: rgb(134,186,205)!important;
         background: linear-gradient(283deg, rgba(134,186,205,1) 14%, rgba(155,198,214,1) 100%)!important;
+        .fixed-bottom{
+            min-height:64px!important  ;
+            .hotline{
+                display: none!important;
+            }
+            .price{
+                p{
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
 }

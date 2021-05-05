@@ -1,10 +1,10 @@
 extends ../layouts/common
 
 block content
-    script.
-        window.onload = function() {setTimeout(function(){document.getElementById('body-content').style.filter="blur(0)";},500);};
-    style.
-        #body-content  {filter : blur(5px)}
+    //- script.
+    //-     window.onload = function() {setTimeout(function(){document.getElementById('body-content').style.filter="blur(0)";},500);};
+    //- style.
+    //-     #body-content  {filter : blur(5px)}
 
     //- .category()
     .category(style='background-image : url('+backgroundImage+')')
@@ -76,7 +76,7 @@ block content
                                         a.page-link(href=currentURL + '&page='+ page)= page
             .row(style='margin-top: 10px;')
                 each product in products
-                    .col-md-2
+                    .col-lg-2.col-6.col-md-4
                         a.card_link(href= '/product/' + product.id)
                             .pro_card
                                 .card_image
@@ -90,12 +90,12 @@ block content
                                     a.brand(href='')= product.brand
                                     .price
                                         if !product.discountedPrice
-                                            p.final= product.price 
+                                            p.final.numberPrice= product.price 
                                                 | &#x20AB;
                                             p(style="visibility:hidden").mb-2.before= product.discountedPrice
                                                 | &#x20AB;
                                         else 
-                                            p.final=product.discountedPrice 
+                                            p.final.numberPrice=product.discountedPrice 
                                                 | &#x20AB;
                                             p.mb-2.before=product.price 
                                                 | &#x20AB;
@@ -104,3 +104,4 @@ block content
                                             a(href="tel:+84335670934").btn.btn-success.btn-sm Gọi để đặt hàng 
                                         else
                                             a(href="/product/addToShoppingCart/" + product.id).btn.btn-primary.btn-sm  Thêm vào giỏ hàng 
+    script( type="text/javascript" src="js/script.js")

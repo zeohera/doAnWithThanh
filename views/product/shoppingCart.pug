@@ -1,38 +1,36 @@
 extends ../layouts/common
 
 block content
+    script(src="js/shoppingCart.js") 
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
     .container.shopping-cart
-        .row
+        .row.d-flex
             if products
-                .col-md-8
-                    table.table
-                        thead
-                            tr
-                                th(scope="col") Sản phẩm
-                                th(scope="col") Ảnh sản phẩm
-                                th đơn giá
-                                th.text-center(scope="col") Số lượng
-                                th action
-                        tbody
-                                each item in products
-                                    tr
-                                        td= item.item.name
-                                        td 
-                                            img(src= item.item.image, alt="", style="max-height: 100px")
-                                        if (item.item.discountedPrice)
-                                            td= item.item.discountedPrice
-                                        else 
-                                            td= item.item.price
-                                        td.text-center
-                                            p.primary= item.quantity
-                                        td 
-                                            a.btn.btn-danger(href='/product/shoppingCart/remove/' + item.item._id) Xóa
-                .col-md-4 
+                .col-lg-8.col-12
+                    each item in products
+                        .aProduct.d-flex.flex-row.mt-3
+                            .imageCover.col-4.d-flex.align-items-center.justify-content-center
+                                img(src= item.item.image, alt="", style="max-height: 100px")
+                            .infoCover.col-8
+                                p.Name= item.item.name
+                                if (item.item.discountedPrice)
+                                    p.text-danger.numberPrice= item.item.discountedPrice
+                                        
+                                else 
+                                    p.text-danger.numberPrice= item.item.price
+                                        
+                                .d-flex.justify-content-between
+                                    .right.d-flex.align-items-center
+                                        //- button.btn#btn-minus -
+                                        p#quantity.quantity.text-center( style='width:40px ; margin : 0')= item.quantity
+                                        //- button.btn#btn-plus +
+                                    a.btn.btn-danger(href='/product/shoppingCart/remove/' + item.item._id) Xóa
+                        hr
                     
+                .col-lg-4.col-12.priceCover
                     p Giá : 
-                        span.price= totalPrice
-                        |   VNĐ
+                        span.price.numberPrice= totalPrice
                     a.btn.btn-primary(href='/product/checkOut') Check Out
             else 
-                img(src='https://assets.materialup.com/uploads/66fb8bdf-29db-40a2-996b-60f3192ea7f0/preview.png', style='max-width: 30%').mx-auto
-                h2.text-center Không có sản phẩm nào trong giỏ hàng
+                h2.text-center.mt-3  Không có sản phẩm nào trong giỏ hàng
+                img(src='https://assets.materialup.com/uploads/66fb8bdf-29db-40a2-996b-60f3192ea7f0/preview.png', style='width:60%; margin: auto').mx-auto
