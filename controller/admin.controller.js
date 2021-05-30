@@ -594,7 +594,7 @@ module.exports.postUpdateOrderDetail = async (req, res)=>{
 module.exports.mailSend = (req, res) =>{
     var mail = req.params.mail
     var mailOptions = {
-        from: 'buichibao1011@gmail.com',
+        from: process.env.GMAIL,
         to: mail,
         subject: 'InsMaster',
         text: req.body.mail  
