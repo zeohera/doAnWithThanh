@@ -14,7 +14,8 @@ function unpollute(req, res, next) {
   next();
 }
 
-mongoose.connect(process.env.MONGO_HOST,{ useNewUrlParser: true }).then(() => console.log("MongoDB connected")) .catch((err) => console.log(err));
+mongoose.connect(process.env.MONGO_HOST,{ useNewUrlParser: true })
+  // .then(() => console.log("MongoDB connected")) .catch((err) => console.log(err));
 
 var productRoute = require('./routes/product.route')
 var adminRoute = require('./routes/admin.route')
@@ -57,5 +58,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  // console.log(`Example app listening at http://localhost:${port}`)
 })
