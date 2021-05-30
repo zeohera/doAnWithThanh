@@ -613,8 +613,8 @@ module.exports.mailSend = (req, res) =>{
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'buichibao1011@gmail.com',
-      pass: '101120Bao'
+      user: process.env.GMAIL,
+      pass: process.env.PASSWORD
     }
   });
 
