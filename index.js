@@ -16,8 +16,6 @@ function unpollute(req, res, next) {
 
 mongoose.connect(process.env.MONGO_HOST,{ useNewUrlParser: true }).then(() => console.log("MongoDB connected")) .catch((err) => console.log(err));
 
-
-
 var productRoute = require('./routes/product.route')
 var adminRoute = require('./routes/admin.route')
 var authRoute = require('./routes/auth.route')
