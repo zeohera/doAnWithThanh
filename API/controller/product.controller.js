@@ -5,6 +5,7 @@ const City = require('../../models/city.model')
 const District = require('../../models/district.model')
 const Bill = require('../../models/bill.model')
 module.exports.index = async function (req, res) {
+    console.log('hehehe')
     var product = await Product.find()
     res.header("Access-Control-Allow-Headers")
     res.json(product)

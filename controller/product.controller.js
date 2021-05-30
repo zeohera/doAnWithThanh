@@ -247,7 +247,7 @@ module.exports.postCheckOut = async (req, res) =>
     var emailText = "<br>Họ và tên người mua:  " +req.body.name + "<br> ID đơn hàng :"+ thisBillID +"<br> Giá trị đơn hàng : "+req.body.price+"<br> Địa chỉ nhận hàng :" + req.body.address+"<br> Các sản phẩm : <br>" + stringBillProduct 
     var mail = req.params.mail
     var mailOptions = {
-        from: 'buichibao1011@gmail.com',
+        from: process.env.GMAIL,
         to: req.body.email,
         subject: 'InsMaster',
         text: 'Xin chào ', 
@@ -268,8 +268,8 @@ module.exports.postCheckOut = async (req, res) =>
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'buichibao1011@gmail.com',
-      pass: '101120Bao'
+      user:process.env.GMAIL,
+      pass: process.env.PASSWORD
     }
   });
 

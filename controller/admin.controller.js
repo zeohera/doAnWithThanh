@@ -97,8 +97,6 @@ module.exports.index = async (req, res) =>{
         product : product,
         files : files
     })
-
-    
 }
 
 
@@ -155,7 +153,6 @@ module.exports.deleteAdmin = async (req, res) =>
 }
 
 module.exports.updateAdmin = async (req, res) => {
-
     var info = await User.findById(req.params.id).exec()
     res.render('admin/adminUpdate',
     {
@@ -235,7 +232,6 @@ module.exports.productManager = async (req, res) => {
         products : products,
         pageArray : arr,
         currentURL :'/admin' +  req.url
-
     })
 }
 
