@@ -6,7 +6,7 @@ const Cart = require('../models/cart');
 const Bill = require('../models/bill.model');
 const Brand = require('../models/brand.model')
 const Banner = require('../models/banner.model')
-const District = require('../models/district.model')
+// const District = require('../models/district.model')
 const City = require('../models/city.model')
 const Store = require('../models/store.model')
 const ProductCategory = require('../models/productCategory.model')
@@ -350,6 +350,7 @@ module.exports.postCreate = (req,res)=>{
 }
 
 module.exports.storeOnMap = async (req, res)=>{
+    const District = require('../models/district.model')
     var district = await District.find()
     var city = await City.find()
     var store = await Store.find()
