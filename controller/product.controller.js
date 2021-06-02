@@ -6,11 +6,11 @@ const Cart = require('../models/cart');
 const Bill = require('../models/bill.model');
 const Brand = require('../models/brand.model')
 const Banner = require('../models/banner.model')
+const SubProductCategory = require('../models/subProductCategory.model')
 const District = require('../models/district.model')
 const City = require('../models/city.model')
 const Store = require('../models/store.model')
 const ProductCategory = require('../models/productCategory.model')
-const SubProductCategory = require('../models/subProductCategory.model')
 
 var nodemailer = require('nodemailer')
 // const { response } = require('express');
