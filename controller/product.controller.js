@@ -10,7 +10,7 @@ const District = require('../models/district.model')
 const City = require('../models/city.model')
 const Store = require('../models/store.model')
 const ProductCategory = require('../models/productCategory.model')
-const SubProductCategory = require('../models/SubProductCategory.model')
+const SubProductCategory = require('../models/subProductCategory.model')
 
 var nodemailer = require('nodemailer')
 // const { response } = require('express');

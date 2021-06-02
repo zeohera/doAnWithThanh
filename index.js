@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
@@ -23,6 +23,7 @@ var authRoute = require('./routes/auth.route')
 var authMiddleware = require('./middlewares/auth.middleware')
 var apiProductRoute = require('./API/routes/product.route')
 var apiAdminRoute = require('./API/routes/admin.route')
+
 app.use(express.static('public'))
 app.use('*/css',express.static('public/css'));
 app.use('*/js',express.static('public/js'));
@@ -33,7 +34,13 @@ app.use('*/css',express.static('public/sbAdmin2/css'));
 app.use('*/js',express.static('public/sbAdmin2/js'));
 app.use('*/img',express.static('public/sbAdmin2/img'));
 app.use('*/vendor',express.static('public/sbAdmin2/vendor'));
+
 // Set some defaults (required if your JSON file is empty)
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(unpollute);
+
+
 // template engine 
 app.set('view engine', 'pug')
 app.set('views', './views')
@@ -44,9 +51,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
-app.use(bodyParser.json()) // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-app.use(unpollute);
 
 app.use('/Auth',authRoute)
 app.use('/product', productRoute)

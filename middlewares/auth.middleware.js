@@ -14,7 +14,7 @@ module.exports.requireAuth = async (req, res, next) => {
         
         return
     }
-    
+
     res.locals.user = user
     next()  
 }
