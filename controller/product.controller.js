@@ -101,7 +101,7 @@ module.exports.category = async (req, res) =>{
         })
     }
     // test
-    const SubProductCategory = require('../models/SubProductCategory.model')
+    const SubProductCategory = require('../models/subProductCategory.model')
     var subCategories = await SubProductCategory.find({mother : name}).exec()
     var products
     var page = req.query.page || 1
