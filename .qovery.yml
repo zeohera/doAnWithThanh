@@ -1,0 +1,15 @@
+---
+application:
+  name: "doanwiththanh"
+  project: "instrument-dev"
+  organization: "QoveryCommunity"
+databases:
+- type: "MONGODB"
+  name: "instrument-dev"
+  version: "4.4"
+routers:
+- name: "main-doanwiththanh"
+  routes:
+  - application_name: "doanwiththanh"
+    paths:
+    - "/*"
