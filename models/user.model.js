@@ -8,7 +8,8 @@ var userSchema = new mongoose.Schema({
     email: String,
     password: String,
     pro:String,
-    avatar:String
+    avatar:String,
+    public_id : String
 })
 var User = mongoose.model('User', userSchema, 'users' )
 

@@ -9,9 +9,7 @@ module.exports.index = (req, res) =>{
 module.exports.PostIndex = async (req, res) => {
     var account = req.body.account
     var password = req.body.password
-
-    // var user = db.get('users').find({account : account}).value()
-    // var user
+    console.log(account , password)
     user = await User.findOne({account : account}).exec()
     if(!user){
         res.render('auth/login',{
@@ -22,6 +20,7 @@ module.exports.PostIndex = async (req, res) => {
         })
         return
     }
+
     var hashedPassword = md5(password)
     if(user.password !== hashedPassword)
     {

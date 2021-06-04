@@ -3,8 +3,8 @@ extends ../layouts/common
 block content
     .brandContainer(style='background-image : url('+backgroundImage+')')
         .container
-            h1.text-center.text-light.pt-5
-                a(href="#info")= brand.name 
+            h1.text-center.pt-5
+                a(href="#info").text-decoration-none.text-dark= brand.name 
             .contentWrap.d-flex.flex-column
                 .info#info.overflow-hidden
                     p= brand.description

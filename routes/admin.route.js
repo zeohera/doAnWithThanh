@@ -17,9 +17,10 @@ router.get('', controller.index)
 // admin manager
 
 var storageAdmin = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images/admin/')
-  },
+  // destination: function (req, file, cb) {
+  //   cb(null, './public/images/admin/')
+  //   cb(null, '')
+  // },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
@@ -39,13 +40,13 @@ router.get('/:id/detailAdmin', controller.detailAdmin)
 
 router.get('/:id/updateAdmin',controller.updateAdmin )
 
-router.post('/postUpdateAdmin/:id' ,uploadAdmin.single('avatar'), controller.postUpdateAdmin )
+router.post('/postUpdateAdmin/:id' ,uploadAdmin.single('avatar'), controller.postUpdateAdmin)
 
 // product manager
 var storageProduct = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images/products')
-  },
+  // destination: function (req, file, cb) {
+  //   cb(null, './public/images/products')
+  // },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
@@ -68,9 +69,9 @@ router.post('/:id/changePublicState', controller.changePublicState)
 
 // product category manager
 var storageCategoryImage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images/categoryBackground/')
-  },
+  // destination: function (req, file, cb) {
+  //   cb(null, './public/images/categoryBackground/')
+  // },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
@@ -94,9 +95,9 @@ router.post('/updateProductCategory/:id',uploadCategoryImage.single('image'), co
 // brand manager
 
 var storageBrand = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images/brand/')
-  },
+  // destination: function (req, file, cb) {
+  //   cb(null, './public/images/brand/')
+  // },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
@@ -149,9 +150,9 @@ router.get('/uploadBanner', controller.bannerUploader)
 
 
 var storageBanner = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images/banner/')
-  },
+  // destination: function (req, file, cb) {
+  //   cb(null, './public/images/banner/')
+  // },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }

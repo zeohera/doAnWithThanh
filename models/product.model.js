@@ -17,7 +17,8 @@ var productSchema = new mongoose.Schema({
     discountedPrice: Number,
     sound: String,
     refProduct : Array,
-    gift : Array
+    gift : Array,
+    public_id : String
 })
 var Product = mongoose.model('Product', productSchema, 'products' )
 

@@ -192,21 +192,26 @@ html {
 .brandContainer {
   background-repeat: no-repeat;
   background-size: 100%;
-  min-height: 200%;
   background-attachment: fixed; }
-  .brandContainer .container .info {
-    background-color: rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border-radius: 10px;
+  .brandContainer .container {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.459);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 1px solid white; }
-    .brandContainer .container .info p {
-      padding: 20px; }
-  .brandContainer .container .product {
-    background-color: rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border-radius: 10px; }
+    .brandContainer .container .info {
+      background-color: rgba(255, 255, 255, 0.8);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-radius: 10px;
+      border: 1px solid white; }
+      .brandContainer .container .info p {
+        padding: 20px; }
+    .brandContainer .container .product {
+      background-color: rgba(255, 255, 255, 0.8);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-radius: 10px; }
 
 .product-detail {
   padding-bottom: 20px;
