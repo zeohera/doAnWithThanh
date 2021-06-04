@@ -239,9 +239,14 @@ html {
 .brandContainer{
     background-repeat: no-repeat;
     background-size: 100% ;
-    min-height: 200%;
+    // min-height: 200%;
     background-attachment: fixed;
     .container{
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.459);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border : 1px solid white;
         h1{
             
         }

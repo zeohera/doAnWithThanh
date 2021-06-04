@@ -1,4 +1,5 @@
 module.exports.postAdminCreate = (req, res, next) => {
+    console.log(req.body)
     var errors = []
     if(!req.body.name) {
         errors.push('cần nhập tên admin')
