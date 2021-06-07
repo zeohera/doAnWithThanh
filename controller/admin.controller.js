@@ -63,23 +63,11 @@ module.exports.generateReport = async (req, res) => {
   var year = todayTime.getFullYear();
   var hour = todayTime.getHours();
   var min = todayTime.getMinutes();
-  var name =
-    "time" + hour + min + "date" + month + "" + day + "" + year + ".pdf";
-  // var path = "public/report/";
-  console.log(name, typeof name);
-  // doc.save(path + name);
-  await cloudinary.uploader.upload(
-    doc,
-    {
-      folder : "doAnWeb/report/"
-    },
-    function (error, result) {
-      // req.body.avatar = result.url;
-      // req.body.public_id = result.public_id;
-      // console.log(result.public_id);
-    }
-  );
-  res.redirect("/admin");
+  var name = 'time' + hour + min +'date'+ month + "" + day + "" + year + '.pdf'
+    var path = 'public/report/'
+    console.log(name, typeof(name))
+    doc.save(path + name)
+    res.redirect('/admin')
 };
 
 module.exports.deleteReport = async (req, res) => {
@@ -110,6 +98,9 @@ module.exports.index = async (req, res) => {
   var product = await Product.find({}).count();
 
   const testFolder = "./public/report";
+  if (!fs.existsSync(testFolder)){
+    fs.mkdirSync(testFolder);
+  }
   var files = [];
   fs.readdirSync(testFolder).forEach((file) => {
     files.push(file);
