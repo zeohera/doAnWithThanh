@@ -15,7 +15,7 @@ function unpollute(req, res, next) {
 }
 
 mongoose.connect(process.env.MONGO_HOST,{ useNewUrlParser: true })
-  // .then(() => console.log("MongoDB connected")) .catch((err) => console.log(err));
+  .then(() => console.log("MongoDB connected")) .catch((err) => console.log(err));
 
 var productRoute = require('./routes/product.route')
 var adminRoute = require('./routes/admin.route')
@@ -28,7 +28,6 @@ app.use(express.static('public'))
 app.use('*/css',express.static('public/css'));
 app.use('*/js',express.static('public/js'));
 app.use('*/images',express.static('public/images'));
-// app.use('*/images',express.static('public/images/products'));
 app.use('*/slide', express.static(path.join(__dirname + 'node_modules/@splidejs/splide/dist')));
 app.use('*/css',express.static('public/sbAdmin2/css'));
 app.use('*/js',express.static('public/sbAdmin2/js'));
@@ -53,8 +52,11 @@ app.use(session({
 }))
 
 app.use('/Auth',authRoute)
+
 app.use('/product', productRoute)
+
 app.use('/admin', authMiddleware.requireAuth, adminRoute )
+
 app.use('/api/product',cors(), apiProductRoute)
 app.use('/api/admin', authMiddleware.requireAuth, cors(), apiAdminRoute )
 app.get('/', (req, res) => {

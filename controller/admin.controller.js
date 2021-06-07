@@ -67,18 +67,18 @@ module.exports.generateReport = async (req, res) => {
     "time" + hour + min + "date" + month + "" + day + "" + year + ".pdf";
   // var path = "public/report/";
   console.log(name, typeof name);
-  doc.save(path + name);
-  // await cloudinary.uploader.upload(
-  //   req.file.path,
-  //   {
-  //     folder : "doAnWeb/report/"
-  //   },
-  //   function (error, result) {
-  //     req.body.avatar = result.url;
-  //     req.body.public_id = result.public_id;
-  //     console.log(result.public_id);
-  //   }
-  // );
+  // doc.save(path + name);
+  await cloudinary.uploader.upload(
+    doc,
+    {
+      folder : "doAnWeb/report/"
+    },
+    function (error, result) {
+      // req.body.avatar = result.url;
+      // req.body.public_id = result.public_id;
+      // console.log(result.public_id);
+    }
+  );
   res.redirect("/admin");
 };
 
@@ -355,8 +355,8 @@ module.exports.postProductUpdate = async (req, res) => {
   var prodDel = await Product.findOne({ _id: req.params.id }).exec();
   req.body.gift = req.body.gift.split(",");
   var path = prodDel.image;
-  console.log(req.file.path);
-  if (req.body.image != undefined) {
+  if (req.file) 
+  {
     console.log("inside");
     try {
       cloudinary.api.delete_resources(path, (error, result)=>{
@@ -366,19 +366,20 @@ module.exports.postProductUpdate = async (req, res) => {
     } catch (err) {
       throw err;
     }
+    await cloudinary.uploader.upload(
+      req.file.path,
+      {
+        folder : "doAnWeb/product/"
+      },
+      function (error, result) {
+        req.body.image = result.url;
+        req.body.public_id = result.public_id;
+        console.log(result.public_id);
+      }
+    );
   }
   // if (req.file) req.body.image = req.file.path.split("\\").slice(1).join("/");
-  await cloudinary.uploader.upload(
-    req.file.path,
-    {
-      folder : "doAnWeb/product/"
-    },
-    function (error, result) {
-      req.body.image = result.url;
-      req.body.public_id = result.public_id;
-      console.log(result.public_id);
-    }
-  );
+  
 
   await Product.findOneAndUpdate(
     { _id: req.params.id },
