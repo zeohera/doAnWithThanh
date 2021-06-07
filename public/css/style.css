@@ -356,6 +356,8 @@ html {
     background: linear-gradient(283deg, #86bacd 14%, #9bc6d6 100%) !important; }
     .home .splide {
       margin-bottom: 20px; }
+    .home .cardCategory {
+      background-color: #d8ebf3; }
   .brandContainer {
     background: #86bacd !important;
     background: linear-gradient(283deg, #86bacd 14%, #9bc6d6 100%) !important; }
