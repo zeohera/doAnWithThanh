@@ -17,10 +17,10 @@ router.get('', controller.index)
 // admin manager
 
 var storageAdmin = multer.diskStorage({
-  // destination: function (req, file, cb) {
-  //   cb(null, './public/images/admin/')
-  //   cb(null, '')
-  // },
+  destination: function (req, file, cb) {
+    cb(null, './public/images/admin/')
+    cb(null, '')
+  },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }

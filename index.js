@@ -57,7 +57,7 @@ app.use('/product', productRoute)
 app.use('/admin', authMiddleware.requireAuth, adminRoute )
 
 app.use('/api/product',cors(), apiProductRoute)
-app.use('/api/admin', authMiddleware.requireAuth, cors(), apiAdminRoute )
+app.use('/api/admin', authMiddleware.requireAuth, cors(), apiAdminRoute)
 app.get('/', (req, res) => {
     res.redirect('/product')
 })
