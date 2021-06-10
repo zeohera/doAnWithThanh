@@ -590,6 +590,7 @@ module.exports.createSubProductCategory = async (req, res) => {
 };
 
 module.exports.postCreateSubProductCategory = async (req, res) => {
+  req.body.name = req.body.name.trim();
   SubProductCategory.create(req.body);
   res.redirect("subProductCategoryManager");
 };
@@ -611,8 +612,12 @@ module.exports.updateSubCategory = async (req, res) => {
   });
 };
 module.exports.postUpdateSubCategory = async (req, res) => {
+  if (req.body.name){
+    req.body.name = req.body.name.trim();
+  }
   await SubProductCategory.findOneAndUpdate(
     { _id: req.params.id },
+    
     req.body,
     (err, doc) => {
       if (err) {
