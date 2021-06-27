@@ -205,7 +205,7 @@ module.exports.checkOut = async (req, res) => {
     var arr = cart.getItems()
     console.log(arr)
     var totalPrice = cart.totalPrice    
-    res.render('product/checkout', {
+    res.render('product/checkOut', {
         title: 'Checkout',
         products: arr,
         totalPrice: totalPrice
@@ -237,7 +237,6 @@ module.exports.postCheckOut = async (req, res) =>
         console.log(newAmount)
         await Product.findByIdAndUpdate( {_id : obj.item['_id']}, {'amount' : newAmount})
     }
-    
     // email
     var BillProduct = req.body.items
     var stringBillProduct = ''

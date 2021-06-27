@@ -611,6 +611,7 @@ module.exports.updateSubCategory = async (req, res) => {
     productCategories: category,
   });
 };
+
 module.exports.postUpdateSubCategory = async (req, res) => {
   if (req.body.name){
     req.body.name = req.body.name.trim();
